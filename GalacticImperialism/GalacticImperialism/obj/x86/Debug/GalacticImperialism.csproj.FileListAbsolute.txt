@@ -1,0 +1,46 @@
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.exe
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.pdb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.dll
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.xml
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.csprojResolveAssemblyReference.cache
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar60Point.xnb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar20Point.xnb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Star Background\WhiteCircle.xnb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.dll
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar60Point.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar20Point.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Star Background\WhiteCircle.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.exe
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.pdb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.csprojResolveAssemblyReference.cache
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt

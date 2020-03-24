@@ -1,0 +1,2 @@
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Galactic Imperialism\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\obj\x86\Debug\GalacticImperialismContent.contentprojResolveAssemblyReference.cache
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\obj\x86\Debug\GalacticImperialismContent.contentprojResolveAssemblyReference.cache
