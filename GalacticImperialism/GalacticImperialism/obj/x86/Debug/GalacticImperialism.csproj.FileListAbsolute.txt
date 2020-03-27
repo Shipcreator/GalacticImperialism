@@ -44,7 +44,6 @@ C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImper
 C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
 C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.csprojResolveAssemblyReference.cache
 C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.csprojResolveAssemblyReference.cache
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb

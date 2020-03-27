@@ -25,12 +25,15 @@ namespace GalacticImperialism
         MouseState mouse;
         MouseState oldMouse;
 
+        Board board;
+
         enum Menus
         {
             MainMenu,
             NewGame,
             Settings,
-            Credits
+            Credits,
+            Game
         }
 
         Menus menuSelected;
@@ -100,6 +103,8 @@ namespace GalacticImperialism
 
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 
+            board = new Board(Content.Load<Texture2D>("Star Background/WhiteCircle"), 200);
+
             mainMenuObject = new MainMenu(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
             newGameMenuObject = new NewGame();
             settingsMenuObject = new Settings();
@@ -161,6 +166,13 @@ namespace GalacticImperialism
                 creditsMenuObject.Update();
             }
 
+            //Dylan's Test Button
+            if (kb.IsKeyDown(Keys.Insert) && oldKb.IsKeyDown(Keys.Insert))
+            {
+                menuSelected = Menus.Game;
+                board.NewBoard(100, 1, 4);
+            }
+
             oldKb = kb;
             oldMouse = mouse;
             base.Update(gameTime);
@@ -189,6 +201,8 @@ namespace GalacticImperialism
                 settingsMenuObject.Draw(spriteBatch);
             if (menuSelected == Menus.Credits)
                 creditsMenuObject.Draw(spriteBatch);
+            if (menuSelected == Menus.Game) //Dylan's Test Thing
+                board.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);
