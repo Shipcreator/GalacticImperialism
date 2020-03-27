@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace GalacticImperialism
+namespace ProcedualGenTest
 {
     //Board Class, Incompasses all Non-UI Objects
     class Board
@@ -23,8 +23,6 @@ namespace GalacticImperialism
         Texture2D planetTex;
         //Sets Radius For Game Movement
         int moveRadius;
-        //Holds All Resources
-        string[] resourceList = new string[] {"iron", "uranium","tungsten","hydrogen","nitrogen","oxygen"};
 
         //Creates Board, Assigns Texture Objects
         public Board(Texture2D t, int r)
@@ -61,9 +59,7 @@ namespace GalacticImperialism
                 pos = new Vector2(rand.Next(1825), rand.Next(1000));
             } while (CheckPos(pos) == false); //Checks Distance
 
-
-
-            Planet temp = new Planet(size, color, pos, AssignResources()); //Creates and Adds Planet to List
+            Planet temp = new Planet(size, color, pos); //Creates and Adds Planet to List
             planets.Add(temp);
         }
 
@@ -115,7 +111,7 @@ namespace GalacticImperialism
             return true;
         }
 
-        //Checks that all planets are connected(Ignore this unless you really want to see how it works)
+        //Checks that all planets are connected
         private bool CheckRoutes()
         {
             List<Planet> connected = new List<Planet>();
@@ -156,24 +152,6 @@ namespace GalacticImperialism
                  
             } while (connected.Count != planets.Count);
             return true;
-        }
-
-        //Gets List of Resources for A planet
-        private List<string> AssignResources()
-        {
-            int numOfResources = rand.Next(1, 5); //How many resources on a planet 1-4
-            List<string> resources = new List<string>();
-
-            do {
-                int index = rand.Next(0,6); // Index Of ResourceList Array
-
-                if (resources.IndexOf(resourceList[index]) == -1) //Checks to make sure the resource is not already in use.
-                {
-                    resources.Add(resourceList[index]); //Adds resource to array
-                }
-
-            } while (resources.Count != numOfResources); //Keeps running until there are enough resources.
-            return resources; //Returns List
         }
 
         //Board Draw Method

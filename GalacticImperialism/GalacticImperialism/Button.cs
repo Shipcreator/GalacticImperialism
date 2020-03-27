@@ -23,7 +23,7 @@ namespace GalacticImperialism
         Texture2D unselectedButtonTexture;      //This texture will be drawn on the button's rectangle if the isSelected boolean is false meaning that the mouse is not hovering over the button's rectangle.
         Texture2D selectedButtonTexture;        //This texture will be drawn on the button's rectangle if the isSelected boolean is true meaning that the mouse is hovering over the button's rectangle.
 
-        string buttonText;      //This string will drawn perfectly centered on the button's rectangle.
+        public string buttonText;      //This string will drawn perfectly centered on the button's rectangle.
 
         SpriteFont buttonFont;      //This font will be the font that the text passed in via the constructor is drawn in.
 
@@ -56,6 +56,7 @@ namespace GalacticImperialism
         {
             wasSelected = isSelected;   //Sets the boolean wasSelected to the value that isSelected was at the end of the previous update.
             isSelected = false; //Resets the isSelected boolean.
+            isClicked = false; //Resets the isClicked boolean.
 
             if (mouse.X >= buttonRect.Left && mouse.X <= buttonRect.Right && mouse.Y >= buttonRect.Top && mouse.Y <= buttonRect.Bottom) //Conditional statement that detects if the mouse is hovering over the button.
                 isSelected = true;

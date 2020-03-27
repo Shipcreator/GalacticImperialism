@@ -14,24 +14,61 @@ namespace GalacticImperialism
 {
     class Settings
     {
-        public Settings()
+        public List<Button> buttonList;
+
+        int numberOfButtons;
+
+        string titleText;
+
+        Texture2D buttonSelectedTexture;
+        Texture2D buttonUnselectedTexture;
+
+        SpriteFont fontOfButtons;
+        SpriteFont fontOfTitle;
+
+        GraphicsDevice GraphicsDevice;
+
+        public Settings(Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, GraphicsDevice GraphicsDevice)
         {
+            buttonSelectedTexture = selectedButtonTexture;
+            buttonUnselectedTexture = unselectedButtonTexture;
+            fontOfButtons = buttonFont;
+            fontOfTitle = titleFont;
+            this.GraphicsDevice = GraphicsDevice;
             Initialize();
         }
 
         public void Initialize()
         {
-
+            buttonList = new List<Button>();
+            numberOfButtons = 2;
+            titleText = "Settings";
+            for(int x = 0; x < numberOfButtons; x++)
+            {
+                buttonList.Add(new Button(new Rectangle((GraphicsDevice.Viewport.Width / 2) - ((1894 / 4) / 2), 350 + ((693 / 4) * x), (1894 / 4), (693 / 4)), buttonUnselectedTexture, buttonSelectedTexture, "", fontOfButtons, Color.White, null, null));
+            }
+            buttonList[0].buttonText = "Audio Settings";
+            buttonList[1].buttonText = "Video Settings";
         }
 
-        public void Update()
+        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
         {
-
+            for (int x = 0; x < buttonList.Count; x++)
+            {
+                buttonList[x].Update(mouse, oldMouse);
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
+            for(int x = 0; x < buttonList.Count; x++)
+            {
+                buttonList[x].Draw(spriteBatch);
+            }
+            Vector2 textSize = fontOfTitle.MeasureString(titleText);
+            spriteBatch.DrawString(fontOfTitle, titleText, new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), (GraphicsDevice.Viewport.Height / 6) - (textSize.Y / 2)), Color.White);
+            textSize = fontOfButtons.MeasureString("Press Escape To Return To Main Menu");
+            spriteBatch.DrawString(fontOfButtons, "Press Escape To Return To Main Menu", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), GraphicsDevice.Viewport.Height - textSize.Y), Color.White);
         }
     }
 }

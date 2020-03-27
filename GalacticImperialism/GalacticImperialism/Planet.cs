@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace GalacticImperialism
+namespace ProcedualGenTest
 {
     class Planet
     {
@@ -19,15 +19,13 @@ namespace GalacticImperialism
         public Color planetColor;
         public Vector2 position;
         public int owner; // 0 = no-one, 1-4 = Players 1-4
-        public List<string> resources = new List<string>(); //Holds Resources
         
         //Create Base Planets
-        public Planet(int s, Color c, Vector2 p, List<string> r)
+        public Planet(int s, Color c, Vector2 p)
         {
             size = s;
             planetColor = c;
             position = p;
-            resources = r;
         }
 
         //Create Starting Planet
@@ -37,7 +35,6 @@ namespace GalacticImperialism
             planetColor = c;
             position = p;
             owner = playerIndex;
-            resources.Add("iron"); resources.Add("hydrogen");
         }
     }
 }

@@ -25,15 +25,14 @@ namespace GalacticImperialism
         MouseState mouse;
         MouseState oldMouse;
 
-        Board board;
-
         enum Menus
         {
             MainMenu,
             NewGame,
             Settings,
             Credits,
-            Game
+            AudioSettings,
+            VideoSettings
         }
 
         Menus menuSelected;
@@ -42,6 +41,8 @@ namespace GalacticImperialism
         NewGame newGameMenuObject;
         Settings settingsMenuObject;
         Credits creditsMenuObject;
+        AudioSettings audioSettingsMenuObject;
+        VideoSettings videoSettingsMenuObject;
 
         StarBackground starBackgroundObject;
 
@@ -50,6 +51,8 @@ namespace GalacticImperialism
         Texture2D whiteTexture;
 
         Rectangle wholeScreenRect;
+
+        bool menuChangeOnFrame;
 
         public Game1()
         {
@@ -81,6 +84,8 @@ namespace GalacticImperialism
 
             wholeScreenRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
+            menuChangeOnFrame = false;
+
             base.Initialize();
         }
 
@@ -103,12 +108,12 @@ namespace GalacticImperialism
 
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 
-            board = new Board(Content.Load<Texture2D>("Star Background/WhiteCircle"), 200);
-
             mainMenuObject = new MainMenu(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
             newGameMenuObject = new NewGame();
-            settingsMenuObject = new Settings();
+            settingsMenuObject = new Settings(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
             creditsMenuObject = new Credits();
+            audioSettingsMenuObject = new AudioSettings(Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
+            videoSettingsMenuObject = new VideoSettings(Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
         }
 
         /// <summary>
@@ -129,6 +134,7 @@ namespace GalacticImperialism
         {
             kb = Keyboard.GetState();
             mouse = Mouse.GetState();
+            menuChangeOnFrame = false;
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
@@ -138,7 +144,7 @@ namespace GalacticImperialism
             {
                 starBackgroundObject.Update();
                 mainMenuObject.Update(kb, oldKb, mouse);
-                if((kb.IsKeyDown(Keys.Enter) && !oldKb.IsKeyDown(Keys.Enter)) || (kb.IsKeyDown(Keys.Space) && !oldKb.IsKeyDown(Keys.Space)) || (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed))
+                if(((kb.IsKeyDown(Keys.Enter) && !oldKb.IsKeyDown(Keys.Enter)) || (kb.IsKeyDown(Keys.Space) && !oldKb.IsKeyDown(Keys.Space)) || (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed)) && menuChangeOnFrame == false)
                 {
                     if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.NewGame)
                         menuSelected = Menus.NewGame;
@@ -146,8 +152,9 @@ namespace GalacticImperialism
                         menuSelected = Menus.Settings;
                     if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Credits)
                         menuSelected = Menus.Credits;
+                    menuChangeOnFrame = true;
                 }
-                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape))
+                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                     this.Exit();
             }
             if(menuSelected == Menus.NewGame)
@@ -158,19 +165,47 @@ namespace GalacticImperialism
             if(menuSelected == Menus.Settings)
             {
                 starBackgroundObject.Update();
-                settingsMenuObject.Update();
+                settingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                {
+                    menuSelected = Menus.MainMenu;
+                    menuChangeOnFrame = true;
+                }
+                if (settingsMenuObject.buttonList[0].isClicked && menuChangeOnFrame == false)
+                {
+                    menuSelected = Menus.AudioSettings;
+                    menuChangeOnFrame = true;
+                }
+                if(settingsMenuObject.buttonList[1].isClicked && menuChangeOnFrame == false)
+                {
+                    menuSelected = Menus.VideoSettings;
+                    menuChangeOnFrame = true;
+                }
             }
             if(menuSelected == Menus.Credits)
             {
                 starBackgroundObject.Update();
                 creditsMenuObject.Update();
             }
-
-            //Dylan's Test Button
-            if (kb.IsKeyDown(Keys.Insert) && oldKb.IsKeyDown(Keys.Insert))
+            if(menuSelected == Menus.AudioSettings)
             {
-                menuSelected = Menus.Game;
-                board.NewBoard(100, 1, 4);
+                starBackgroundObject.Update();
+                audioSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                {
+                    menuSelected = Menus.Settings;
+                    menuChangeOnFrame = true;
+                }
+            } 
+            if(menuSelected == Menus.VideoSettings)
+            {
+                starBackgroundObject.Update();
+                videoSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                {
+                    menuSelected = Menus.Settings;
+                    menuChangeOnFrame = true;
+                }
             }
 
             oldKb = kb;
@@ -188,7 +223,7 @@ namespace GalacticImperialism
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits)
+            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings)
             {
                 spriteBatch.Draw(whiteTexture, wholeScreenRect, Color.Black);
                 starBackgroundObject.Draw(spriteBatch);
@@ -201,8 +236,10 @@ namespace GalacticImperialism
                 settingsMenuObject.Draw(spriteBatch);
             if (menuSelected == Menus.Credits)
                 creditsMenuObject.Draw(spriteBatch);
-            if (menuSelected == Menus.Game) //Dylan's Test Thing
-                board.Draw(spriteBatch);
+            if (menuSelected == Menus.AudioSettings)
+                audioSettingsMenuObject.Draw(spriteBatch);
+            if (menuSelected == Menus.VideoSettings)
+                videoSettingsMenuObject.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

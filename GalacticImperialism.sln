@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalacticImperialism", "GalacticImperialism.csproj", "{1A3274A3-E0FE-446B-B682-411A1A74E9B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalacticImperialism", "GalacticImperialism\GalacticImperialism\GalacticImperialism.csproj", "{1A3274A3-E0FE-446B-B682-411A1A74E9B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalacticImperialismContent", "GalacticImperialism\GalacticImperialismContent\GalacticImperialismContent.contentproj", "{22951A47-D685-454E-B24C-38AF79E5386D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,8 @@ Global
 		{1A3274A3-E0FE-446B-B682-411A1A74E9B5}.Debug|x86.Build.0 = Debug|x86
 		{1A3274A3-E0FE-446B-B682-411A1A74E9B5}.Release|x86.ActiveCfg = Release|x86
 		{1A3274A3-E0FE-446B-B682-411A1A74E9B5}.Release|x86.Build.0 = Release|x86
+		{22951A47-D685-454E-B24C-38AF79E5386D}.Debug|x86.ActiveCfg = Debug|x86
+		{22951A47-D685-454E-B24C-38AF79E5386D}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

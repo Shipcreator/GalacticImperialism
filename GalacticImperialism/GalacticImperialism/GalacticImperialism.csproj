@@ -77,6 +77,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioSettings.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="Credits.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Star.cs" />
     <Compile Include="StarBackground.cs" />
     <Compile Include="TextBox.cs" />
+    <Compile Include="VideoSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
