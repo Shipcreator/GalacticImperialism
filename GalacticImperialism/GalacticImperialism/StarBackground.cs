@@ -16,8 +16,8 @@ namespace GalacticImperialism
     {
         int numOfStars;
         int widthAndHeightOfStars;
-        int speedOfStars;
-        int twinklingStarChance;        //0 (least likely) - 100 (most likely)
+        public int speedOfStars;
+        public int twinklingStarChance;        //0 (least likely) - 100 (most likely)
 
         bool currentRandomIsTwinkling;
 

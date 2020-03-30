@@ -1,28 +1,28 @@
 Content\Sprite Fonts\Castellar60Point.xnb
 Content\Sprite Fonts\Castellar20Point.xnb
 Content\Star Background\WhiteCircle.xnb
-Content\Planet Textures\Alpine.xnb
-Content\Planet Textures\Clouds.xnb
-Content\Planet Textures\Dry.xnb
-Content\Planet Textures\Fungal.xnb
-Content\Planet Textures\GasGiant.xnb
-Content\Planet Textures\Ice.xnb
-Content\Planet Textures\Martian.xnb
-Content\Planet Textures\Oasis.xnb
-Content\Planet Textures\Oceanic.xnb
-Content\Planet Textures\Primordial.xnb
-Content\Planet Textures\Rock.xnb
-Content\Planet Textures\Savannah.xnb
-Content\Planet Textures\Swamp.xnb
-Content\Planet Textures\Terrestrial.xnb
-Content\Planet Textures\Tropical.xnb
-Content\Planet Textures\Tundral.xnb
-Content\Planet Textures\Venusian.xnb
-Content\Planet Textures\Volcanic.xnb
-Content\Planet Textures\Wetlands.xnb
 Content\Button Textures\SelectedButtonTexture1.xnb
 Content\Button Textures\UnselectedButtonTexture1.xnb
-Content\Slider Textures\500x20SelectionBarTexture.xnb
-Content\Slider Textures\PillSelectionCursor.xnb
+Content\Planets\1.xnb
+Content\Planets\10.xnb
+Content\Planets\11.xnb
+Content\Planets\12.xnb
+Content\Planets\13.xnb
+Content\Planets\14.xnb
+Content\Planets\15.xnb
+Content\Planets\16.xnb
+Content\Planets\17.xnb
+Content\Planets\18.xnb
+Content\Planets\19.xnb
+Content\Planets\2.xnb
+Content\Planets\3.xnb
+Content\Planets\4.xnb
+Content\Planets\5.xnb
+Content\Planets\6.xnb
+Content\Planets\7.xnb
+Content\Planets\8.xnb
+Content\Planets\9.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
+Content\Slider Textures\500x20SelectionBarTexture.xnb
+Content\Slider Textures\PillSelectionCursor.xnb

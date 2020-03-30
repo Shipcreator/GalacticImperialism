@@ -80,11 +80,14 @@
     <Compile Include="AudioSettings.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="Computer.cs" />
     <Compile Include="Credits.cs" />
+    <Compile Include="Human.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Networking\ConnectionHandler.cs" />
     <Compile Include="NewGame.cs" />
     <Compile Include="Planet.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
