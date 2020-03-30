@@ -218,16 +218,6 @@
       <Time>2020-03-26T00:23:34.5553336-05:00</Time>
     </Item>
     <Item>
-      <Source>Videos\XNA Galacic Imperialism Crawl.wmv</Source>
-      <Name>Videos\XNA Galacic Imperialism Crawl</Name>
-      <Importer>WmvImporter</Importer>
-      <Processor>VideoProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb</Output>
-      <Extra>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv</Extra>
-      <Time>2020-03-25T18:32:22-05:00</Time>
-    </Item>
-    <Item>
       <Source>Slider Textures\500x20SelectionBarTexture.png</Source>
       <Name>Slider Textures\500x20SelectionBarTexture</Name>
       <Importer>TextureImporter</Importer>
@@ -244,6 +234,16 @@
       <Options>None</Options>
       <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\PillSelectionCursor.xnb</Output>
       <Time>2020-03-29T15:53:45.2964919-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Videos\XNA Galacic Imperialism Crawl.wmv</Source>
+      <Name>Videos\XNA Galacic Imperialism Crawl</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb</Output>
+      <Extra>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv</Extra>
+      <Time>2020-03-25T18:32:22-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

@@ -3,3 +3,4 @@ C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImper
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\obj\x86\Debug\GalacticImperialismContent.contentprojResolveAssemblyReference.cache
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\GalacticImperialism\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\obj\x86\Debug\GalacticImperialismContent.contentprojResolveAssemblyReference.cache
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\obj\x86\Debug\GalacticImperialismContent.contentprojResolveAssemblyReference.cache
+C:\Users\ciara\Desktop\Schoolwork\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\obj\x86\Debug\GalacticImperialismContent.contentprojResolveAssemblyReference.cache
