@@ -19,17 +19,17 @@ namespace GalacticImperialism
         List<Planet> planets;
         //Random Object
         Random rand;
-        //Temporary PlanetTexture
-        Texture2D planetTex;
         //Sets Radius For Game Movement
         int moveRadius;
         //Holds All Resources
         string[] resourceList = new string[] { "iron", "uranium", "tungsten", "hydrogen", "nitrogen", "oxygen" };
+        //PlanetTextures
+        List<Texture2D> planetTexs;
 
         //Creates Board, Assigns Texture Objects
-        public Board(Texture2D t, int r)
+        public Board(int r, List<Texture2D> t)
         {
-            planetTex = t;
+            planetTexs = t;
             moveRadius = r;
         }
 
@@ -63,7 +63,7 @@ namespace GalacticImperialism
 
 
 
-            Planet temp = new Planet(size, color, pos, AssignResources()); //Creates and Adds Planet to List
+            Planet temp = new Planet(size, planetTexs[rand.Next(0, 19)], pos, AssignResources()); //Creates and Adds Planet to List
             planets.Add(temp);
         }
 
@@ -73,23 +73,23 @@ namespace GalacticImperialism
             if (players >= 2)
             {
                 //Create Planet One
-                Planet temp = new Planet(Color.Red, new Vector2(10, 10), 1);
+                Planet temp = new Planet(planetTexs[rand.Next(1,20)], new Vector2(10, 10), 1);
                 planets.Add(temp);
 
                 //Create Planet Two
-                temp = new Planet(Color.Blue, new Vector2(1860, 1020), 2);
+                temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 1020), 2);
                 planets.Add(temp);
             }
             if (players >= 3)
             {
                 //Create Planet Three
-                Planet temp = new Planet(Color.Yellow, new Vector2(1860, 10), 3);
+                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 10), 3);
                 planets.Add(temp);
             }
             if (players == 4)
             {
                 //Create Planet Four
-                Planet temp = new Planet(Color.Green, new Vector2(10, 1020), 4);
+                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(10, 1020), 4);
                 planets.Add(temp);
             }
         }
@@ -184,7 +184,7 @@ namespace GalacticImperialism
             foreach (Planet p in planets)
             {
                 Rectangle tempRect = new Rectangle((int)p.position.X, (int)p.position.Y, p.size * 25, p.size * 25);
-                sb.Draw(planetTex, tempRect, p.planetColor);
+                sb.Draw(p.tex, tempRect, Color.White);
             }
         }
     }

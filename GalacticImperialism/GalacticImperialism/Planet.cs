@@ -16,25 +16,25 @@ namespace GalacticImperialism
     {
         //Planet Attributes
         public int size;
-        public Color planetColor;
         public Vector2 position;
         public int owner; // 0 = no-one, 1-4 = Players 1-4
         public List<string> resources = new List<string>(); //Holds Resources
+        public Texture2D tex; //Texture for the Planet
 
         //Create Base Planets
-        public Planet(int s, Color c, Vector2 p, List<string> r)
+        public Planet(int s, Texture2D t, Vector2 p, List<string> r)
         {
             size = s;
-            planetColor = c;
+            tex = t;
             position = p;
             resources = r;
         }
 
         //Create Starting Planet
-        public Planet(Color c, Vector2 p, int playerIndex)
+        public Planet(Texture2D t, Vector2 p, int playerIndex)
         {
             size = 2;
-            planetColor = c;
+            tex = t;
             position = p;
             owner = playerIndex;
             resources.Add("iron"); resources.Add("hydrogen");

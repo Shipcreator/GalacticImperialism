@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -109,7 +109,11 @@ namespace GalacticImperialism
             listOfStarColors.Add(Color.White);
             listOfStarColors.Add(Color.LightSlateGray);
 
-            board = new Board(Content.Load<Texture2D>("Star Background/WhiteCircle"),200);
+            //Creates Board/Planet Textures
+            List<Texture2D> temp = new List<Texture2D>();
+            for (int i = 1; i < 20; i++)
+                temp.Add(Content.Load<Texture2D>("Planets/" + i));
+            board = new Board(200, temp);
 
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 
@@ -213,6 +217,7 @@ namespace GalacticImperialism
                 }
             }
 
+            //Dylan's Test Button
             if (kb.IsKeyDown(Keys.Insert) && oldKb.IsKeyUp(Keys.Insert))
             {
                 board.NewBoard(100,1,4);
@@ -234,7 +239,7 @@ namespace GalacticImperialism
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings)
+            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings || menuSelected == Menus.Game)
             {
                 spriteBatch.Draw(whiteTexture, wholeScreenRect, Color.Black);
                 starBackgroundObject.Draw(spriteBatch);

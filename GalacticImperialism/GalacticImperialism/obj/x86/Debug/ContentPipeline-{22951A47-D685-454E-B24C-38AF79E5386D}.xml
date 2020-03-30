@@ -227,6 +227,177 @@
       <Extra>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv</Extra>
       <Time>2020-03-25T11:03:31.3400575-05:00</Time>
     </Item>
+    <Item>
+      <Source>Planets\1.png</Source>
+      <Name>Planets\1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\1.xnb</Output>
+      <Time>2020-03-29T19:09:40.8247256-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\10.png</Source>
+      <Name>Planets\10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\10.xnb</Output>
+      <Time>2020-03-29T19:09:40.8849406-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\11.png</Source>
+      <Name>Planets\11</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\11.xnb</Output>
+      <Time>2020-03-29T19:09:40.8889589-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\12.png</Source>
+      <Name>Planets\12</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\12.xnb</Output>
+      <Time>2020-03-29T19:09:40.8929193-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\13.png</Source>
+      <Name>Planets\13</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\13.xnb</Output>
+      <Time>2020-03-29T19:09:40.8969082-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\14.png</Source>
+      <Name>Planets\14</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\14.xnb</Output>
+      <Time>2020-03-29T19:09:40.9009195-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\15.png</Source>
+      <Name>Planets\15</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\15.xnb</Output>
+      <Time>2020-03-29T19:09:40.9049145-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\16.png</Source>
+      <Name>Planets\16</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\16.xnb</Output>
+      <Time>2020-03-29T19:09:40.9088998-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\17.png</Source>
+      <Name>Planets\17</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\17.xnb</Output>
+      <Time>2020-03-29T19:09:40.9128658-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\18.png</Source>
+      <Name>Planets\18</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\18.xnb</Output>
+      <Time>2020-03-29T19:09:40.9168668-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\19.png</Source>
+      <Name>Planets\19</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\19.xnb</Output>
+      <Time>2020-03-29T19:09:40.9208455-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\2.png</Source>
+      <Name>Planets\2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\2.xnb</Output>
+      <Time>2020-03-29T19:09:40.8486753-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\3.png</Source>
+      <Name>Planets\3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\3.xnb</Output>
+      <Time>2020-03-29T19:09:40.8566527-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\4.png</Source>
+      <Name>Planets\4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\4.xnb</Output>
+      <Time>2020-03-29T19:09:40.8616402-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\5.png</Source>
+      <Name>Planets\5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\5.xnb</Output>
+      <Time>2020-03-29T19:09:40.8646327-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\6.png</Source>
+      <Name>Planets\6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\6.xnb</Output>
+      <Time>2020-03-29T19:09:40.8686203-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\7.png</Source>
+      <Name>Planets\7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\7.xnb</Output>
+      <Time>2020-03-29T19:09:40.87261-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\8.png</Source>
+      <Name>Planets\8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\8.xnb</Output>
+      <Time>2020-03-29T19:09:40.8769617-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Planets\9.png</Source>
+      <Name>Planets\9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\9.xnb</Output>
+      <Time>2020-03-29T19:09:40.8809504-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{22951A47-D685-454E-B24C-38AF79E5386D}</ContentProjectGUID>
