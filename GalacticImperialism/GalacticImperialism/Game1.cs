@@ -54,6 +54,10 @@ namespace GalacticImperialism
 
         bool menuChangeOnFrame;
 
+        float masterVolume;
+        float musicVolume;
+        float soundEffectsVolume;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -112,7 +116,7 @@ namespace GalacticImperialism
             newGameMenuObject = new NewGame();
             settingsMenuObject = new Settings(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
             creditsMenuObject = new Credits();
-            audioSettingsMenuObject = new AudioSettings(Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
+            audioSettingsMenuObject = new AudioSettings(Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice);
             videoSettingsMenuObject = new VideoSettings(Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
         }
 
@@ -208,6 +212,9 @@ namespace GalacticImperialism
                 }
             }
 
+            masterVolume = audioSettingsMenuObject.masterVolume;
+            musicVolume = audioSettingsMenuObject.musicVolume;
+            soundEffectsVolume = audioSettingsMenuObject.soundEffectsVolume;
             oldKb = kb;
             oldMouse = mouse;
             base.Update(gameTime);

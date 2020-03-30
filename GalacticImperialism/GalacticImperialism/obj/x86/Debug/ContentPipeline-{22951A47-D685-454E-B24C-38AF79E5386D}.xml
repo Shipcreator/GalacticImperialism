@@ -227,6 +227,24 @@
       <Extra>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv</Extra>
       <Time>2020-03-25T18:32:22-05:00</Time>
     </Item>
+    <Item>
+      <Source>Slider Textures\500x20SelectionBarTexture.png</Source>
+      <Name>Slider Textures\500x20SelectionBarTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\500x20SelectionBarTexture.xnb</Output>
+      <Time>2020-03-29T15:53:45.2865721-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Slider Textures\PillSelectionCursor.png</Source>
+      <Name>Slider Textures\PillSelectionCursor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\PillSelectionCursor.xnb</Output>
+      <Time>2020-03-29T15:53:45.2964919-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{22951A47-D685-454E-B24C-38AF79E5386D}</ContentProjectGUID>

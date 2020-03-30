@@ -161,3 +161,5 @@ C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperi
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\500x20SelectionBarTexture.xnb
+C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\PillSelectionCursor.xnb
