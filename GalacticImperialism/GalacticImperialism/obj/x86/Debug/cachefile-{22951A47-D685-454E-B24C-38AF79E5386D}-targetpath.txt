@@ -3,6 +3,8 @@ Content\Sprite Fonts\Castellar20Point.xnb
 Content\Star Background\WhiteCircle.xnb
 Content\Button Textures\SelectedButtonTexture1.xnb
 Content\Button Textures\UnselectedButtonTexture1.xnb
+Content\Slider Textures\500x20SelectionBarTexture.xnb
+Content\Slider Textures\PillSelectionCursor.xnb
 Content\Planets\1.xnb
 Content\Planets\10.xnb
 Content\Planets\11.xnb
@@ -24,5 +26,3 @@ Content\Planets\8.xnb
 Content\Planets\9.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
-Content\Slider Textures\500x20SelectionBarTexture.xnb
-Content\Slider Textures\PillSelectionCursor.xnb

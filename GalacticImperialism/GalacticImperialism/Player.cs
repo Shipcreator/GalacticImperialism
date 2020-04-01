@@ -16,12 +16,34 @@ namespace GalacticImperialism
     class Player
     {
         int gold, science, hydrogen, oxygen, nitrogen, iron, tungsten, uranium; //All Item Values That every Player stores
+        public List<Planet> ownedPlanets = new List<Planet>(); //Owned Planets
 
         //Creates Base Player
         public Player(int startingGold)
         {
             gold = startingGold;
             science = hydrogen = oxygen = nitrogen = iron = tungsten = uranium = 0;
+        }
+
+        //Adds Ownership of a Planet
+        public void AddPlanet(Planet p)
+        {
+            ownedPlanets.Add(p);
+        }
+        //Removes Ownership of a Planet
+        public void RemovePlanet(Planet p)
+        {
+            ownedPlanets.Remove(p);
+        }
+
+        public void Update(GameTime gt) //General Update
+        {
+
+        }
+
+        public void OnTurn() //General On Turn Start 
+        {
+
         }
 
         //Getters And Setters Below

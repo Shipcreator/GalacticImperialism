@@ -25,6 +25,8 @@ namespace GalacticImperialism
         string[] resourceList = new string[] { "iron", "uranium", "tungsten", "hydrogen", "nitrogen", "oxygen" };
         //PlanetTextures
         List<Texture2D> planetTexs;
+        //List Of Players
+        List<Player> players;
 
         //Creates Board, Assigns Texture Objects
         public Board(int r, List<Texture2D> t)
@@ -34,9 +36,16 @@ namespace GalacticImperialism
         }
 
 
-        //Creates A New Board
-        public void NewBoard(int numPlanets, int seed, int numOfPlayers)
+        //Creates A New Board(Assume numOfBots < numOfPlayers)
+        public void NewBoard(int numPlanets, int seed, int numOfPlayers, int numOfBots, int gold)
         {
+            players = new List<Player>(); //Resets Players
+
+            for (int i = 0; i < numOfBots; i++)
+                players.Add(new Computer(gold));
+            for (int i = 0; i < numOfPlayers - numOfBots; i++)
+                players.Add(new Human(gold));
+
             rand = new Random(seed); //Resets Random with New Seed
             do
             {
@@ -68,29 +77,33 @@ namespace GalacticImperialism
         }
 
         //Creates Starting Planet
-        private void CreateStartingPlanet(int players)
+        private void CreateStartingPlanet(int p)
         {
-            if (players >= 2)
+            if (p >= 2)
             {
                 //Create Planet One
-                Planet temp = new Planet(planetTexs[rand.Next(1,20)], new Vector2(10, 10), 1);
+                Planet temp = new Planet(planetTexs[rand.Next(1,20)], new Vector2(10, 10));
                 planets.Add(temp);
+                players[0].AddPlanet(temp);
 
                 //Create Planet Two
-                temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 1020), 2);
+                temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 1020));
                 planets.Add(temp);
+                players[1].AddPlanet(temp);
             }
-            if (players >= 3)
+            if (p >= 3)
             {
                 //Create Planet Three
-                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 10), 3);
+                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 10));
                 planets.Add(temp);
+                players[2].AddPlanet(temp);
             }
-            if (players == 4)
+            if (p == 4)
             {
                 //Create Planet Four
-                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(10, 1020), 4);
+                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(10, 1020));
                 planets.Add(temp);
+                players[3].AddPlanet(temp);
             }
         }
 

@@ -224,7 +224,7 @@ namespace GalacticImperialism
             //Dylan's Test Button
             if (kb.IsKeyDown(Keys.Insert) && oldKb.IsKeyUp(Keys.Insert))
             {
-                board.NewBoard(100,1,4);
+                board.NewBoard(100,1, 4, 1, 1000);
                 menuSelected = Menus.Game;
             }
 
