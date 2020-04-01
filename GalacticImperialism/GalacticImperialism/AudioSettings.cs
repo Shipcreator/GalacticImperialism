@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 namespace GalacticImperialism
 {
@@ -33,8 +34,17 @@ namespace GalacticImperialism
         public float musicVolume;
         public float soundEffectsVolume;
 
-        public AudioSettings(SpriteFont buttonFont, SpriteFont titleFont, Texture2D sliderBackgroundTexture, Texture2D sliderCursorTexture, GraphicsDevice GraphicsDevice)
+        int readFileLineNumber;
+
+        Button saveSettingsButton;
+
+        Texture2D unselectedSaveSettingsButtonTexture;
+        Texture2D selectedSaveSettingsButtonTexture;
+
+        public AudioSettings(Texture2D unselectedSaveSettingsButtonTexture, Texture2D selectedSaveSettingsButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, Texture2D sliderBackgroundTexture, Texture2D sliderCursorTexture, GraphicsDevice GraphicsDevice)
         {
+            this.unselectedSaveSettingsButtonTexture = unselectedSaveSettingsButtonTexture;
+            this.selectedSaveSettingsButtonTexture = selectedSaveSettingsButtonTexture;
             fontOfButtons = buttonFont;
             fontOfTitle = titleFont;
             this.sliderBackgroundTexture = sliderBackgroundTexture;
@@ -52,6 +62,44 @@ namespace GalacticImperialism
             masterVolume = 1.0f;
             musicVolume = 1.0f;
             soundEffectsVolume = 1.0f;
+            saveSettingsButton = new Button(new Rectangle(100, GraphicsDevice.Viewport.Height - 150, 100, 100), unselectedSaveSettingsButtonTexture, selectedSaveSettingsButtonTexture, "", fontOfButtons, Color.White, null, null);
+            readFileLineNumber = 0;
+            ReadSettings(@"Content/Saved Settings/Audio Settings.txt");
+        }
+
+        private void ReadSettings(string path)
+        {
+            try
+            {
+                using(StreamReader reader = new StreamReader(path))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        if (readFileLineNumber == 0)
+                            masterVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(27, line.Length - 27));
+                        if(readFileLineNumber == 1)
+                            musicVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(26, line.Length - 26));
+                        if (readFileLineNumber == 2)
+                            soundEffectsVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(33, line.Length - 33));
+                        readFileLineNumber++;
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("This file could not be read: ");
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private void WriteSettings(string path)
+        {
+            StreamWriter myFileOut = new StreamWriter(path, false);
+            myFileOut.WriteLine("masterVolumeCursorRect.X = " + masterVolumeSlider.cursorRect.X);
+            myFileOut.WriteLine("musicVolumeCursorRect.X = " + musicVolumeSlider.cursorRect.X);
+            myFileOut.WriteLine("soundEffectsVolumeCursorRect.X = " + soundEffectsVolumeSlider.cursorRect.X);
+            myFileOut.Close();
         }
 
         public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
@@ -62,6 +110,9 @@ namespace GalacticImperialism
             musicVolume = musicVolumeSlider.percentage;
             soundEffectsVolumeSlider.Update(mouse, oldMouse);
             soundEffectsVolume = soundEffectsVolumeSlider.percentage;
+            saveSettingsButton.Update(mouse, oldMouse);
+            if (saveSettingsButton.isClicked)
+                WriteSettings(@"Content/Saved Settings/Audio Settings.txt");
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -72,13 +123,16 @@ namespace GalacticImperialism
             spriteBatch.DrawString(fontOfButtons, "Press Escape To Return To Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), GraphicsDevice.Viewport.Height - textSize.Y), Color.White);
             masterVolumeSlider.Draw(spriteBatch);
             spriteBatch.DrawString(fontOfButtons, "Master Volume:", new Vector2(450, 318), Color.White);
-            spriteBatch.DrawString(fontOfButtons, masterVolume * 100 + "%", new Vector2(1450, 318), Color.White);
+            spriteBatch.DrawString(fontOfButtons, (int)(masterVolume * 100) + "%", new Vector2(1450, 318), Color.White);
             musicVolumeSlider.Draw(spriteBatch);
             spriteBatch.DrawString(fontOfButtons, "Music Volume:", new Vector2(450, 418), Color.White);
-            spriteBatch.DrawString(fontOfButtons, musicVolume * 100 + "%", new Vector2(1450, 418), Color.White);
+            spriteBatch.DrawString(fontOfButtons, (int)(musicVolume * 100) + "%", new Vector2(1450, 418), Color.White);
             soundEffectsVolumeSlider.Draw(spriteBatch);
             spriteBatch.DrawString(fontOfButtons, "Sound Effects Volume:", new Vector2(450, 518), Color.White);
-            spriteBatch.DrawString(fontOfButtons, soundEffectsVolume * 100 + "%", new Vector2(1450, 518), Color.White);
+            spriteBatch.DrawString(fontOfButtons, (int)(soundEffectsVolume * 100) + "%", new Vector2(1450, 518), Color.White);
+            saveSettingsButton.Draw(spriteBatch);
+            textSize = fontOfButtons.MeasureString("Save");
+            spriteBatch.DrawString(fontOfButtons, "Save", new Vector2(150 - (textSize.X / 2), GraphicsDevice.Viewport.Height - textSize.Y), Color.White);
         }
     }
 }

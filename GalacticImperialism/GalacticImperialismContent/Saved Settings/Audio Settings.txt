@@ -1,0 +1,3 @@
+masterVolumeCursorRect.X = 0
+musicVolumeCursorRect.X = 0
+soundEffectsVolumeCursorRect.X = 0
