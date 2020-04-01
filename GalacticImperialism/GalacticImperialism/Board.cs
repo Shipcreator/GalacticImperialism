@@ -27,6 +27,8 @@ namespace GalacticImperialism
         List<Texture2D> planetTexs;
         //List Of Players
         List<Player> players;
+        //Selects Turn
+        int turn;
 
         //Creates Board, Assigns Texture Objects
         public Board(int r, List<Texture2D> t)
@@ -39,12 +41,13 @@ namespace GalacticImperialism
         //Creates A New Board(Assume numOfBots < numOfPlayers)
         public void NewBoard(int numPlanets, int seed, int numOfPlayers, int numOfBots, int gold)
         {
+            turn = 0;
             players = new List<Player>(); //Resets Players
 
             for (int i = 0; i < numOfBots; i++)
-                players.Add(new Computer(gold));
+                players.Add(new Computer(gold, this));
             for (int i = 0; i < numOfPlayers - numOfBots; i++)
-                players.Add(new Human(gold));
+                players.Add(new Human(gold, this));
 
             rand = new Random(seed); //Resets Random with New Seed
             do
@@ -188,6 +191,43 @@ namespace GalacticImperialism
 
             } while (resources.Count != numOfResources); //Keeps running until there are enough resources.
             return resources; //Returns List
+        }
+
+        //Handles Game Updates
+        public void Update(GameTime gt)
+        {
+            if (players[turn] is Human)
+            {
+                Human temp = (Human)players[turn];
+                temp.Update(gt);
+            }
+            if (players[turn] is Computer)
+            {
+                Computer temp = (Computer)players[turn];
+                temp.Update(gt);
+            }
+        }
+
+        //NextTurn Handling
+        public void NextTurn()
+        {
+            //Goes to Next Player
+            if (turn == players.Count - 1)
+                turn = 0;
+            else
+                turn++;
+
+            //Runs OnTurn Function
+            if (players[turn] is Human)
+            {
+                Human temp = (Human)players[turn];
+                temp.OnTurn();
+            }
+            if (players[turn] is Computer)
+            {
+                Computer temp = (Computer)players[turn];
+                temp.OnTurn();
+            }
         }
 
         //Board Draw Method

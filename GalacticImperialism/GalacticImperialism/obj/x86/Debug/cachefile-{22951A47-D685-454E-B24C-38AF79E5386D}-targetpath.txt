@@ -24,12 +24,9 @@ Content\Planets\6.xnb
 Content\Planets\7.xnb
 Content\Planets\8.xnb
 Content\Planets\9.xnb
-Content\Videos\XNA Galacic Imperialism Crawl.xnb
-Content\Videos\XNA Galacic Imperialism Crawl.wmv
-<<<<<<< HEAD
-=======
 Content\Button Textures\SelectedSaveSettingsButton.xnb
 Content\Button Textures\UnselectedSaveSettingsButton.xnb
+Content\Videos\XNA Galacic Imperialism Crawl.xnb
+Content\Videos\XNA Galacic Imperialism Crawl.wmv
 Content\Saved Settings\Audio Settings.txt
 Content\Saved Settings\Video Settings.txt
->>>>>>> 4c777b94018afd0c2a6624606736f14235cf3453

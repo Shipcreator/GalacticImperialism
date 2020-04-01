@@ -225,6 +225,12 @@ namespace GalacticImperialism
                 }
             }
 
+            //Updates Board
+            if (menuSelected == Menus.Game)
+            {
+                board.Update(gameTime);
+            }
+
             //Dylan's Test Button
             if (kb.IsKeyDown(Keys.Insert) && oldKb.IsKeyUp(Keys.Insert))
             {
