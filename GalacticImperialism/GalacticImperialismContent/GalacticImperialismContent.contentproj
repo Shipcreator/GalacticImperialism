@@ -205,19 +205,22 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Compile Include="Techs\ConstructionTech.txt">
+    <None Include="Techs\ConstructionTech.txt">
       <Name>ConstructionTech</Name>
-    </Compile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Techs\EconomicTech.txt">
+    <None Include="Techs\EconomicTech.txt">
       <Name>EconomicTech</Name>
-    </Compile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Techs\MilitaryTech.txt">
+    <None Include="Techs\MilitaryTech.txt">
       <Name>MilitaryTech</Name>
-    </Compile>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

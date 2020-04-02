@@ -102,3 +102,58 @@ G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImper
 G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
 G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar60Point.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar20Point.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Star Background\WhiteCircle.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedButtonTexture1.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedButtonTexture1.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\500x20SelectionBarTexture.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\PillSelectionCursor.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\1.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\10.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\11.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\12.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\13.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\14.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\15.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\16.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\17.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\18.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\19.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\2.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\3.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\4.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\5.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\6.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\7.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\8.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\9.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedSaveSettingsButton.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedSaveSettingsButton.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Saved Settings\Audio Settings.txt
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Saved Settings\Video Settings.txt
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\ConstructionTech.txt
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\EconomicTech.txt
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\MilitaryTech.txt
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.exe.config
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.exe
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.pdb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Lidgren.Network.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.csprojResolveAssemblyReference.cache
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt

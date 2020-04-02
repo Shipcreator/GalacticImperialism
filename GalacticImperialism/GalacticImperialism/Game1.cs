@@ -122,7 +122,7 @@ namespace GalacticImperialism
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 
             mainMenuObject = new MainMenu(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
-            newGameMenuObject = new NewGame();
+            newGameMenuObject = new NewGame(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
             settingsMenuObject = new Settings(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
             creditsMenuObject = new Credits();
             videoSettingsMenuObject = new VideoSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
@@ -176,6 +176,18 @@ namespace GalacticImperialism
             {
                 starBackgroundObject.Update();
                 newGameMenuObject.Update();
+
+                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                {
+                    menuSelected = Menus.MainMenu;
+                    menuChangeOnFrame = true;
+                }
+
+                if (newGameMenuObject.playGame.isClicked)
+                {
+                    board.NewBoard(100, 1, 4, 1, 1000);
+                    menuSelected = Menus.Game;
+                }
             }
             if(menuSelected == Menus.Settings)
             {
@@ -229,13 +241,6 @@ namespace GalacticImperialism
             if (menuSelected == Menus.Game)
             {
                 board.Update(gameTime);
-            }
-
-            //Dylan's Test Button
-            if (kb.IsKeyDown(Keys.Insert) && oldKb.IsKeyUp(Keys.Insert))
-            {
-                board.NewBoard(100,1, 4, 1, 1000);
-                menuSelected = Menus.Game;
             }
 
             masterVolume = audioSettingsMenuObject.masterVolume;

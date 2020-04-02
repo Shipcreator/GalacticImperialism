@@ -85,9 +85,9 @@
     <Compile Include="Players\Computer.cs" />
     <Compile Include="Menus\Credits.cs" />
     <Compile Include="Players\Human.cs" />
-    <Compile Include="MainMenu.cs" />
+    <Compile Include="Menus\MainMenu.cs" />
     <Compile Include="Networking\ConnectionHandler.cs" />
-    <Compile Include="NewGame.cs" />
+    <Compile Include="Menus\NewGame.cs" />
     <Compile Include="Game Pieces\Planet.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

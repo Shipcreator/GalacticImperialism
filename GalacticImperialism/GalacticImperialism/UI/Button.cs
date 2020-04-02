@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GalacticImperialism
 {
-    class Button
+    public class Button
     {
         Rectangle buttonRect;       //This rectangle will be the rectangle that sets the dimensions of the button and will have its values passed in via the constructor.
 
