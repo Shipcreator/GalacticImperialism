@@ -1,0 +1,20 @@
+Mining Tools I
+Simple Drills will not do, they just dont mine fast enough. 
+1.10
+Mine_Output
+001
+0              
+
+Gas Pump
+
+1.0
+Gas_Pumps_activation
+002
+0
+
+Research Facility
+
+1.0
+Research_Facility_Activation
+003
+0

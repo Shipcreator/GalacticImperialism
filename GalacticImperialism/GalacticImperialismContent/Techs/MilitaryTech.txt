@@ -1,0 +1,20 @@
+Corvette
+
+1.00
+Corvette_activation
+007
+0              
+
+Exo-suit
+
+1.10
+Mine_Output Army_Strength
+008
+0
+
+Corvette Hull I
+
+1.10
+Corvette_HP
+009
+007

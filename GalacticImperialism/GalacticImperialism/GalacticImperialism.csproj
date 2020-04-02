@@ -79,6 +79,8 @@
   <ItemGroup>
     <Compile Include="Menus\AudioSettings.cs" />
     <Compile Include="Board.cs" />
+    <Compile Include="Tech.cs" />
+    <Compile Include="TechTree.cs" />
     <Compile Include="UI\Button.cs" />
     <Compile Include="Players\Computer.cs" />
     <Compile Include="Menus\Credits.cs" />

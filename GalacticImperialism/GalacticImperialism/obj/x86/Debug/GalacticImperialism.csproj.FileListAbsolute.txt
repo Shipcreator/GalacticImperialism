@@ -50,3 +50,55 @@ C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\Galacti
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.csprojResolveAssemblyReference.cache
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar60Point.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar20Point.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Star Background\WhiteCircle.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedButtonTexture1.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedButtonTexture1.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\500x20SelectionBarTexture.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\PillSelectionCursor.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\1.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\10.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\11.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\12.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\13.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\14.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\15.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\16.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\17.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\18.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\19.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\2.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\3.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\4.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\5.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\6.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\7.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\8.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\9.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedSaveSettingsButton.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedSaveSettingsButton.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Saved Settings\Audio Settings.txt
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Saved Settings\Video Settings.txt
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.exe.config
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.exe
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\GalacticImperialism.pdb
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Lidgren.Network.dll
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.dll
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.dll
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.xml
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Video.xml
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.csprojResolveAssemblyReference.cache
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
+G:\My Drive\Video Game Programming\3rd 9 weeks\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
