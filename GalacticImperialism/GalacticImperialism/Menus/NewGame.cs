@@ -15,7 +15,7 @@ namespace GalacticImperialism
     public class NewGame
     {
 
-        public Button playGame;
+        Button playGame;
         Texture2D selected;
         Texture2D unselected;
         SpriteFont font;
@@ -49,6 +49,11 @@ namespace GalacticImperialism
         public void Draw(SpriteBatch spriteBatch)
         {
             playGame.Draw(spriteBatch);
+        }
+
+        public Button getButton()
+        {
+            return playGame;
         }
     }
 }

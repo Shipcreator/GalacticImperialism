@@ -183,7 +183,7 @@ namespace GalacticImperialism
                     menuChangeOnFrame = true;
                 }
 
-                if (newGameMenuObject.playGame.isClicked)
+                if (newGameMenuObject.getButton().isClicked)
                 {
                     board.NewBoard(100, 1, 4, 1, 1000);
                     menuSelected = Menus.Game;
