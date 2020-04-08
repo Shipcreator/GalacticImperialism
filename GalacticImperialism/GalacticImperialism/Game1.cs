@@ -119,7 +119,7 @@ namespace GalacticImperialism
             List<Texture2D> temp = new List<Texture2D>();
             for (int i = 1; i < 20; i++)
                 temp.Add(Content.Load<Texture2D>("Planets/" + i));
-            board = new Board(200, temp);
+            board = new Board(200, temp, Content.Load<Texture2D>("Star Background/WhiteCircle"));
 
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 

@@ -27,14 +27,18 @@ namespace GalacticImperialism
         List<Texture2D> planetTexs;
         //List Of Players
         List<Player> players;
-        //Selects Turn
+        //White Circle
+        Texture2D circle;
+        public Rectangle selection;
+        //Current Turn
         int turn;
 
         //Creates Board, Assigns Texture Objects
-        public Board(int r, List<Texture2D> t)
+        public Board(int r, List<Texture2D> t, Texture2D c)
         {
             planetTexs = t;
             moveRadius = r;
+            circle = c;
         }
 
 
@@ -208,11 +212,19 @@ namespace GalacticImperialism
         //NextTurn Handling
         public void NextTurn()
         {
+            //Reset Functions
+            players[turn].isTurn = false;
+            selection = new Rectangle(0,0,0,0);
+
+            /////////////////////////////////////////Here is where you would send the board class across the network////////////////////////////////////
+
             //Goes to Next Player
             if (turn == players.Count - 1)
                 turn = 0;
             else
                 turn++;
+
+            players[turn].isTurn = true;
 
             //Runs OnTurn Function
             if (players[turn] is Human)
@@ -230,6 +242,9 @@ namespace GalacticImperialism
         //Board Draw Method
         public void Draw(SpriteBatch sb)
         {
+            //Draw Selection
+            sb.Draw(circle, selection, Color.White);
+
             //Draws Planets
             foreach (Planet p in planets)
             {

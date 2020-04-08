@@ -27,22 +27,28 @@ namespace GalacticImperialism
 
         public void Update(GameTime gt)
         {
-            base.Update(gt);
-            MouseState mb = Mouse.GetState();
-            KeyboardState kb = Keyboard.GetState();
+            if (isTurn)
+            {
+                base.Update(gt);
+                MouseState mb = Mouse.GetState();
+                KeyboardState kb = Keyboard.GetState();
 
-            if (mb.LeftButton == ButtonState.Pressed && oldmb.LeftButton == ButtonState.Released)
-                MouseClick(new Vector2(mb.X, mb.Y));
+                if (mb.LeftButton == ButtonState.Pressed && oldmb.LeftButton == ButtonState.Released) // On Left Mouse Click
+                    MouseClick(new Vector2(mb.X, mb.Y));
 
-            if (kb.IsKeyDown(Keys.Delete) && oldkb.IsKeyUp(Keys.Delete))
-                EndTurn();
+                if (kb.IsKeyDown(Keys.Delete) && oldkb.IsKeyUp(Keys.Delete)) //Ends Turn
+                {
+                    EndTurn();
+                }
 
-            oldkb = kb;
-            oldmb = mb;
+                oldkb = kb;
+                oldmb = mb;
+            }
         }
 
         public void MouseClick(Vector2 position)
         {
+            //Selects Planet
             for (int i = 0; i < ownedPlanets.Count; i++)
             {
                 Planet temp = ownedPlanets[i];
@@ -51,7 +57,8 @@ namespace GalacticImperialism
                 if (mouse.Intersects(planetRect))
                 {
                     selectedPlanet = ownedPlanets[i];
-                    Console.WriteLine("test");
+                    board.selection = new Rectangle((int)temp.position.X - (int)(temp.size * 2.5), (int)temp.position.Y - (int)(temp.size * 2.5), temp.size* 30, temp.size * 30);
+                    break;
                 }
             }
         }

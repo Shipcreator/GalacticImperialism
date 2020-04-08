@@ -40,6 +40,11 @@ namespace GalacticImperialism
             percentage = 1.0f;
         }
 
+        public void SetPercentage(float temporaryPercentage)     //Pass in a number from 0-1.
+        {
+            cursorRect.X = (int)(((backgroundRect.Right - cursorRect.Width - backgroundRect.X) * temporaryPercentage) + backgroundRect.X);
+        }
+
         public void Update(MouseState mouse, MouseState oldMouse)
         {
             if (mouse.X >= cursorRect.X && mouse.X <= cursorRect.Right && mouse.Y >= cursorRect.Y && mouse.Y <= cursorRect.Bottom && mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed && cursorMoving == false)
@@ -59,11 +64,6 @@ namespace GalacticImperialism
         {
             spriteBatch.Draw(backgroundTexture, backgroundRect, Color.White);
             spriteBatch.Draw(cursorTexture, cursorRect, Color.White);
-        }
-
-        public void setPercent(float p)
-        {
-            percentage = p;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace GalacticImperialism
 
             goldVector = new Vector2(50, 200);
             startGold = new Slider(new Rectangle(50, 250, 300, 25), new Vector2(10, 30), cm.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), cm.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
-            startGold.setPercent(0.1f);
+            startGold.SetPercentage(0.1f);
 
             Initialize();
         }

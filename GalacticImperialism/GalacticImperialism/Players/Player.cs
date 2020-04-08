@@ -17,11 +17,14 @@ namespace GalacticImperialism
     {
         int gold, science, hydrogen, oxygen, nitrogen, iron, tungsten, uranium; //All Item Values That every Player stores
         public List<Planet> ownedPlanets = new List<Planet>(); //Owned Planets
-        Board board; // Holds Current Board
+        protected Board board; // Holds Current Board
+
+        public bool isTurn;
 
         //Creates Base Player
         public Player(int startingGold, Board b)
         {
+            isTurn = false;
             gold = startingGold;
             science = hydrogen = oxygen = nitrogen = iron = tungsten = uranium = 0;
             board = b;
