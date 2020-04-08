@@ -203,7 +203,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Player UI\Bar.png">
+      <Name>Bar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <ItemGroup>
     <None Include="Techs\ConstructionTech.txt">
       <Name>ConstructionTech</Name>

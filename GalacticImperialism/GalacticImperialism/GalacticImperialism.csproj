@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Menus\AudioSettings.cs" />
     <Compile Include="Board.cs" />
+    <Compile Include="UI\PlayerUI.cs" />
     <Compile Include="Tech.cs" />
     <Compile Include="TechTree.cs" />
     <Compile Include="UI\Button.cs" />

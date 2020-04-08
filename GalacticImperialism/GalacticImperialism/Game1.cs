@@ -53,6 +53,8 @@ namespace GalacticImperialism
 
         StarBackground starBackgroundObject;
 
+        PlayerUI playerUIObject;
+
         List<Color> listOfStarColors;
 
         Texture2D whiteTexture;
@@ -129,6 +131,7 @@ namespace GalacticImperialism
             if (videoSettingsMenuObject.toggleFullScreen)
                 graphics.ToggleFullScreen();
             audioSettingsMenuObject = new AudioSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice);
+            playerUIObject = new PlayerUI(Content.Load<Texture2D>("Player UI/Bar"), whiteTexture, GraphicsDevice);
         }
 
         /// <summary>
@@ -241,6 +244,7 @@ namespace GalacticImperialism
             if (menuSelected == Menus.Game)
             {
                 board.Update(gameTime);
+                playerUIObject.Update();
             }
 
             masterVolume = audioSettingsMenuObject.masterVolume;
@@ -279,7 +283,10 @@ namespace GalacticImperialism
             if (menuSelected == Menus.VideoSettings)
                 videoSettingsMenuObject.Draw(spriteBatch);
             if (menuSelected == Menus.Game)
+            {
                 board.Draw(spriteBatch);
+                playerUIObject.Draw(spriteBatch);
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);

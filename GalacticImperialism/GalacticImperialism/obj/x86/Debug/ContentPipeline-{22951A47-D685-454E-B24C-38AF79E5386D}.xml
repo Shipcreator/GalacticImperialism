@@ -7,8 +7,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar60Point.xnb</Output>
-      <Time>2020-04-02T09:39:23.6228881-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar60Point.xnb</Output>
+      <Time>2020-04-07T18:36:45.8359622-05:00</Time>
     </Item>
     <Item>
       <Source>Sprite Fonts\Castellar20Point.spritefont</Source>
@@ -16,8 +16,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar20Point.xnb</Output>
-      <Time>2020-04-02T09:39:23.6228881-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Castellar20Point.xnb</Output>
+      <Time>2020-04-07T18:36:45.8354662-05:00</Time>
     </Item>
     <Item>
       <Source>Star Background\WhiteCircle.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Star Background\WhiteCircle.xnb</Output>
-      <Time>2020-04-02T09:39:23.6238853-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Star Background\WhiteCircle.xnb</Output>
+      <Time>2020-04-07T18:36:45.8364582-05:00</Time>
     </Item>
     <Item>
       <Source>Button Textures\SelectedButtonTexture1.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedButtonTexture1.xnb</Output>
-      <Time>2020-04-02T09:39:23.5999492-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedButtonTexture1.xnb</Output>
+      <Time>2020-04-07T18:36:45.8096743-05:00</Time>
     </Item>
     <Item>
       <Source>Button Textures\UnselectedButtonTexture1.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedButtonTexture1.xnb</Output>
-      <Time>2020-04-02T09:39:23.6029413-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedButtonTexture1.xnb</Output>
+      <Time>2020-04-07T18:36:45.8131462-05:00</Time>
     </Item>
     <Item>
       <Source>Slider Textures\500x20SelectionBarTexture.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\500x20SelectionBarTexture.xnb</Output>
-      <Time>2020-04-02T09:39:23.6218906-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\500x20SelectionBarTexture.xnb</Output>
+      <Time>2020-04-07T18:36:45.8344742-05:00</Time>
     </Item>
     <Item>
       <Source>Slider Textures\PillSelectionCursor.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\PillSelectionCursor.xnb</Output>
-      <Time>2020-04-02T09:39:23.6228881-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Slider Textures\PillSelectionCursor.xnb</Output>
+      <Time>2020-04-07T18:36:45.8349705-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\1.png</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\1.xnb</Output>
-      <Time>2020-04-02T09:39:23.6069306-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\1.xnb</Output>
+      <Time>2020-04-07T18:36:45.8176103-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\10.png</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\10.xnb</Output>
-      <Time>2020-04-02T09:39:23.6079279-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\10.xnb</Output>
+      <Time>2020-04-07T18:36:45.8186023-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\11.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\11.xnb</Output>
-      <Time>2020-04-02T09:39:23.6079279-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\11.xnb</Output>
+      <Time>2020-04-07T18:36:45.8195942-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\12.png</Source>
@@ -97,8 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\12.xnb</Output>
-      <Time>2020-04-02T09:39:23.6089254-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\12.xnb</Output>
+      <Time>2020-04-07T18:36:45.8200904-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\13.png</Source>
@@ -106,8 +106,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\13.xnb</Output>
-      <Time>2020-04-02T09:39:23.6099227-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\13.xnb</Output>
+      <Time>2020-04-07T18:36:45.8210824-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\14.png</Source>
@@ -115,8 +115,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\14.xnb</Output>
-      <Time>2020-04-02T09:39:23.61092-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\14.xnb</Output>
+      <Time>2020-04-07T18:36:45.8220743-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\15.png</Source>
@@ -124,8 +124,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\15.xnb</Output>
-      <Time>2020-04-02T09:39:23.61092-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\15.xnb</Output>
+      <Time>2020-04-07T18:36:45.8230663-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\16.png</Source>
@@ -133,8 +133,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\16.xnb</Output>
-      <Time>2020-04-02T09:39:23.6119174-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\16.xnb</Output>
+      <Time>2020-04-07T18:36:45.8240582-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\17.png</Source>
@@ -142,8 +142,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\17.xnb</Output>
-      <Time>2020-04-02T09:39:23.6129148-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\17.xnb</Output>
+      <Time>2020-04-07T18:36:45.8250503-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\18.png</Source>
@@ -151,8 +151,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\18.xnb</Output>
-      <Time>2020-04-02T09:39:23.6129148-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\18.xnb</Output>
+      <Time>2020-04-07T18:36:45.8255465-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\19.png</Source>
@@ -160,8 +160,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\19.xnb</Output>
-      <Time>2020-04-02T09:39:23.6139119-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\19.xnb</Output>
+      <Time>2020-04-07T18:36:45.8270344-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\2.png</Source>
@@ -169,8 +169,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\2.xnb</Output>
-      <Time>2020-04-02T09:39:23.6149094-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\2.xnb</Output>
+      <Time>2020-04-07T18:36:45.8275302-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\3.png</Source>
@@ -178,8 +178,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\3.xnb</Output>
-      <Time>2020-04-02T09:39:23.6159068-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\3.xnb</Output>
+      <Time>2020-04-07T18:36:45.8285224-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\4.png</Source>
@@ -187,8 +187,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\4.xnb</Output>
-      <Time>2020-04-02T09:39:23.6159068-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\4.xnb</Output>
+      <Time>2020-04-07T18:36:45.8290185-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\5.png</Source>
@@ -196,8 +196,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\5.xnb</Output>
-      <Time>2020-04-02T09:39:23.6169044-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\5.xnb</Output>
+      <Time>2020-04-07T18:36:45.8300102-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\6.png</Source>
@@ -205,8 +205,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\6.xnb</Output>
-      <Time>2020-04-02T09:39:23.6179014-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\6.xnb</Output>
+      <Time>2020-04-07T18:36:45.8310022-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\7.png</Source>
@@ -214,8 +214,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\7.xnb</Output>
-      <Time>2020-04-02T09:39:23.6179014-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\7.xnb</Output>
+      <Time>2020-04-07T18:36:45.8314984-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\8.png</Source>
@@ -223,8 +223,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\8.xnb</Output>
-      <Time>2020-04-02T09:39:23.618899-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\8.xnb</Output>
+      <Time>2020-04-07T18:36:45.8324902-05:00</Time>
     </Item>
     <Item>
       <Source>Planets\9.png</Source>
@@ -232,8 +232,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\9.xnb</Output>
-      <Time>2020-04-02T09:39:23.6198963-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Planets\9.xnb</Output>
+      <Time>2020-04-07T18:36:45.8334823-05:00</Time>
     </Item>
     <Item>
       <Source>Button Textures\SelectedSaveSettingsButton.png</Source>
@@ -241,8 +241,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedSaveSettingsButton.xnb</Output>
-      <Time>2020-04-02T09:39:23.6009466-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\SelectedSaveSettingsButton.xnb</Output>
+      <Time>2020-04-07T18:36:45.8106661-05:00</Time>
     </Item>
     <Item>
       <Source>Button Textures\UnselectedSaveSettingsButton.png</Source>
@@ -250,8 +250,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedSaveSettingsButton.xnb</Output>
-      <Time>2020-04-02T09:39:23.6039395-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Button Textures\UnselectedSaveSettingsButton.xnb</Output>
+      <Time>2020-04-07T18:36:45.8146342-05:00</Time>
     </Item>
     <Item>
       <Source>Videos\XNA Galacic Imperialism Crawl.wmv</Source>
@@ -259,9 +259,18 @@
       <Importer>WmvImporter</Importer>
       <Processor>VideoProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb</Output>
-      <Extra>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv</Extra>
-      <Time>2020-04-02T09:39:23.9200934-05:00</Time>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.xnb</Output>
+      <Extra>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv</Extra>
+      <Time>2020-04-07T18:36:46.1578665-05:00</Time>
+    </Item>
+    <Item>
+      <Source>Player UI\Bar.png</Source>
+      <Name>Player UI\Bar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Player UI\Bar.xnb</Output>
+      <Time>2020-04-07T18:45:44.4322426-05:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -270,39 +279,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialismContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T16:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T16:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T16:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T16:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T16:22:30-05:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2011-09-01T17:22:30-05:00</Value>
+        <Value>2011-09-01T16:22:30-05:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2020-01-12T19:40:02.8613109-06:00</Value>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2019-09-23T00:54:25.3532388-05:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
