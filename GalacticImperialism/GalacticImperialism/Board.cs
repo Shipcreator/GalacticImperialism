@@ -66,14 +66,11 @@ namespace GalacticImperialism
             //Planet Attributes
             Vector2 pos; //Position In Space
             int size = rand.Next(0, 3) + 1; //Size Increments (1,2 or 3)
-            Color color = new Color(rand.Next(256), rand.Next(256), rand.Next(256)); //Random Color(Will Change Later)
 
             do //Loop Assigns Position
             {
-                pos = new Vector2(rand.Next(1825), rand.Next(1000));
+                pos = new Vector2(rand.Next(1860), rand.Next(150,1000));
             } while (CheckPos(pos) == false); //Checks Distance
-
-
 
             Planet temp = new Planet(size, planetTexs[rand.Next(0, 19)], pos, AssignResources()); //Creates and Adds Planet to List
             planets.Add(temp);
@@ -85,7 +82,7 @@ namespace GalacticImperialism
             if (p >= 2)
             {
                 //Create Planet One
-                Planet temp = new Planet(planetTexs[rand.Next(0,19)], new Vector2(10, 10));
+                Planet temp = new Planet(planetTexs[rand.Next(0,19)], new Vector2(10, 150));
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
 
@@ -97,7 +94,7 @@ namespace GalacticImperialism
             if (p >= 3)
             {
                 //Create Planet Three
-                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 10));
+                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 150));
                 planets.Add(temp);
                 players[2].AddPlanet(temp);
             }

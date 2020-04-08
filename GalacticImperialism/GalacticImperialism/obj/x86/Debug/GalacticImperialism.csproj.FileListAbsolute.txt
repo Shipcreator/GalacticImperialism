@@ -214,3 +214,7 @@ C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperi
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Player UI\Bar.xnb
 C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Player UI\Bar.xnb
+C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Player UI\Bar.xnb
+C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\ConstructionTech.txt
+C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\EconomicTech.txt
+C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\MilitaryTech.txt

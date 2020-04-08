@@ -60,5 +60,10 @@ namespace GalacticImperialism
             spriteBatch.Draw(backgroundTexture, backgroundRect, Color.White);
             spriteBatch.Draw(cursorTexture, cursorRect, Color.White);
         }
+
+        public void setPercent(float p)
+        {
+            percentage = p;
+        }
     }
 }
