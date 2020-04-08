@@ -213,3 +213,4 @@ C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperi
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.exe
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\obj\x86\Debug\GalacticImperialism.pdb
 C:\Users\ciara\Desktop\Schoolwork\Video Game Programming\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Player UI\Bar.xnb
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Player UI\Bar.xnb

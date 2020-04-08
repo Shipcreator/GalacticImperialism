@@ -26,9 +26,9 @@ Content\Planets\8.xnb
 Content\Planets\9.xnb
 Content\Button Textures\SelectedSaveSettingsButton.xnb
 Content\Button Textures\UnselectedSaveSettingsButton.xnb
+Content\Player UI\Bar.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
-Content\Player UI\Bar.xnb
 Content\Saved Settings\Audio Settings.txt
 Content\Saved Settings\Video Settings.txt
 Content\Techs\ConstructionTech.txt

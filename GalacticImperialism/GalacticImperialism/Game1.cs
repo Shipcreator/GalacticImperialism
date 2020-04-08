@@ -124,7 +124,7 @@ namespace GalacticImperialism
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 
             mainMenuObject = new MainMenu(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
-            newGameMenuObject = new NewGame(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
+            newGameMenuObject = new NewGame(Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice, Content);
             settingsMenuObject = new Settings(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
             creditsMenuObject = new Credits();
             videoSettingsMenuObject = new VideoSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
@@ -188,7 +188,11 @@ namespace GalacticImperialism
 
                 if (newGameMenuObject.getButton().isClicked)
                 {
-                    board.NewBoard(100, 1, 4, 1, 1000);
+                    int numPlanets = 100;
+                    if (newGameMenuObject.getPlanets() >= 80 && newGameMenuObject.getPlanets() <= 125)
+                        numPlanets = newGameMenuObject.getPlanets();
+
+                    board.NewBoard(numPlanets, 1, 4, 1, 1000);
                     menuSelected = Menus.Game;
                 }
             }
