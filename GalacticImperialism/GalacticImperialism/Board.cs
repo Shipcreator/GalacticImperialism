@@ -216,8 +216,6 @@ namespace GalacticImperialism
             players[turn].isTurn = false;
             selection = new Rectangle(0,0,0,0);
 
-            /////////////////////////////////////////Here is where you would send the board class across the network////////////////////////////////////
-
             //Goes to Next Player
             if (turn == players.Count - 1)
                 turn = 0;
@@ -237,6 +235,8 @@ namespace GalacticImperialism
                 Computer temp = (Computer)players[turn];
                 temp.OnTurn();
             }
+
+            //Send the Board Class
         }
 
         //Board Draw Method
