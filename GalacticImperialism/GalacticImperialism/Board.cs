@@ -85,26 +85,26 @@ namespace GalacticImperialism
             if (p >= 2)
             {
                 //Create Planet One
-                Planet temp = new Planet(planetTexs[rand.Next(1,20)], new Vector2(10, 10));
+                Planet temp = new Planet(planetTexs[rand.Next(0,19)], new Vector2(10, 10));
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
 
                 //Create Planet Two
-                temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 1020));
+                temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 1020));
                 planets.Add(temp);
                 players[1].AddPlanet(temp);
             }
             if (p >= 3)
             {
                 //Create Planet Three
-                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(1860, 10));
+                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 10));
                 planets.Add(temp);
                 players[2].AddPlanet(temp);
             }
             if (p == 4)
             {
                 //Create Planet Four
-                Planet temp = new Planet(planetTexs[rand.Next(1, 20)], new Vector2(10, 1020));
+                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(10, 1020));
                 planets.Add(temp);
                 players[3].AddPlanet(temp);
             }
