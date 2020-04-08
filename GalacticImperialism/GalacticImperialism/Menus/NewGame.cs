@@ -22,11 +22,11 @@ namespace GalacticImperialism
         MouseState oldMS;
         KeyboardState oldKBS;
 
-        TextBox numPlanets;
+        Slider numPlanets;
         Vector2 npVector; // Num Planets Vector
 
-        Slider startGold;
-        Vector2 goldVector; // Num Planets Vector
+        TextBox startGold;
+        Vector2 goldVector; // Gold Vector
 
         GraphicsDevice graphics;
 
@@ -40,13 +40,13 @@ namespace GalacticImperialism
             oldKBS = Keyboard.GetState();
 
             npVector = new Vector2(50, 50);
-            numPlanets = new TextBox(new Rectangle(50, 100, 300, 50), 1, 3, Color.White, Color.Black, Color.Black, Color.Blue, graphics, font);
-            numPlanets.text = "100";
-            numPlanets.acceptsLetters = false;
+            numPlanets = new Slider(new Rectangle(50, 100, 300, 25), new Vector2(10, 30), cm.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), cm.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
+            numPlanets.SetPercentage(0.4f);
 
             goldVector = new Vector2(50, 200);
-            startGold = new Slider(new Rectangle(50, 250, 300, 25), new Vector2(10, 30), cm.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), cm.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
-            startGold.SetPercentage(0.1f);
+            startGold = new TextBox(new Rectangle(50, 250, 300, 25), 1, 5, Color.White, Color.Black, Color.Black, Color.Blue, graphics, font);
+            startGold.text = "1000";
+            startGold.acceptsLetters = false;
 
             Initialize();
         }
@@ -62,8 +62,8 @@ namespace GalacticImperialism
             KeyboardState kbs = Keyboard.GetState();
 
             playGame.Update(ms, oldMS);
-            numPlanets.Update(ms, oldMS, kbs, oldKBS);
-            startGold.Update(ms, oldMS);
+            numPlanets.Update(ms, oldMS);
+            startGold.Update(ms, oldMS, kbs, oldKBS);
 
             oldKBS = kbs;
             oldMS = ms;
@@ -75,13 +75,18 @@ namespace GalacticImperialism
             numPlanets.Draw(spriteBatch);
             startGold.Draw(spriteBatch);
 
-            spriteBatch.DrawString(font, (int) (startGold.percentage * 10000) + " ", goldVector, Color.White);
-            spriteBatch.DrawString(font, "Number of planets (80-125)", npVector, Color.White);
+            spriteBatch.DrawString(font, "Starting Gold : " + startGold.text, goldVector, Color.White);
+            spriteBatch.DrawString(font, "Number of planets : " + ((int) (numPlanets.percentage * 50) + 80), npVector, Color.White);
         }
 
         public int getPlanets()
         {
-            return int.Parse(numPlanets.text);
+            return ((int)(numPlanets.percentage * 50) + 80);
+        }
+
+        public int getGold()
+        {
+            return int.Parse(startGold.text);
         }
 
         public Button getButton()

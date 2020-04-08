@@ -41,7 +41,6 @@ namespace GalacticImperialism
             circle = c;
         }
 
-
         //Creates A New Board(Assume numOfBots < numOfPlayers)
         public void NewBoard(int numPlanets, int seed, int numOfPlayers, int numOfBots, int gold)
         {
@@ -243,7 +242,7 @@ namespace GalacticImperialism
         public void Draw(SpriteBatch sb)
         {
             //Draw Selection
-            sb.Draw(circle, selection, Color.White);
+            sb.Draw(circle, selection, Color.White * 0.3f);
 
             //Draws Planets
             foreach (Planet p in planets)

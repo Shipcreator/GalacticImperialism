@@ -188,9 +188,7 @@ namespace GalacticImperialism
 
                 if (newGameMenuObject.getButton().isClicked)
                 {
-                    int numPlanets = 100;
-                    if (newGameMenuObject.getPlanets() >= 80 && newGameMenuObject.getPlanets() <= 125)
-                        numPlanets = newGameMenuObject.getPlanets();
+                    int numPlanets = newGameMenuObject.getPlanets();
 
                     board.NewBoard(numPlanets, 1, 4, 1, 1000);
                     menuSelected = Menus.Game;
