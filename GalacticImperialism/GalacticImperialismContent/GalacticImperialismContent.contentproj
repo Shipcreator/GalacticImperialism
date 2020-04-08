@@ -211,6 +211,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sprite Fonts\Arial20.spritefont">
+      <Name>Arial20</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Techs\ConstructionTech.txt">
       <Name>ConstructionTech</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

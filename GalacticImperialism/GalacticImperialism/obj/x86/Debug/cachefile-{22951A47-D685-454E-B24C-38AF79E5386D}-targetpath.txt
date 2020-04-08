@@ -29,6 +29,7 @@ Content\Button Textures\UnselectedSaveSettingsButton.xnb
 Content\Player UI\Bar.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
+Content\Sprite Fonts\Arial20.xnb
 Content\Saved Settings\Audio Settings.txt
 Content\Saved Settings\Video Settings.txt
 Content\Techs\ConstructionTech.txt
