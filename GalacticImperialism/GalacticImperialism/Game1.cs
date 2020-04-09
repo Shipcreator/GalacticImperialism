@@ -22,6 +22,8 @@ namespace GalacticImperialism
         KeyboardState kb;
         KeyboardState oldKb;
 
+        Random rand;
+
         MouseState mouse;
         MouseState oldMouse;
 
@@ -82,7 +84,7 @@ namespace GalacticImperialism
         {
             // TODO: Add your initialization logic here
             menuSelected = Menus.MainMenu;
-
+            rand = new Random();
             IsMouseVisible = true;
 
             kb = Keyboard.GetState();
@@ -190,10 +192,15 @@ namespace GalacticImperialism
                 {
                     int numPlanets = newGameMenuObject.getPlanets();
                     int startingGold = 1000;
+                    int seed = rand.Next();
+
                     if (newGameMenuObject.getGold() >= 100)
                         startingGold = newGameMenuObject.getGold();
-
-                    board.NewBoard(numPlanets, 1, newGameMenuObject.getPlayers(), 1, startingGold);
+                    if (newGameMenuObject.getSeed() != 0)
+                    {
+                        seed = newGameMenuObject.getSeed();
+                    }
+                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), 1, startingGold);
                     menuSelected = Menus.Game;
                 }
             }

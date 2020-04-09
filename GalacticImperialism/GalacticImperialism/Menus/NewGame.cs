@@ -32,6 +32,9 @@ namespace GalacticImperialism
         TextBox startGold;
         Vector2 goldVector; // Gold Vector
 
+        TextBox seedBox;
+        Vector2 seedVector;
+
         Slider numPlayers;
         Vector2 playerVector; // Num players vector
 
@@ -58,11 +61,15 @@ namespace GalacticImperialism
 
             npVector = new Vector2(50, 50);
             numPlanets = new Slider(new Rectangle(50, 100, 300, 25), new Vector2(10, 30), cm.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), cm.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
-            numPlanets.SetPercentage(0.4f);
+            numPlanets.SetPercentage(0.5f);
 
             goldVector = new Vector2(50, 200);
 
             startGold = new TextBox(new Rectangle(50, 250, 300, 50), 1, 5, Color.Black, Color.White, Color.White, Color.White, graphics, font);
+            seedBox = new TextBox(new Rectangle(50, 550, 300, 50),1 , 9, Color.Black, Color.White, Color.White, Color.White, graphics, font);
+            seedBox.acceptsNumbers = true;
+            seedBox.acceptsLetters = false;
+            seedVector = new Vector2(50, 500);
 
             startGold.text = "1000";
             startGold.acceptsLetters = false;
@@ -81,6 +88,7 @@ namespace GalacticImperialism
             startGold.Update(ms, oldMS, kbs, oldKBS);
             numPlayers.Update(ms, oldMS);
             createNetwork.Update(ms, oldMS);
+            seedBox.Update(ms, oldMS, kbs, oldKBS);
 
             oldKBS = kbs;
             oldMS = ms;
@@ -93,15 +101,17 @@ namespace GalacticImperialism
             startGold.Draw(spriteBatch);
             numPlayers.Draw(spriteBatch);
             createNetwork.Draw(spriteBatch);
+            seedBox.Draw(spriteBatch);
 
             spriteBatch.DrawString(font, "Starting Gold", goldVector, Color.White);
-            spriteBatch.DrawString(font, "Number of planets : " + ((int) (numPlanets.percentage * 50) + 80), npVector, Color.White);
+            spriteBatch.DrawString(font, "Number of planets : " + ((int) (numPlanets.percentage * 50) + 75), npVector, Color.White);
             spriteBatch.DrawString(font, "Number of players : " + ((int)(numPlayers.percentage * 2) + 2), playerVector, Color.White);
+            spriteBatch.DrawString(font, "Seed", seedVector, Color.White);
         }
 
         public int getPlanets()
         {
-            return ((int)(numPlanets.percentage * 50) + 80);
+            return ((int)(numPlanets.percentage * 50) + 75);
         }
 
         public int getGold()
@@ -112,6 +122,18 @@ namespace GalacticImperialism
         public int getPlayers()
         {
             return ((int)(numPlayers.percentage * 2) + 2);
+        }
+
+        public int getSeed()
+        {
+            if (!(seedBox.text.Equals("")))
+            {
+                return int.Parse(seedBox.text);
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public Button getButton()
