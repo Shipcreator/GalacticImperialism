@@ -33,7 +33,7 @@ namespace GalacticImperialism
 
         public void Initialize()
         {
-            barRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, (int)((GraphicsDevice.Viewport.Height / 100.0f) * 12.5f));
+            barRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, (int)((GraphicsDevice.Viewport.Height / 100.0f) * 6.25f));
             flagRect = new Rectangle(15, 15, (int)(((barRect.Height - 30) / 3.0f) * 5.0f), barRect.Height - 30);
             
         }

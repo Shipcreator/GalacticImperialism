@@ -44,7 +44,7 @@ namespace GalacticImperialism
             numPlanets.SetPercentage(0.4f);
 
             goldVector = new Vector2(50, 200);
-            startGold = new TextBox(new Rectangle(50, 250, 300, 25), 1, 5, Color.White, Color.Black, Color.Black, Color.Blue, graphics, font);
+            startGold = new TextBox(new Rectangle(50, 250, 300, 40), 3, 5, Color.Black, Color.White, Color.White, Color.White, graphics, font);
             startGold.text = "1000";
             startGold.acceptsLetters = false;
 

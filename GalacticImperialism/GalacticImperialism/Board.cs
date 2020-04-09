@@ -72,7 +72,7 @@ namespace GalacticImperialism
 
             do //Loop Assigns Position
             {
-                pos = new Vector2(rand.Next(1860), rand.Next(150,1000));
+                pos = new Vector2(rand.Next(1860), rand.Next(75,1000));
             } while (CheckPos(pos) == false); //Checks Distance
 
             Planet temp = new Planet(size, planetTexs[rand.Next(0, 19)], pos, AssignResources()); //Creates and Adds Planet to List
@@ -85,7 +85,7 @@ namespace GalacticImperialism
             if (p >= 2)
             {
                 //Create Planet One
-                Planet temp = new Planet(planetTexs[rand.Next(0,19)], new Vector2(10, 150));
+                Planet temp = new Planet(planetTexs[rand.Next(0,19)], new Vector2(10, 75));
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
 
@@ -97,7 +97,7 @@ namespace GalacticImperialism
             if (p >= 3)
             {
                 //Create Planet Three
-                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 150));
+                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 75));
                 planets.Add(temp);
                 players[2].AddPlanet(temp);
             }
@@ -242,7 +242,7 @@ namespace GalacticImperialism
         public void Draw(SpriteBatch sb)
         {
             //Draw Selection
-            sb.Draw(circle, selection, Color.White * 0.3f);
+            sb.Draw(circle, selection, Color.White * 0.25f);
 
             //Draws Planets
             foreach (Planet p in planets)
