@@ -1,4 +1,5 @@
 Content\Sprite Fonts\Castellar60Point.xnb
+Content\Sprite Fonts\Arial20.xnb
 Content\Sprite Fonts\Castellar20Point.xnb
 Content\Star Background\WhiteCircle.xnb
 Content\Button Textures\SelectedButtonTexture1.xnb
@@ -28,7 +29,6 @@ Content\Button Textures\SelectedSaveSettingsButton.xnb
 Content\Button Textures\UnselectedSaveSettingsButton.xnb
 Content\Player UI\Bar.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.xnb
-Content\Sprite Fonts\Arial20.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
 Content\Saved Settings\Audio Settings.txt
 Content\Saved Settings\Video Settings.txt
