@@ -218,3 +218,4 @@ C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\Galacti
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\ConstructionTech.txt
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\EconomicTech.txt
 C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Techs\MilitaryTech.txt
+C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Arial20.xnb

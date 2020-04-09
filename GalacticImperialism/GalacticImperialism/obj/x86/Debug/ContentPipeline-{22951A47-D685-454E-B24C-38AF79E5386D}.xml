@@ -272,6 +272,15 @@
       <Extra>C:\Users\Dylan\Documents\Visual Studio 2015\Projects\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Videos\XNA Galacic Imperialism Crawl.wmv</Extra>
       <Time>2020-03-29T21:00:18-05:00</Time>
     </Item>
+    <Item>
+      <Source>Sprite Fonts\Arial20.spritefont</Source>
+      <Name>Sprite Fonts\Arial20</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Christian\Desktop\GalacticImperialism\GalacticImperialism\GalacticImperialism\bin\x86\Debug\Content\Sprite Fonts\Arial20.xnb</Output>
+      <Time>2020-04-08T16:53:12.5136538-05:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{22951A47-D685-454E-B24C-38AF79E5386D}</ContentProjectGUID>
