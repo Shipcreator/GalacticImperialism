@@ -3,7 +3,8 @@ Home Tax
 1.10
 Tax_output
 004
-0              
+0
+500
 
 Trade Hubs
 
@@ -11,10 +12,20 @@ Trade Hubs
 Trade_Hub_activation
 005
 0
+500
 
 Research Facility
 
 1.0
-Research_Facility
+Research_Facility_Activation
 006
 0
+500
+
+Efficient Trade Ships
+
+1.10
+Trade_output
+013
+005
+1000

@@ -22,6 +22,8 @@ namespace GalacticImperialism
         String[] Target;//target for modification
         Boolean complete;//if the Tech has be researched
         Boolean selectable;//if the Tech itself is pickable
+        int invested;
+        int pointReq;
         public Tech()
         {
             Txt = "";
@@ -32,7 +34,7 @@ namespace GalacticImperialism
             selectable = false;
         }
 
-        public Tech(String n, String MSG, double m, String[] trg, int id, int Sid)
+        public Tech(String n, String MSG, double m, String[] trg, int id, int Sid,int PRq)
         {
             Name = n;
             Txt = MSG;
@@ -42,6 +44,21 @@ namespace GalacticImperialism
             SourceID = Sid;
             complete = false;
             selectable = false;
+            pointReq = PRq;
+            invested = 0;
+        }
+
+        public void investPoints(int p)
+        {
+            invested += p;
+        }
+
+        public void isComplete()
+        {
+            if (invested >= pointReq)
+            {
+                complete = true;
+            }
         }
 
         public double getMod()
@@ -81,6 +98,15 @@ namespace GalacticImperialism
         {
             selectable = false;
             complete = true;
+        }
+
+        public String toString()
+        {
+            String n = Name + "                     " + invested + "/" + pointReq;
+            for (int i = 0; i < Target.Count();i++) {
+                n += "\n" + Target[i] +" increase "+ (modifier - 1) * 100 + "%";
+                    }
+            return n;
         }
     }
 }

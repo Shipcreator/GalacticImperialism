@@ -3,7 +3,8 @@ Corvette
 1.00
 Corvette_activation
 007
-0              
+0
+500
 
 Exo-suit
 
@@ -11,10 +12,20 @@ Exo-suit
 Mine_Output Army_Strength
 008
 0
+500
+
+Space Marine
+
+1.00
+Space_Marine_Activation
+009
+0
+1000
 
 Corvette Hull I
 
 1.10
 Corvette_HP
-009
+016
 007
+1000

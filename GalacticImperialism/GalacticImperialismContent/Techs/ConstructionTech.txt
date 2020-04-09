@@ -3,7 +3,8 @@ Simple Drills will not do, they just dont mine fast enough.
 1.10
 Mine_Output
 001
-0              
+0
+500
 
 Gas Pump
 
@@ -11,6 +12,7 @@ Gas Pump
 Gas_Pumps_activation
 002
 0
+500
 
 Research Facility
 
@@ -18,3 +20,28 @@ Research Facility
 Research_Facility_Activation
 003
 0
+500
+
+Mining Tools II
+Simple Drills will not do, they just dont mine fast enough. 
+1.10
+Mine_Output
+010
+001              
+1000
+
+Gas Pump I
+
+1.10
+Gas_Pumps
+011
+002
+1000
+
+Star Base
+
+1.0
+Star_Base_Activation
+012
+0
+1000

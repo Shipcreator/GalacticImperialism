@@ -223,18 +223,44 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <Compile Include="Sprite Fonts\Castellar10Point.spritefont">
+      <Name>Castellar10Point</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Tech Textures\Circuit.jpg">
+      <Name>Circuit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tech Textures\Sci-Fi Steel Wall.jpg">
+      <Name>Sci-Fi Steel Wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tech Textures\Tech Backdrop.jpg">
+      <Name>Tech Backdrop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Tech Textures\TechMenuBackdrop.jpg">
+      <Name>TechMenuBackdrop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Techs\ConstructionTech.txt">
       <Name>ConstructionTech</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Techs\EconomicTech.txt">
       <Name>EconomicTech</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Techs\MilitaryTech.txt">
       <Name>MilitaryTech</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
