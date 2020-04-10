@@ -8,7 +8,7 @@ using System.IO;
 
 namespace GalacticImperialism.Networking
 {
-    class ConnectionHandler
+    public class ConnectionHandler
     {
 
         NetPeer peer;

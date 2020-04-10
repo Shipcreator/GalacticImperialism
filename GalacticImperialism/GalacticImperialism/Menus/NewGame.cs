@@ -33,21 +33,25 @@ namespace GalacticImperialism
         Vector2 goldVector; // Gold Vector
 
         TextBox seedBox;
-        Vector2 seedVector;
+        Vector2 seedVector; // Seed Vector
 
         Slider numPlayers;
         Vector2 playerVector; // Num players vector
 
-        GraphicsDevice graphics;
-        ContentManager cm;
+        String status;
+        Vector2 statusVector;
 
-        public NewGame(GraphicsDevice g, ContentManager cm)
+        Game1 game;
+        ContentManager cm;
+        GraphicsDevice graphics;
+
+        public NewGame(Game1 game)
         {
-            graphics = g;
-            selected = cm.Load<Texture2D>("Button Textures/SelectedButtonTexture1");
-            unselected = cm.Load<Texture2D>("Button Textures/UnselectedButtonTexture1");
-            font = cm.Load<SpriteFont>("Sprite Fonts/Arial20");
-            this.cm = cm;
+            graphics = game.GraphicsDevice;
+            this.game = game;
+            selected = game.Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1");
+            unselected = game.Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1");
+            font = game.Content.Load<SpriteFont>("Sprite Fonts/Arial20");
             oldMS = Mouse.GetState();
             oldKBS = Keyboard.GetState();
 
@@ -56,26 +60,31 @@ namespace GalacticImperialism
 
         public void Initialize()
         {
+            // Creates the play game and create network button.
             playGame = new Button(new Rectangle(graphics.Viewport.Width / 2 - 500, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Play Game", font, Color.White, null, null);
             createNetwork = new Button(new Rectangle(graphics.Viewport.Width / 2 + 100, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Create Network", font, Color.White, null, null);
 
-            npVector = new Vector2(50, 50);
-            numPlanets = new Slider(new Rectangle(50, 100, 300, 25), new Vector2(10, 30), cm.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), cm.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
+            npVector = new Vector2(50, 50);     // Vector for the "Number Planets" text
+            // Creates a slider with a range of 75-125 for the starting planets.
+            numPlanets = new Slider(new Rectangle(50, 100, 300, 25), new Vector2(10, 30), game.Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), game.Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
             numPlanets.SetPercentage(0.5f);
 
-            goldVector = new Vector2(50, 200);
-
+            goldVector = new Vector2(50, 200);  // Vector text for the "Starting Gold"
+            // Text box for the gold, only accepts numbers and has a max of 99999
             startGold = new TextBox(new Rectangle(50, 250, 300, 50), 1, 5, Color.Black, Color.White, Color.White, Color.White, graphics, font);
-            seedBox = new TextBox(new Rectangle(50, 550, 300, 50),1 , 9, Color.Black, Color.White, Color.White, Color.White, graphics, font);
-            seedBox.acceptsNumbers = true;
-            seedBox.acceptsLetters = false;
-            seedVector = new Vector2(50, 500);
-
             startGold.text = "1000";
             startGold.acceptsLetters = false;
 
+            // Creates the textbox for the seed as well as the vector for the text.
+            seedBox = new TextBox(new Rectangle(50, 550, 300, 50),1 , 9, Color.Black, Color.White, Color.White, Color.White, graphics, font);
+            seedBox.acceptsLetters = false;
+            seedVector = new Vector2(50, 500);
+
+            statusVector = new Vector2(graphics.Viewport.Width - 400, 50);
+
+            // Creates a vector and slider for num players.
             playerVector = new Vector2(50, 350);
-            numPlayers = new Slider(new Rectangle(50, 400, 300, 25), new Vector2(10, 30), cm.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), cm.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
+            numPlayers = new Slider(new Rectangle(50, 400, 300, 25), new Vector2(10, 30), game.Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), game.Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
         }
 
         public void Update()
@@ -89,6 +98,16 @@ namespace GalacticImperialism
             numPlayers.Update(ms, oldMS);
             createNetwork.Update(ms, oldMS);
             seedBox.Update(ms, oldMS, kbs, oldKBS);
+
+            switch (game.connection.getCon().Status)
+            {
+                case Lidgren.Network.NetPeerStatus.NotRunning:
+                    status = "Network Status : Offline";
+                    break;
+                case Lidgren.Network.NetPeerStatus.Running:
+                    status = "Network Status : Online\nPort : " + game.connection.getCon().Port;
+                    break;
+            }
 
             oldKBS = kbs;
             oldMS = ms;
@@ -107,6 +126,7 @@ namespace GalacticImperialism
             spriteBatch.DrawString(font, "Number of planets : " + ((int) (numPlanets.percentage * 50) + 75), npVector, Color.White);
             spriteBatch.DrawString(font, "Number of players : " + ((int)(numPlayers.percentage * 2) + 2), playerVector, Color.White);
             spriteBatch.DrawString(font, "Seed", seedVector, Color.White);
+            spriteBatch.DrawString(font, status, statusVector, Color.White);
         }
 
         public int getPlanets()
@@ -136,9 +156,14 @@ namespace GalacticImperialism
             }
         }
 
-        public Button getButton()
+        public Button playButton()
         {
             return playGame;
+        }
+
+        public Button networkButton()
+        {
+            return createNetwork;
         }
     }
 }

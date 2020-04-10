@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 namespace GalacticImperialism
 {
     //Board Class, Incompasses all Non-UI Objects
-    class Board
+    [Serializable] class Board
     {
         //Stores All Planets On Map
         List<Planet> planets;

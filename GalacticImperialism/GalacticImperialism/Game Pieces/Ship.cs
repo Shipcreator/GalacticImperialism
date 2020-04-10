@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GalacticImperialism
 {
-    class Ship
+    [Serializable] class Ship
     {
         int attack;
         int defend;

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq; 
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GalacticImperialism.Networking;
 
 namespace GalacticImperialism
 {
@@ -32,6 +33,8 @@ namespace GalacticImperialism
         float soundEffectsVolume;
 
         Board board;
+
+        public ConnectionHandler connection;
 
         enum Menus
         {
@@ -83,6 +86,7 @@ namespace GalacticImperialism
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            connection = new ConnectionHandler(new Random(), this);
             menuSelected = Menus.MainMenu;
             rand = new Random();
             IsMouseVisible = true;
@@ -126,7 +130,7 @@ namespace GalacticImperialism
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 
             mainMenuObject = new MainMenu(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
-            newGameMenuObject = new NewGame(GraphicsDevice, Content);
+            newGameMenuObject = new NewGame(this);
             settingsMenuObject = new Settings(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
             creditsMenuObject = new Credits();
             videoSettingsMenuObject = new VideoSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
@@ -188,18 +192,23 @@ namespace GalacticImperialism
                     menuChangeOnFrame = true;
                 }
 
-                if (newGameMenuObject.getButton().isClicked)
+                if (newGameMenuObject.networkButton().isClicked)
+                {
+                    connection.Start();
+                }
+
+                if (newGameMenuObject.playButton().isClicked)
                 {
                     int numPlanets = newGameMenuObject.getPlanets();
                     int startingGold = 1000;
                     int seed = rand.Next();
 
-                    if (newGameMenuObject.getGold() >= 100)
+                    if (newGameMenuObject.getGold() >= 100) // Sets starting gold.
                         startingGold = newGameMenuObject.getGold();
-                    if (newGameMenuObject.getSeed() != 0)
-                    {
+
+                    if (newGameMenuObject.getSeed() != 0) // Sets the seed
                         seed = newGameMenuObject.getSeed();
-                    }
+
                     board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), 1, startingGold);
                     menuSelected = Menus.Game;
                 }

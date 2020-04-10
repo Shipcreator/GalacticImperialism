@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GalacticImperialism
 {
-    class Planet
+    [Serializable] class Planet
     {
         //Planet Attributes
         public int size;
