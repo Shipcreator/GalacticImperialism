@@ -44,7 +44,8 @@ namespace GalacticImperialism
             Credits,
             AudioSettings,
             VideoSettings,
-            Game
+            Game,
+            FlagCreation
         }
 
         Menus menuSelected;
@@ -55,6 +56,7 @@ namespace GalacticImperialism
         Credits creditsMenuObject;
         AudioSettings audioSettingsMenuObject;
         VideoSettings videoSettingsMenuObject;
+        FlagCreation flagCreationMenuObject;
 
         StarBackground starBackgroundObject;
 
@@ -63,6 +65,7 @@ namespace GalacticImperialism
         List<Color> listOfStarColors;
 
         Texture2D whiteTexture;
+        Texture2D[] flagSymbolTextures;
 
         Rectangle wholeScreenRect;
 
@@ -101,6 +104,8 @@ namespace GalacticImperialism
 
             menuChangeOnFrame = false;
 
+            flagSymbolTextures = new Texture2D[2];
+
             base.Initialize();
         }
 
@@ -138,6 +143,9 @@ namespace GalacticImperialism
                 graphics.ToggleFullScreen();
             audioSettingsMenuObject = new AudioSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice);
             playerUIObject = new PlayerUI(Content.Load<Texture2D>("Player UI/Bar"), whiteTexture, GraphicsDevice);
+            flagSymbolTextures[0] = Content.Load<Texture2D>("Flag/Crown");
+            flagSymbolTextures[1] = Content.Load<Texture2D>("Flag/Eagle");
+            flagCreationMenuObject = new FlagCreation(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), flagSymbolTextures, Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice);
         }
 
         /// <summary>
@@ -261,6 +269,14 @@ namespace GalacticImperialism
                 }
             }
 
+            if (kb.IsKeyDown(Keys.Insert))
+                menuSelected = Menus.FlagCreation;
+            if(menuSelected == Menus.FlagCreation)
+            {
+                starBackgroundObject.Update();
+                flagCreationMenuObject.Update(kb, oldKb, mouse, oldMouse);
+            }
+
             //Updates Board
             if (menuSelected == Menus.Game)
             {
@@ -286,7 +302,7 @@ namespace GalacticImperialism
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings || menuSelected == Menus.Game)
+            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings || menuSelected == Menus.Game || menuSelected == Menus.FlagCreation)
             {
                 spriteBatch.Draw(whiteTexture, wholeScreenRect, Color.Black);
                 starBackgroundObject.Draw(spriteBatch);
@@ -303,6 +319,8 @@ namespace GalacticImperialism
                 audioSettingsMenuObject.Draw(spriteBatch);
             if (menuSelected == Menus.VideoSettings)
                 videoSettingsMenuObject.Draw(spriteBatch);
+            if (menuSelected == Menus.FlagCreation)
+                flagCreationMenuObject.Draw(spriteBatch);
             if (menuSelected == Menus.Game)
             {
                 board.Draw(spriteBatch);
