@@ -33,6 +33,10 @@ namespace GalacticImperialism
         Texture2D[] symbolTextures;
         Texture2D sliderBackgroundTexture;
         Texture2D sliderCursorTexture;
+        Texture2D unselectedButtonTexture;
+        Texture2D selectedButtonTexture;
+        Texture2D flagBackgroundTexture;
+        public Texture2D flagTexture;       //This is the final texture that you want to access.
 
         int symbolSelected;
 
@@ -43,14 +47,21 @@ namespace GalacticImperialism
         bool selectedChangedOnFrame;
 
         Slider[,] sliders;
+        Button[] symbolChangingButtons;
 
-        public FlagCreation(SpriteFont titleFont, SpriteFont textFont, Texture2D[] symbolTexturesArray, Texture2D textureOfSliderBackground, Texture2D textureOfSliderCursor, GraphicsDevice GraphicsDevice)
+        Color[] CombinedColorData;
+        Color[] TempColorData;
+        Color[] backgroundColorArray;
+
+        public FlagCreation(SpriteFont titleFont, SpriteFont textFont, Texture2D[] symbolTexturesArray, Texture2D textureOfSliderBackground, Texture2D textureOfSliderCursor, Texture2D unselectedTextureOfButton, Texture2D selectedTextureOfButton, GraphicsDevice GraphicsDevice)
         {
             fontOfTitle = titleFont;
             fontOfText = textFont;
             symbolTextures = symbolTexturesArray;
             sliderBackgroundTexture = textureOfSliderBackground;
             sliderCursorTexture = textureOfSliderCursor;
+            unselectedButtonTexture = unselectedTextureOfButton;
+            selectedButtonTexture = selectedTextureOfButton;
             this.GraphicsDevice = GraphicsDevice;
             Initialize();
         }
@@ -63,6 +74,26 @@ namespace GalacticImperialism
             whiteTexture.SetData<Color>(new Color[] { Color.White });
             backgroundColor = Color.White;
             symbolColor = Color.Black;
+
+            flagBackgroundTexture = new Texture2D(GraphicsDevice, 500, 300);
+            backgroundColorArray = new Color[500 * 300];
+            for(int x = 0; x < backgroundColorArray.Length; x++)
+            {
+                backgroundColorArray[x] = backgroundColor;
+            }
+            flagBackgroundTexture.SetData<Color>(backgroundColorArray);
+            CombinedColorData = new Color[500 * 300];
+            TempColorData = new Color[500 * 300];
+            flagBackgroundTexture.GetData(CombinedColorData);
+            symbolTextures[symbolSelected].GetData(TempColorData);
+            for(int i = 0; i < CombinedColorData.Length; i++)
+            {
+                if (TempColorData[i].A != 0)
+                    CombinedColorData[i] = symbolColor;
+            }
+            flagTexture = new Texture2D(GraphicsDevice, 500, 300);
+            flagTexture.SetData<Color>(CombinedColorData);
+
             selectedObject = Selected.Background;
             selectedChangedOnFrame = false;
             sliders = new Slider[3, 2];
@@ -76,6 +107,9 @@ namespace GalacticImperialism
             {
                 sliders[x, 1].SetPercentage(0.0f);
             }
+            symbolChangingButtons = new Button[2];
+            symbolChangingButtons[0] = new Button(new Rectangle(125, (GraphicsDevice.Viewport.Height / 2) - ((693 / 4) / 2), (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Previous Symbol", fontOfText, Color.White, null, null);
+            symbolChangingButtons[1] = new Button(new Rectangle(1325, (GraphicsDevice.Viewport.Height / 2) - ((693 / 4) / 2), (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Next Symbol", fontOfText, Color.White, null, null);
         }
 
         public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
@@ -109,12 +143,57 @@ namespace GalacticImperialism
                         selectedChangedOnFrame = true;
                     }
                 }
+                for(int x = 0; x < symbolChangingButtons.Length; x++)
+                {
+                    symbolChangingButtons[x].Update(mouse, oldMouse);
+                    if(x == 0)
+                    {
+                        if (symbolChangingButtons[x].isClicked)
+                        {
+                            if (symbolSelected > 0)
+                                symbolSelected--;
+                            else
+                                symbolSelected = symbolTextures.Length - 1;
+                        }
+                    }
+                    if(x == 1)
+                    {
+                        if (symbolChangingButtons[x].isClicked)
+                        {
+                            if (symbolSelected < symbolTextures.Length - 1)
+                                symbolSelected++;
+                            else
+                                symbolSelected = 0;
+                        }
+                    }
+                }
                 for (int x = 0; x < sliders.GetLength(0); x++)
                 {
                     sliders[x, 1].Update(mouse, oldMouse);
                     symbolColor = new Color((int)(sliders[0, 1].percentage * 255), (int)(sliders[1, 1].percentage * 255), (int)(sliders[2, 1].percentage * 255));
                 }
             }
+
+            //Combines the flag background and symbol into a single texture!!!!!
+            //This took me a long ass time to figure out!!!!!!!!
+            flagBackgroundTexture = new Texture2D(GraphicsDevice, 500, 300);
+            backgroundColorArray = new Color[500 * 300];
+            for (int x = 0; x < backgroundColorArray.Length; x++)
+            {
+                backgroundColorArray[x] = backgroundColor;
+            }
+            flagBackgroundTexture.SetData<Color>(backgroundColorArray);
+            CombinedColorData = new Color[500 * 300];
+            TempColorData = new Color[500 * 300];
+            flagBackgroundTexture.GetData(CombinedColorData);
+            symbolTextures[symbolSelected].GetData(TempColorData);
+            for (int i = 0; i < CombinedColorData.Length; i++)
+            {
+                if (TempColorData[i].A != 0)
+                    CombinedColorData[i] = symbolColor;
+            }
+            flagTexture = new Texture2D(GraphicsDevice, 500, 300);
+            flagTexture.SetData<Color>(CombinedColorData);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -123,10 +202,14 @@ namespace GalacticImperialism
             spriteBatch.DrawString(fontOfTitle, "Flag Creation", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), (GraphicsDevice.Viewport.Height / 6) - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(whiteTexture, flagRectangle, backgroundColor);
             spriteBatch.Draw(symbolTextures[symbolSelected], flagRectangle, symbolColor);
-            if(selectedObject == Selected.Background)
+            textSize = fontOfText.MeasureString("Use Left And Right Arrow Keys To Switch Modes");
+            spriteBatch.DrawString(fontOfText, "Use Left And Right Arrow Keys To Switch Modes", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), flagRectangle.Y - 90), Color.White);
+            textSize = fontOfText.MeasureString("Press Escape To Return To New Game Menu");
+            spriteBatch.DrawString(fontOfText, "Press Escape To Return To New Game Menu", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), GraphicsDevice.Viewport.Height - textSize.Y), Color.White);
+            if (selectedObject == Selected.Background)
             {
                 textSize = fontOfText.MeasureString("Background");
-                spriteBatch.DrawString(fontOfText, "Background", new Vector2(flagRectangle.Center.X - (textSize.X / 2), flagRectangle.Bottom), Color.White);
+                spriteBatch.DrawString(fontOfText, "Background", new Vector2(flagRectangle.Center.X - (textSize.X / 2), flagRectangle.Y - 125), Color.White);
                 for (int x = 0; x < sliders.GetLength(0); x++)
                 {
                     sliders[x, 0].Draw(spriteBatch);
@@ -140,8 +223,12 @@ namespace GalacticImperialism
             }
             if (selectedObject == Selected.Symbol)
             {
+                for(int x = 0; x < symbolChangingButtons.Length; x++)
+                {
+                    symbolChangingButtons[x].Draw(spriteBatch);
+                }
                 textSize = fontOfText.MeasureString("Symbol");
-                spriteBatch.DrawString(fontOfText, "Symbol", new Vector2(flagRectangle.Center.X - (textSize.X / 2), flagRectangle.Bottom), Color.White);
+                spriteBatch.DrawString(fontOfText, "Symbol", new Vector2(flagRectangle.Center.X - (textSize.X / 2), flagRectangle.Y - 125), Color.White);
                 for (int x = 0; x < sliders.GetLength(0); x++)
                 {
                     sliders[x, 1].Draw(spriteBatch);
