@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GalacticImperialism
 {
-    class Computer : Player
+    [Serializable] class Computer : Player
     {
         public Computer(int startingGold, Board b) : base(startingGold, b)
         {

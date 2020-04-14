@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GalacticImperialism.Networking;
+using Lidgren.Network;
 
 namespace GalacticImperialism
 {
@@ -236,6 +238,18 @@ namespace GalacticImperialism
             }
 
             //Send the Board Class
+            ConnectionHandler connection = Game1.connection;
+
+            if (connection.getCon().ConnectionsCount > 0)
+            {
+                NetOutgoingMessage msg = connection.getCon().CreateMessage();
+                msg.Write(connection.SerializeData(this));
+
+                foreach (NetConnection con in connection.getCon().Connections)
+                {
+                    connection.getCon().SendMessage(msg, con, NetDeliveryMethod.ReliableOrdered);
+                }
+            }
         }
 
         //Board Draw Method

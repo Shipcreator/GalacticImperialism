@@ -34,7 +34,7 @@ namespace GalacticImperialism
 
         Board board;
 
-        public ConnectionHandler connection;
+        public static ConnectionHandler connection;
 
         enum Menus
         {

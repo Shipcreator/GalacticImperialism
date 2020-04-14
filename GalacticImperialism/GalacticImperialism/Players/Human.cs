@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GalacticImperialism
 {
-    class Human : Player
+    [Serializable] class Human : Player
     {
         MouseState oldmb = Mouse.GetState();
         KeyboardState oldkb = Keyboard.GetState();

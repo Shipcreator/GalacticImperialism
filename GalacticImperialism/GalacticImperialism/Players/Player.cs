@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GalacticImperialism
 {
-    class Player
+    [Serializable] class Player
     {
         int gold, science, hydrogen, oxygen, nitrogen, iron, tungsten, uranium; //All Item Values That every Player stores
         public List<Planet> ownedPlanets = new List<Planet>(); //Owned Planets
