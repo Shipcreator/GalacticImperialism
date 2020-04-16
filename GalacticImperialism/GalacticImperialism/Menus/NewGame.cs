@@ -99,13 +99,13 @@ namespace GalacticImperialism
             createNetwork.Update(ms, oldMS);
             seedBox.Update(ms, oldMS, kbs, oldKBS);
 
-            switch (game.connection.getCon().Status)
+            switch (Game1.connection.getCon().Status)
             {
                 case Lidgren.Network.NetPeerStatus.NotRunning:
                     status = "Network Status : Offline";
                     break;
                 case Lidgren.Network.NetPeerStatus.Running:
-                    status = "Network Status : Online\nPort : " + game.connection.getCon().Port;
+                    status = "Network Status : Online\nPort : " + Game1.connection.getCon().Port;
                     break;
             }
 
