@@ -80,7 +80,7 @@
     <Compile Include="Menus\FlagCreation.cs" />
     <Compile Include="Menus\AudioSettings.cs" />
     <Compile Include="Board.cs" />
-    <Compile Include="Multiplayer.cs" />
+    <Compile Include="Menus\Multiplayer.cs" />
     <Compile Include="Tech.cs" />
     <Compile Include="TechTree.cs" />
     <Compile Include="UI\Slider.cs" />

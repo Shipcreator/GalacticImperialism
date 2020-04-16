@@ -72,7 +72,7 @@ namespace GalacticImperialism.Networking
             }
         }
 
-        public void Listener() // Listens for incoming messages on your peer port.
+        public Object Listener() // Listens for incoming messages on your peer port.
         {
             NetIncomingMessage message = peer.ReadMessage(); // Reads any incoming messages assuming there are any.
             if (message != null) // Makes sure there actually is a message.
@@ -89,12 +89,10 @@ namespace GalacticImperialism.Networking
                         peer.Connect(message.SenderEndPoint);  // Since you got a message back you connect to the end point.
                         break;
                     case NetIncomingMessageType.Data: // You received Data or an update from a peer
-                        Console.WriteLine(DeserializeData(message.ReadBytes(message.LengthBytes)));
-                        //game.counter = message.ReadInt32();  // Grabs data.
-                        //game.data = message.ToString(); // Basically turns your message into a string as said.
-                        break;
+                        return DeserializeData(message.ReadBytes(message.LengthBytes));
                 }
             }
+            return null;
         }
     }
 }

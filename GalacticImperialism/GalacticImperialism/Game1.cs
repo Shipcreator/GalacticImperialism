@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using GalacticImperialism.Networking;
+using Lidgren.Network;
 
 namespace GalacticImperialism
 {
@@ -35,6 +36,7 @@ namespace GalacticImperialism
         Board board;
 
         public static ConnectionHandler connection;
+        public static String status;
 
         enum Menus
         {
@@ -91,6 +93,7 @@ namespace GalacticImperialism
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            status = "";
             connection = new ConnectionHandler(new Random(), this);
             menuSelected = Menus.MainMenu;
             rand = new Random();
@@ -152,7 +155,7 @@ namespace GalacticImperialism
             flagSymbolTextures[4] = Content.Load<Texture2D>("Flag/Lily");
             flagSymbolTextures[5] = Content.Load<Texture2D>("Flag/Star");
             flagCreationMenuObject = new FlagCreation(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), flagSymbolTextures, Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), GraphicsDevice);
-            multiplayerMenuObject = new Multiplayer(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
+            multiplayerMenuObject = new Multiplayer(this);
         }
 
         /// <summary>
@@ -217,11 +220,16 @@ namespace GalacticImperialism
 
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
+                    if (connection.getCon().Status == Lidgren.Network.NetPeerStatus.Running)
+                    {
+                        connection.getCon().Shutdown("Shutting down!");
+                    }
+
                     menuSelected = Menus.MainMenu;
                     menuChangeOnFrame = true;
                 }
 
-                if (newGameMenuObject.networkButton().isClicked)
+                if (newGameMenuObject.networkButton().isClicked && connection.getCon().Status == Lidgren.Network.NetPeerStatus.NotRunning)
                 {
                     connection.Start();
                 }
@@ -238,7 +246,21 @@ namespace GalacticImperialism
                     if (newGameMenuObject.getSeed() != 0) // Sets the seed
                         seed = newGameMenuObject.getSeed();
 
+
                     board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), 1, startingGold);
+                    connection.SerializeData(board);
+
+                    if (connection.getCon().ConnectionsCount > 0)
+                    {
+                        NetOutgoingMessage msg = connection.getCon().CreateMessage();
+                        msg.Write(connection.SerializeData(board));
+
+                        foreach (NetConnection con in connection.getCon().Connections)
+                        {
+                            connection.getCon().SendMessage(msg, con, NetDeliveryMethod.ReliableOrdered);
+                        }
+                    }
+
                     menuSelected = Menus.Game;
                 }
             }
@@ -293,11 +315,47 @@ namespace GalacticImperialism
             {
                 starBackgroundObject.Update();
                 multiplayerMenuObject.Update(kb, oldKb, mouse, oldMouse);
+
+                if (multiplayerMenuObject.getJoin().isClicked)
+                {
+                    if (connection.getCon().Status == NetPeerStatus.NotRunning)
+                    {
+                        connection.getCon().Start();
+                    }
+
+                    if (!multiplayerMenuObject.getPort().Equals(""))
+                    {
+                        connection.getCon().Start();
+                        connection.FindPeer(multiplayerMenuObject.getPort());
+                    }
+                }
+
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
+                    if (connection.getCon().Status == NetPeerStatus.Running)
+                    {
+                        connection.getCon().Shutdown("Shutting down!");
+                    }
+
                     menuSelected = Menus.MainMenu;
                     menuChangeOnFrame = true;
                 }
+            }
+
+            switch (connection.getCon().Status)
+            {
+                case NetPeerStatus.NotRunning:
+                    status = "Network Status : Offline";
+                    break;
+                case NetPeerStatus.Running:
+                    status = "Network Status : Online\nPort : " + Game1.connection.getCon().Port + "\nConnections: " + Game1.connection.getCon().ConnectionsCount;
+                    Object msg = connection.Listener();
+                    if (msg != null && msg is Board)
+                    {
+                        board = (Board) msg;
+                        menuSelected = Menus.Game;
+                    }
+                    break;
             }
 
             //Updates Board

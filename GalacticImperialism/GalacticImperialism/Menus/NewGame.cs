@@ -98,16 +98,6 @@ namespace GalacticImperialism
             numPlayers.Update(ms, oldMS);
             createNetwork.Update(ms, oldMS);
             seedBox.Update(ms, oldMS, kbs, oldKBS);
-            
-            switch (Game1.connection.getCon().Status)
-            {
-                case Lidgren.Network.NetPeerStatus.NotRunning:
-                    status = "Network Status : Offline";
-                    break;
-                case Lidgren.Network.NetPeerStatus.Running:
-                    status = "Network Status : Online\nPort : " + Game1.connection.getCon().Port;
-                    break;
-            }
 
             oldKBS = kbs;
             oldMS = ms;
@@ -126,7 +116,7 @@ namespace GalacticImperialism
             spriteBatch.DrawString(font, "Number of planets : " + ((int) (numPlanets.percentage * 50) + 75), npVector, Color.White);
             spriteBatch.DrawString(font, "Number of players : " + ((int)(numPlayers.percentage * 2) + 2), playerVector, Color.White);
             spriteBatch.DrawString(font, "Seed", seedVector, Color.White);
-            spriteBatch.DrawString(font, status, statusVector, Color.White);
+            spriteBatch.DrawString(font, Game1.status, statusVector, Color.White);
         }
 
         public int getPlanets()

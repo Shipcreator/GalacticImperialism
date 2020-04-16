@@ -37,13 +37,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprite Fonts\Arial20.spritefont">
-      <Name>Arial20</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Star Background\WhiteCircle.png">
       <Name>WhiteCircle</Name>
       <Importer>TextureImporter</Importer>
@@ -218,11 +211,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprite Fonts\Arial20.spritefont">
-      <Name>Arial20</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
     <Compile Include="Sprite Fonts\Castellar10Point.spritefont">
       <Name>Castellar10Point</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -264,6 +252,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sprite Fonts\Arial20.spritefont">
+      <Name>Arial20</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Techs\ConstructionTech.txt">
       <Name>ConstructionTech</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
