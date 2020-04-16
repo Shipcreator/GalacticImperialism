@@ -20,10 +20,14 @@ namespace GalacticImperialism
         SpriteFont fontOfOptions;
 
         bool optionSelectedChangeOnFrame;
+        bool mouseMovedOnFrame;
+
+        Vector2 oldMouseXAndY;
 
         public enum OptionSelected
         {
             NewGame,
+            Multiplayer,
             Settings,
             Credits
         }
@@ -43,20 +47,49 @@ namespace GalacticImperialism
             optionSelectedObject = OptionSelected.NewGame;
 
             optionSelectedChangeOnFrame = false;
+            mouseMovedOnFrame = false;
+
+            oldMouseXAndY = new Vector2(0, 0);
         }
 
         public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse)
         {
             optionSelectedChangeOnFrame = false;
+            mouseMovedOnFrame = false;
+            if (mouse.X != oldMouseXAndY.X || mouse.Y != oldMouseXAndY.Y)
+                mouseMovedOnFrame = true;
 
             if(optionSelectedObject == OptionSelected.NewGame && optionSelectedChangeOnFrame == false)
             {
-                if((kb.IsKeyDown(Keys.Down) && !oldKb.IsKeyDown(Keys.Down)) || (mouse.X >= 893 && mouse.X <= 1030 && mouse.Y >= 703 && mouse.Y <= 724))
+                if ((kb.IsKeyDown(Keys.Down) && !oldKb.IsKeyDown(Keys.Down)) || (mouse.Y >= 700 && mouse.Y < 750 && mouseMovedOnFrame))
+                {
+                    optionSelectedObject = OptionSelected.Multiplayer;
+                    optionSelectedChangeOnFrame = true;
+                }
+                if (mouse.Y >= 750 && mouse.Y < 800 && mouseMovedOnFrame)
                 {
                     optionSelectedObject = OptionSelected.Settings;
                     optionSelectedChangeOnFrame = true;
                 }
-                if ((kb.IsKeyDown(Keys.Up) && !oldKb.IsKeyDown(Keys.Up)) || (mouse.X >= 900 && mouse.X <= 1020 && mouse.Y >= 753 && mouse.Y <= 775))
+                if ((kb.IsKeyDown(Keys.Up) && !oldKb.IsKeyDown(Keys.Up)) || (mouse.Y >= 800 && mouseMovedOnFrame))
+                {
+                    optionSelectedObject = OptionSelected.Credits;
+                    optionSelectedChangeOnFrame = true;
+                }
+            }
+            if(optionSelectedObject == OptionSelected.Multiplayer && optionSelectedChangeOnFrame == false)
+            {
+                if ((kb.IsKeyDown(Keys.Up) && !oldKb.IsKeyDown(Keys.Up)) || (mouse.Y < 700 && mouseMovedOnFrame))
+                {
+                    optionSelectedObject = OptionSelected.NewGame;
+                    optionSelectedChangeOnFrame = true;
+                }
+                if ((kb.IsKeyDown(Keys.Down) && !oldKb.IsKeyDown(Keys.Down)) || (mouse.Y >= 750 && mouse.Y < 800 && mouseMovedOnFrame))
+                {
+                    optionSelectedObject = OptionSelected.Settings;
+                    optionSelectedChangeOnFrame = true;
+                }
+                if (mouse.Y >= 800 && mouseMovedOnFrame)
                 {
                     optionSelectedObject = OptionSelected.Credits;
                     optionSelectedChangeOnFrame = true;
@@ -64,12 +97,17 @@ namespace GalacticImperialism
             }
             if (optionSelectedObject == OptionSelected.Settings && optionSelectedChangeOnFrame == false)
             {
-                if ((kb.IsKeyDown(Keys.Up) && !oldKb.IsKeyDown(Keys.Up)) || (mouse.X >= 877 && mouse.X <= 1042 && mouse.Y >= 651 && mouse.Y <= 674))
+                if (mouse.Y < 700 && mouseMovedOnFrame)
                 {
                     optionSelectedObject = OptionSelected.NewGame;
                     optionSelectedChangeOnFrame = true;
                 }
-                if ((kb.IsKeyDown(Keys.Down) && !oldKb.IsKeyDown(Keys.Down)) || (mouse.X >= 900 && mouse.X <= 1020 && mouse.Y >= 753 && mouse.Y <= 775))
+                if ((kb.IsKeyDown(Keys.Up) && !oldKb.IsKeyDown(Keys.Up)) || (mouse.Y >= 700 && mouse.Y < 750 && mouseMovedOnFrame))
+                {
+                    optionSelectedObject = OptionSelected.Multiplayer;
+                    optionSelectedChangeOnFrame = true;
+                }
+                if ((kb.IsKeyDown(Keys.Down) && !oldKb.IsKeyDown(Keys.Down)) || (mouse.Y >= 800 && mouseMovedOnFrame))
                 {
                     optionSelectedObject = OptionSelected.Credits;
                     optionSelectedChangeOnFrame = true;
@@ -77,17 +115,25 @@ namespace GalacticImperialism
             }
             if (optionSelectedObject == OptionSelected.Credits && optionSelectedChangeOnFrame == false)
             {
-                if ((kb.IsKeyDown(Keys.Up) && !oldKb.IsKeyDown(Keys.Up)) || (mouse.X >= 893 && mouse.X <= 1030 && mouse.Y >= 703 && mouse.Y <= 724))
+                if ((kb.IsKeyDown(Keys.Up) && !oldKb.IsKeyDown(Keys.Up)) || (mouse.Y >= 750 && mouse.Y < 800 && mouseMovedOnFrame))
                 {
                     optionSelectedObject = OptionSelected.Settings;
                     optionSelectedChangeOnFrame = true;
                 }
-                if ((kb.IsKeyDown(Keys.Down) && !oldKb.IsKeyDown(Keys.Down)) || (mouse.X >= 877 && mouse.X <= 1042 && mouse.Y >= 651 && mouse.Y <= 674))
+                if ((kb.IsKeyDown(Keys.Down) && !oldKb.IsKeyDown(Keys.Down)) || (mouse.Y < 700 && mouseMovedOnFrame))
                 {
                     optionSelectedObject = OptionSelected.NewGame;
                     optionSelectedChangeOnFrame = true;
                 }
+                if (mouse.Y >= 700 && mouse.Y < 750 && mouseMovedOnFrame)
+                {
+                    optionSelectedObject = OptionSelected.Multiplayer;
+                    optionSelectedChangeOnFrame = true;
+                }
             }
+
+            oldMouseXAndY.X = mouse.X;
+            oldMouseXAndY.Y = mouse.Y;
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -101,28 +147,45 @@ namespace GalacticImperialism
             {
                 stringSize = fontOfOptions.MeasureString("New Game");
                 spriteBatch.DrawString(fontOfOptions, "New Game", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 650), Color.White);
+                stringSize = fontOfOptions.MeasureString("Multiplayer");
+                spriteBatch.DrawString(fontOfOptions, "Multiplayer", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 700), Color.White * 0.5f);
                 stringSize = fontOfOptions.MeasureString("Settings");
-                spriteBatch.DrawString(fontOfOptions, "Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 700), Color.White * 0.5f);
+                spriteBatch.DrawString(fontOfOptions, "Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 750), Color.White * 0.5f);
                 stringSize = fontOfOptions.MeasureString("Credits");
-                spriteBatch.DrawString(fontOfOptions, "Credits", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 750), Color.White * 0.5f);
+                spriteBatch.DrawString(fontOfOptions, "Credits", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 800), Color.White * 0.5f);
+            }
+            if(optionSelectedObject == OptionSelected.Multiplayer)
+            {
+                stringSize = fontOfOptions.MeasureString("New Game");
+                spriteBatch.DrawString(fontOfOptions, "New Game", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 650), Color.White * 0.5f);
+                stringSize = fontOfOptions.MeasureString("Multiplayer");
+                spriteBatch.DrawString(fontOfOptions, "Multiplayer", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 700), Color.White);
+                stringSize = fontOfOptions.MeasureString("Settings");
+                spriteBatch.DrawString(fontOfOptions, "Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 750), Color.White * 0.5f);
+                stringSize = fontOfOptions.MeasureString("Credits");
+                spriteBatch.DrawString(fontOfOptions, "Credits", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 800), Color.White * 0.5f);
             }
             if (optionSelectedObject == OptionSelected.Settings)
             {
                 stringSize = fontOfOptions.MeasureString("New Game");
                 spriteBatch.DrawString(fontOfOptions, "New Game", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 650), Color.White * 0.5f);
+                stringSize = fontOfOptions.MeasureString("Multiplayer");
+                spriteBatch.DrawString(fontOfOptions, "Multiplayer", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 700), Color.White * 0.5f);
                 stringSize = fontOfOptions.MeasureString("Settings");
-                spriteBatch.DrawString(fontOfOptions, "Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 700), Color.White);
+                spriteBatch.DrawString(fontOfOptions, "Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 750), Color.White);
                 stringSize = fontOfOptions.MeasureString("Credits");
-                spriteBatch.DrawString(fontOfOptions, "Credits", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 750), Color.White * 0.5f);
+                spriteBatch.DrawString(fontOfOptions, "Credits", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 800), Color.White * 0.5f);
             }
             if(optionSelectedObject == OptionSelected.Credits)
             {
                 stringSize = fontOfOptions.MeasureString("New Game");
                 spriteBatch.DrawString(fontOfOptions, "New Game", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 650), Color.White * 0.5f);
+                stringSize = fontOfOptions.MeasureString("Multiplayer");
+                spriteBatch.DrawString(fontOfOptions, "Multiplayer", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 700), Color.White * 0.5f);
                 stringSize = fontOfOptions.MeasureString("Settings");
-                spriteBatch.DrawString(fontOfOptions, "Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 700), Color.White * 0.5f);
+                spriteBatch.DrawString(fontOfOptions, "Settings", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 750), Color.White * 0.5f);
                 stringSize = fontOfOptions.MeasureString("Credits");
-                spriteBatch.DrawString(fontOfOptions, "Credits", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 750), Color.White);
+                spriteBatch.DrawString(fontOfOptions, "Credits", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), 800), Color.White);
             }
             stringSize = fontOfOptions.MeasureString("Press Escape To Exit");
             spriteBatch.DrawString(fontOfOptions, "Press Escape To Exit", new Vector2((GraphicsDevice.Viewport.Width / 2) - (stringSize.X / 2), GraphicsDevice.Viewport.Height - stringSize.Y), Color.White);

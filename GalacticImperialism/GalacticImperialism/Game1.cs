@@ -45,7 +45,8 @@ namespace GalacticImperialism
             AudioSettings,
             VideoSettings,
             Game,
-            FlagCreation
+            FlagCreation,
+            Multiplayer
         }
 
         Menus menuSelected;
@@ -57,6 +58,7 @@ namespace GalacticImperialism
         AudioSettings audioSettingsMenuObject;
         VideoSettings videoSettingsMenuObject;
         FlagCreation flagCreationMenuObject;
+        Multiplayer multiplayerMenuObject;
 
         StarBackground starBackgroundObject;
 
@@ -150,6 +152,7 @@ namespace GalacticImperialism
             flagSymbolTextures[4] = Content.Load<Texture2D>("Flag/Lily");
             flagSymbolTextures[5] = Content.Load<Texture2D>("Flag/Star");
             flagCreationMenuObject = new FlagCreation(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), flagSymbolTextures, Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), GraphicsDevice);
+            multiplayerMenuObject = new Multiplayer(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
         }
 
         /// <summary>
@@ -184,6 +187,8 @@ namespace GalacticImperialism
                 {
                     if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.NewGame)
                         menuSelected = Menus.NewGame;
+                    if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Multiplayer)
+                        menuSelected = Menus.Multiplayer;
                     if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Settings)
                         menuSelected = Menus.Settings;
                     if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Credits)
@@ -284,6 +289,16 @@ namespace GalacticImperialism
                     menuChangeOnFrame = true;
                 }
             }
+            if(menuSelected == Menus.Multiplayer)
+            {
+                starBackgroundObject.Update();
+                multiplayerMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                {
+                    menuSelected = Menus.MainMenu;
+                    menuChangeOnFrame = true;
+                }
+            }
 
             //Updates Board
             if (menuSelected == Menus.Game)
@@ -310,7 +325,7 @@ namespace GalacticImperialism
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings || menuSelected == Menus.Game || menuSelected == Menus.FlagCreation)
+            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings || menuSelected == Menus.Game || menuSelected == Menus.FlagCreation || menuSelected == Menus.Multiplayer)
             {
                 spriteBatch.Draw(whiteTexture, wholeScreenRect, Color.Black);
                 starBackgroundObject.Draw(spriteBatch);
@@ -329,6 +344,8 @@ namespace GalacticImperialism
                 videoSettingsMenuObject.Draw(spriteBatch);
             if (menuSelected == Menus.FlagCreation)
                 flagCreationMenuObject.Draw(spriteBatch);
+            if (menuSelected == Menus.Multiplayer)
+                multiplayerMenuObject.Draw(spriteBatch);
             if (menuSelected == Menus.Game)
             {
                 board.Draw(spriteBatch);
