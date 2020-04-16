@@ -98,7 +98,7 @@ namespace GalacticImperialism
             numPlayers.Update(ms, oldMS);
             createNetwork.Update(ms, oldMS);
             seedBox.Update(ms, oldMS, kbs, oldKBS);
-
+            
             switch (Game1.connection.getCon().Status)
             {
                 case Lidgren.Network.NetPeerStatus.NotRunning:
