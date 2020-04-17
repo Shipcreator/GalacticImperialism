@@ -15,9 +15,6 @@ namespace GalacticImperialism
 {
     [Serializable] class Human : Player
     {
-        MouseState oldmb = Mouse.GetState();
-        KeyboardState oldkb = Keyboard.GetState();
-
         Planet selectedPlanet; //Used For Clicking On Planets
 
         public Human(int startingGold, Board b) : base(startingGold, b)
@@ -25,24 +22,19 @@ namespace GalacticImperialism
          
         }
 
-        public void Update(GameTime gt)
+        public void Update(GameTime gt, MouseState mb, KeyboardState kb, MouseState oldms, KeyboardState oldkb)
         {
             if (isTurn)
             {
                 base.Update(gt);
-                MouseState mb = Mouse.GetState();
-                KeyboardState kb = Keyboard.GetState();
 
-                if (mb.LeftButton == ButtonState.Pressed && oldmb.LeftButton == ButtonState.Released) // On Left Mouse Click
+                if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
                     MouseClick(new Vector2(mb.X, mb.Y));
 
                 if (kb.IsKeyDown(Keys.Delete) && oldkb.IsKeyUp(Keys.Delete)) //Ends Turn
                 {
                     EndTurn();
                 }
-
-                oldkb = kb;
-                oldmb = mb;
             }
         }
 

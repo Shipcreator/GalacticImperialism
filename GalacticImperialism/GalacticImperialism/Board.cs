@@ -25,22 +25,17 @@ namespace GalacticImperialism
         int moveRadius;
         //Holds All Resources
         string[] resourceList = new string[] { "iron", "uranium", "tungsten", "hydrogen", "nitrogen", "oxygen" };
-        //PlanetTextures
-        List<Texture2D> planetTexs;
         //List Of Players
         List<Player> players;
-        //White Circle
-        Texture2D circle;
+
         public Rectangle selection;
         //Current Turn
         int turn;
 
         //Creates Board, Assigns Texture Objects
-        public Board(int r, List<Texture2D> t, Texture2D c)
+        public Board(int r)
         {
-            planetTexs = t;
             moveRadius = r;
-            circle = c;
         }
 
         //Creates A New Board(Assume numOfBots < numOfPlayers)
@@ -77,7 +72,7 @@ namespace GalacticImperialism
                 pos = new Vector2(rand.Next(1860), rand.Next(75,1000));
             } while (CheckPos(pos) == false); //Checks Distance
 
-            Planet temp = new Planet(size, planetTexs[rand.Next(0, 19)], pos, AssignResources()); //Creates and Adds Planet to List
+            Planet temp = new Planet(size, rand.Next(0, 19), pos, AssignResources()); //Creates and Adds Planet to List
             planets.Add(temp);
         }
 
@@ -87,26 +82,26 @@ namespace GalacticImperialism
             if (p >= 2)
             {
                 //Create Planet One
-                Planet temp = new Planet(planetTexs[rand.Next(0,19)], new Vector2(10, 75));
+                Planet temp = new Planet(rand.Next(0,19), new Vector2(10, 75));
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
 
                 //Create Planet Two
-                temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 1020));
+                temp = new Planet(rand.Next(0, 19), new Vector2(1860, 1020));
                 planets.Add(temp);
                 players[1].AddPlanet(temp);
             }
             if (p >= 3)
             {
                 //Create Planet Three
-                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(1860, 75));
+                Planet temp = new Planet(rand.Next(0, 19), new Vector2(1860, 75));
                 planets.Add(temp);
                 players[2].AddPlanet(temp);
             }
             if (p == 4)
             {
                 //Create Planet Four
-                Planet temp = new Planet(planetTexs[rand.Next(0, 19)], new Vector2(10, 1020));
+                Planet temp = new Planet(rand.Next(0, 19), new Vector2(10, 1020));
                 planets.Add(temp);
                 players[3].AddPlanet(temp);
             }
@@ -196,12 +191,12 @@ namespace GalacticImperialism
         }
 
         //Handles Game Updates
-        public void Update(GameTime gt)
+        public void Update(GameTime gt, MouseState mb, KeyboardState kb, MouseState oldms, KeyboardState oldkb)
         {
             if (players[turn] is Human)
             {
                 Human temp = (Human)players[turn];
-                temp.Update(gt);
+                temp.Update(gt, mb, kb, oldms, oldkb);
             }
             if (players[turn] is Computer)
             {
@@ -255,15 +250,14 @@ namespace GalacticImperialism
         //Board Draw Method
         public void Draw(SpriteBatch sb)
         {
-            //Draw Selection
-            sb.Draw(circle, selection, Color.White * 0.25f);
 
             //Draws Planets
             foreach (Planet p in planets)
             {
                 Rectangle tempRect = new Rectangle((int)p.position.X, (int)p.position.Y, p.size * 25, p.size * 25);
-                sb.Draw(p.tex, tempRect, Color.White);
+                sb.Draw(Game1.planetTex[p.texID], tempRect, Color.White);
             }
+            sb.Draw(Game1.whiteCircle, selection, Color.White * 0.25f);
         }
     }
 }

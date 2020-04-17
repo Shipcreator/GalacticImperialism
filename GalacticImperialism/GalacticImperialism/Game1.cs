@@ -18,6 +18,8 @@ namespace GalacticImperialism
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        public static Texture2D whiteCircle;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -25,6 +27,8 @@ namespace GalacticImperialism
         KeyboardState oldKb;
 
         Random rand;
+
+        
 
         MouseState mouse;
         MouseState oldMouse;
@@ -74,6 +78,8 @@ namespace GalacticImperialism
         Rectangle wholeScreenRect;
 
         bool menuChangeOnFrame;
+
+        public static List<Texture2D> planetTex;
 
         public Game1()
         {
@@ -131,11 +137,14 @@ namespace GalacticImperialism
             listOfStarColors.Add(Color.White);
             listOfStarColors.Add(Color.LightSlateGray);
 
+            whiteCircle = Content.Load<Texture2D>("Star Background/WhiteCircle");
+
             //Creates Board/Planet Textures
-            List<Texture2D> temp = new List<Texture2D>();
+            planetTex = new List<Texture2D>();
             for (int i = 1; i < 20; i++)
-                temp.Add(Content.Load<Texture2D>("Planets/" + i));
-            board = new Board(200, temp, Content.Load<Texture2D>("Star Background/WhiteCircle"));
+                planetTex.Add(Content.Load<Texture2D>("Planets/" + i));
+
+            board = new Board(200);
 
             starBackgroundObject = new StarBackground(1250, 2, 2, 60, Content.Load<Texture2D>("Star Background/WhiteCircle"), listOfStarColors, GraphicsDevice);
 
@@ -361,7 +370,7 @@ namespace GalacticImperialism
             //Updates Board
             if (menuSelected == Menus.Game)
             {
-                board.Update(gameTime);
+                board.Update(gameTime, mouse, kb, oldMouse, oldKb);
                 playerUIObject.Update();
             }
 
