@@ -19,12 +19,9 @@ namespace GalacticImperialism
         public List<Planet> ownedPlanets = new List<Planet>(); //Owned Planets
         protected Board board; // Holds Current Board
 
-        public bool isTurn;
-
         //Creates Base Player
         public Player(int startingGold, Board b)
         {
-            isTurn = false;
             gold = startingGold;
             science = hydrogen = oxygen = nitrogen = iron = tungsten = uranium = 0;
             board = b;

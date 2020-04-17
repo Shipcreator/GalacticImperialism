@@ -13,28 +13,26 @@ using Microsoft.Xna.Framework.Media;
 
 namespace GalacticImperialism
 {
-    [Serializable] class Human : Player
+    [Serializable]
+    class Human : Player
     {
         Planet selectedPlanet; //Used For Clicking On Planets
 
         public Human(int startingGold, Board b) : base(startingGold, b)
         {
-         
+
         }
 
         public void Update(GameTime gt, MouseState mb, KeyboardState kb, MouseState oldms, KeyboardState oldkb)
         {
-            if (isTurn)
+            base.Update(gt);
+
+            if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
+                MouseClick(new Vector2(mb.X, mb.Y));
+
+            if (kb.IsKeyDown(Keys.Delete) && oldkb.IsKeyUp(Keys.Delete)) //Ends Turn
             {
-                base.Update(gt);
-
-                if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
-                    MouseClick(new Vector2(mb.X, mb.Y));
-
-                if (kb.IsKeyDown(Keys.Delete) && oldkb.IsKeyUp(Keys.Delete)) //Ends Turn
-                {
-                    EndTurn();
-                }
+                EndTurn();
             }
         }
 
@@ -49,7 +47,7 @@ namespace GalacticImperialism
                 if (mouse.Intersects(planetRect))
                 {
                     selectedPlanet = ownedPlanets[i];
-                    board.selection = new Rectangle((int)temp.position.X - (int)(temp.size * 2.5), (int)temp.position.Y - (int)(temp.size * 2.5), temp.size* 30, temp.size * 30);
+                    board.selection = new Rectangle((int)temp.position.X - (int)(temp.size * 2.5), (int)temp.position.Y - (int)(temp.size * 2.5), temp.size * 30, temp.size * 30);
                     break;
                 }
             }

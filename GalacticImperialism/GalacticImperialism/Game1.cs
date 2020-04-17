@@ -36,7 +36,7 @@ namespace GalacticImperialism
         float soundEffectsVolume;
 
         Board board;
-        Player myPlayer;
+        public static int playerID;
 
         public static ConnectionHandler connection;
         public static String status;
@@ -255,20 +255,20 @@ namespace GalacticImperialism
                         seed = newGameMenuObject.getSeed();
 
 
-                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), 1, startingGold);
+                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), 0, startingGold); /////////////////////////////////////////////////////////////////////////////////////
                     connection.SerializeData(board);
 
                     if (connection.getCon().ConnectionsCount > 0)
                     {
                         int index = board.numBots;
-                        myPlayer = board.players[index];
+                        playerID = index;
                         index++;
 
                         NetOutgoingMessage boardMsg = connection.getCon().CreateMessage();
                         boardMsg.Write(connection.SerializeData(board));
 
                         NetOutgoingMessage playerMsg = connection.getCon().CreateMessage();
-                        playerMsg.Write(connection.SerializeData(board));
+                        playerMsg.Write(connection.SerializeData(index));
 
                         foreach (NetConnection con in connection.getCon().Connections)
                         {
@@ -373,9 +373,9 @@ namespace GalacticImperialism
                         {
                             board = (Board)msg;
                             menuSelected = Menus.Game;
-                        } else if (msg is Player)
+                        } else if (msg is int)
                         {
-                            myPlayer = (Player) msg;
+                            playerID = (int) msg;
                         }
                     }
                     break;

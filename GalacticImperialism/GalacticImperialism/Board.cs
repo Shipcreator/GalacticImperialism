@@ -196,12 +196,12 @@ namespace GalacticImperialism
         //Handles Game Updates
         public void Update(GameTime gt, MouseState mb, KeyboardState kb, MouseState oldms, KeyboardState oldkb)
         {
-            if (players[turn] is Human)
+            if (players[turn] is Human && turn == Game1.playerID)
             {
                 Human temp = (Human)players[turn];
                 temp.Update(gt, mb, kb, oldms, oldkb);
             }
-            if (players[turn] is Computer)
+            else if (players[turn] is Computer)
             {
                 Computer temp = (Computer)players[turn];
                 temp.Update(gt);
@@ -212,7 +212,6 @@ namespace GalacticImperialism
         public void NextTurn()
         {
             //Reset Functions
-            players[turn].isTurn = false;
             selection = new Rectangle(0,0,0,0);
 
             //Goes to Next Player
@@ -221,15 +220,13 @@ namespace GalacticImperialism
             else
                 turn++;
 
-            players[turn].isTurn = true;
-
             //Runs OnTurn Function
             if (players[turn] is Human)
             {
                 Human temp = (Human)players[turn];
                 temp.OnTurn();
             }
-            if (players[turn] is Computer)
+            else if (players[turn] is Computer)
             {
                 Computer temp = (Computer)players[turn];
                 temp.OnTurn();
