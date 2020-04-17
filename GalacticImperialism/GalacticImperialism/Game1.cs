@@ -28,8 +28,6 @@ namespace GalacticImperialism
 
         Random rand;
 
-        
-
         MouseState mouse;
         MouseState oldMouse;
 
@@ -38,6 +36,7 @@ namespace GalacticImperialism
         float soundEffectsVolume;
 
         Board board;
+        Player myPlayer;
 
         public static ConnectionHandler connection;
         public static String status;
@@ -261,12 +260,21 @@ namespace GalacticImperialism
 
                     if (connection.getCon().ConnectionsCount > 0)
                     {
-                        NetOutgoingMessage msg = connection.getCon().CreateMessage();
-                        msg.Write(connection.SerializeData(board));
+                        int index = board.numBots;
+                        myPlayer = board.players[index];
+                        index++;
+
+                        NetOutgoingMessage boardMsg = connection.getCon().CreateMessage();
+                        boardMsg.Write(connection.SerializeData(board));
+
+                        NetOutgoingMessage playerMsg = connection.getCon().CreateMessage();
+                        playerMsg.Write(connection.SerializeData(board));
 
                         foreach (NetConnection con in connection.getCon().Connections)
                         {
-                            connection.getCon().SendMessage(msg, con, NetDeliveryMethod.ReliableOrdered);
+                            connection.getCon().SendMessage(boardMsg, con, NetDeliveryMethod.ReliableOrdered);
+                            connection.getCon().SendMessage(playerMsg, con, NetDeliveryMethod.ReliableOrdered);
+                            index++;
                         }
                     }
 
@@ -359,10 +367,16 @@ namespace GalacticImperialism
                 case NetPeerStatus.Running:
                     status = "Network Status : Online\nPort : " + Game1.connection.getCon().Port + "\nConnections: " + Game1.connection.getCon().ConnectionsCount;
                     Object msg = connection.Listener();
-                    if (msg != null && msg is Board)
+                    if (msg != null)
                     {
-                        board = (Board) msg;
-                        menuSelected = Menus.Game;
+                        if (msg is Board)
+                        {
+                            board = (Board)msg;
+                            menuSelected = Menus.Game;
+                        } else if (msg is Player)
+                        {
+                            myPlayer = (Player) msg;
+                        }
                     }
                     break;
             }

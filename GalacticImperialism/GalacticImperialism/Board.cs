@@ -26,7 +26,9 @@ namespace GalacticImperialism
         //Holds All Resources
         string[] resourceList = new string[] { "iron", "uranium", "tungsten", "hydrogen", "nitrogen", "oxygen" };
         //List Of Players
-        List<Player> players;
+        public List<Player> players;
+        // Number of bots
+        public int numBots;
 
         public Rectangle selection;
         //Current Turn
@@ -43,6 +45,7 @@ namespace GalacticImperialism
         {
             turn = 0;
             players = new List<Player>(); //Resets Players
+            numBots = numOfBots;
 
             for (int i = 0; i < numOfBots; i++)
                 players.Add(new Computer(gold, this));
