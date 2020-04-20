@@ -60,7 +60,6 @@ namespace GalacticImperialism
                 for (int i = 0; i < numPlanets - numOfPlayers; i++) //Creates Planets
                     CreatePlanet();
             } while (CheckRoutes() == false);
-
         }
 
         //Creates Basic Planet
