@@ -264,7 +264,7 @@ namespace GalacticImperialism
                         seed = newGameMenuObject.getSeed();
 
 
-                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), 0, startingGold); /////////////////////////////////////////////////////////////////////////////////////
+                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), newGameMenuObject.getPlayers() - (Game1.connection.getCon().ConnectionsCount + 1), startingGold); /////////////////////////////////////////////////////////////////////////////////////
                     connection.SerializeData(board);
 
                     if (connection.getCon().ConnectionsCount > 0)
