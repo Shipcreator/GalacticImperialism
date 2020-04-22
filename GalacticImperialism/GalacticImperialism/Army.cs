@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GalacticImperialism
 {
-    [Serializable] class Ship
+    [Serializable] class Army
     {
         int attack;
         int defend;
@@ -14,7 +14,7 @@ namespace GalacticImperialism
         int constructionCost;
         string name;
 
-        public Ship(int a, int d, int m, int c, string n) //Sets all Basic Ship Attributes
+        public Army(int a, int d, int m, int c, string n) //Sets all Basic Army Attributes
         {
             attack = a; defend = d; move = m; constructionCost = c; name = n;
         }

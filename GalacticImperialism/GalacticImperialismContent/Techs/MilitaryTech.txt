@@ -14,10 +14,10 @@ Mine_Output Army_Strength
 0
 500
 
-Space Marine
+Clone Army
 
 1.00
-Space_Marine_Activation
+Clone_Army_Activation
 009
 0
 1000
@@ -29,3 +29,11 @@ Corvette_HP
 016
 007
 1000
+
+Destroyer
+
+1.00
+Destroyer_Activation
+017
+007
+2000

@@ -78,6 +78,9 @@ namespace GalacticImperialism
 
         bool menuChangeOnFrame;
 
+        UnitProduction unitProduction;
+        TechTree techTree;
+
         public static List<Texture2D> planetTex;
 
         public Game1()
@@ -164,6 +167,12 @@ namespace GalacticImperialism
             flagSymbolTextures[5] = Content.Load<Texture2D>("Flag/Star");
             flagCreationMenuObject = new FlagCreation(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), flagSymbolTextures, Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), GraphicsDevice);
             multiplayerMenuObject = new Multiplayer(this);
+
+            //Creates TechTree
+            techTree = new TechTree(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"));
+
+            //UNIT PRODUCTION
+            unitProduction = new UnitProduction(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
         }
 
         /// <summary>
@@ -388,6 +397,11 @@ namespace GalacticImperialism
                 playerUIObject.Update();
             }
 
+            //Updates Unit Production
+            unitProduction.Update(kb, oldKb, mouse, oldMouse);
+            //Update TechTree
+            techTree.Update(kb, oldKb, mouse, oldMouse);
+
             masterVolume = audioSettingsMenuObject.masterVolume;
             musicVolume = audioSettingsMenuObject.musicVolume;
             soundEffectsVolume = audioSettingsMenuObject.soundEffectsVolume;
@@ -432,6 +446,8 @@ namespace GalacticImperialism
                 board.Draw(spriteBatch);
                 playerUIObject.Draw(spriteBatch);
             }
+            techTree.Draw(spriteBatch);
+            unitProduction.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

@@ -257,6 +257,11 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
+    <Compile Include="Sprite Fonts\Arial15.spritefont">
+      <Name>Arial15</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Techs\ConstructionTech.txt">
       <Name>ConstructionTech</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
