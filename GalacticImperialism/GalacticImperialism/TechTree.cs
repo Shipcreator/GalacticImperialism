@@ -14,6 +14,8 @@ namespace GalacticImperialism
 {
     class TechTree
     {
+        Player player; 
+
         List<Tech> Economic;//all economic tech
         List<Tech> AvaEconomic;//usable of the economic tech
         Tech[] Selectable_Eco;//visable Economy Tech
@@ -59,6 +61,7 @@ namespace GalacticImperialism
         }
         public TechTree(Texture2D m_Tex, Texture2D t_Tex, Texture2D MenuB_Tex,Texture2D ResearchB_Tex, SpriteFont sf)
         {
+            
             Construction = new List<Tech>();
             Economic = new List<Tech>();
             Military = new List<Tech>();

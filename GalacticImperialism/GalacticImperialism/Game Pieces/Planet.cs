@@ -19,7 +19,7 @@ namespace GalacticImperialism
         public Vector2 position;
         public List<string> resources = new List<string>(); //Holds Resources
         public int texID; //Texture for the Planet
-        public Ship[] fleet; //Holds 3 Ships at Once at a Planet
+        public List<Ship> planetShips = new List<Ship>();
 
         //Create Base Planets
         public Planet(int s, int t, Vector2 p, List<string> r)
@@ -28,7 +28,6 @@ namespace GalacticImperialism
             texID = t;
             position = p;
             resources = r;
-            fleet = new Ship[3];
         }
 
         //Create Starting Planet
@@ -38,7 +37,6 @@ namespace GalacticImperialism
             texID = t;
             position = p;
             resources.Add("iron"); resources.Add("hydrogen");
-            fleet = new Ship[3];
         }
     }
 }

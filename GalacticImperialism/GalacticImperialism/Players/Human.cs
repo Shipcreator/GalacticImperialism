@@ -30,8 +30,10 @@ namespace GalacticImperialism
             if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
                 MouseClick(new Vector2(mb.X, mb.Y));
 
+            //Temporary End Turn Key
             if (kb.IsKeyDown(Keys.Delete) && oldkb.IsKeyUp(Keys.Delete)) //Ends Turn
             {
+                PlayerUI.closeMenus();
                 EndTurn();
             }
         }
@@ -48,6 +50,7 @@ namespace GalacticImperialism
                 {
                     selectedPlanet = ownedPlanets[i];
                     board.selection = new Rectangle((int)temp.position.X - (int)(temp.size * 2.5), (int)temp.position.Y - (int)(temp.size * 2.5), temp.size * 30, temp.size * 30);
+                    PlayerUI.drawPlanetMenu(selectedPlanet);
                     break;
                 }
             }

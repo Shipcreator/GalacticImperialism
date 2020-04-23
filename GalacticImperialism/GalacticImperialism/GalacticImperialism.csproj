@@ -77,7 +77,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Army.cs" />
+    <Compile Include="Game Pieces\Army.cs" />
     <Compile Include="Game Pieces\Ship.cs" />
     <Compile Include="UI\Flag.cs" />
     <Compile Include="Menus\FlagCreation.cs" />

@@ -158,7 +158,7 @@ namespace GalacticImperialism
             if (videoSettingsMenuObject.toggleFullScreen)
                 graphics.ToggleFullScreen();
             audioSettingsMenuObject = new AudioSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice);
-            playerUIObject = new PlayerUI(Content.Load<Texture2D>("Player UI/Bar"), whiteTexture, GraphicsDevice);
+            playerUIObject = new PlayerUI(Content.Load<Texture2D>("Player UI/Bar"), whiteTexture, GraphicsDevice, Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
             flagSymbolTextures[0] = Content.Load<Texture2D>("Flag/Crown");
             flagSymbolTextures[1] = Content.Load<Texture2D>("Flag/Eagle");
             flagSymbolTextures[2] = Content.Load<Texture2D>("Flag/Cross");
@@ -285,6 +285,11 @@ namespace GalacticImperialism
                             connection.getCon().SendMessage(playerMsg, con, NetDeliveryMethod.ReliableOrdered);
                             index++;
                         }
+                    }
+                    else
+                    {
+                        int index = board.numBots;
+                        playerID = index;
                     }
 
                     menuSelected = Menus.Game;

@@ -17,6 +17,9 @@ namespace GalacticImperialism
     {
         int gold, science, hydrogen, oxygen, nitrogen, iron, tungsten, uranium; //All Item Values That every Player stores
         public List<Planet> ownedPlanets = new List<Planet>(); //Owned Planets
+        public List<Ship> ships = new List<Ship>();
+        public List<Army> armies = new List<Army>();
+
         protected Board board; // Holds Current Board
 
         //Creates Base Player
@@ -36,6 +39,22 @@ namespace GalacticImperialism
         public void RemovePlanet(Planet p)
         {
             ownedPlanets.Remove(p);
+        }
+        public void AddShip(Ship s)
+        {
+            ships.Add(s);
+        }
+        public void RemoveShip(Ship s)
+        {
+            ships.Remove(s);
+        }
+        public void AddArmy(Army a)
+        {
+            armies.Add(a);
+        }
+        public void RemoveArmy(Army a)
+        {
+            armies.Remove(a);
         }
 
         public void Update(GameTime gt) //General Update
