@@ -57,6 +57,7 @@ namespace GalacticImperialism
         }
 
         Menus menuSelected;
+        Menus previousMenuSelected;
 
         MainMenu mainMenuObject;
         NewGame newGameMenuObject;
@@ -107,6 +108,7 @@ namespace GalacticImperialism
             status = "";
             connection = new ConnectionHandler(new Random(), this);
             menuSelected = Menus.MainMenu;
+            previousMenuSelected = menuSelected;
             rand = new Random();
             IsMouseVisible = true;
 
@@ -232,7 +234,10 @@ namespace GalacticImperialism
                 flagCreationMenuObject.Update(kb, oldKb, mouse, oldMouse);
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
-                    menuSelected = Menus.NewGame;
+                    if(previousMenuSelected == Menus.NewGame)
+                        menuSelected = Menus.NewGame;
+                    if (previousMenuSelected == Menus.Multiplayer)
+                        menuSelected = Menus.Multiplayer;
                     menuChangeOnFrame = true;
                 }
                 playerFlag.SetColorArray(flagCreationMenuObject.flagTexture);
@@ -249,6 +254,7 @@ namespace GalacticImperialism
                         connection.getCon().Shutdown("Shutting down!");
                     }
 
+                    previousMenuSelected = menuSelected;
                     menuSelected = Menus.MainMenu;
                     menuChangeOnFrame = true;
                 }
@@ -299,12 +305,14 @@ namespace GalacticImperialism
                         playerID = index;
                     }
 
+                    previousMenuSelected = menuSelected;
                     menuChangeOnFrame = true;
                     board.flagDataBaseObject.AddFlag(playerID, playerFlag);
                     menuSelected = Menus.Game;
                 }
                 if (newGameMenuObject.designFlag.isClicked)
                 {
+                    previousMenuSelected = menuSelected;
                     menuSelected = Menus.FlagCreation;
                     menuChangeOnFrame = true;
                 }
@@ -315,16 +323,19 @@ namespace GalacticImperialism
                 settingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
                 if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
+                    previousMenuSelected = menuSelected;
                     menuSelected = Menus.MainMenu;
                     menuChangeOnFrame = true;
                 }
                 if (settingsMenuObject.buttonList[0].isClicked && menuChangeOnFrame == false)
                 {
+                    previousMenuSelected = menuSelected;
                     menuSelected = Menus.AudioSettings;
                     menuChangeOnFrame = true;
                 }
                 if(settingsMenuObject.buttonList[1].isClicked && menuChangeOnFrame == false)
                 {
+                    previousMenuSelected = menuSelected;
                     menuSelected = Menus.VideoSettings;
                     menuChangeOnFrame = true;
                 }
@@ -340,6 +351,7 @@ namespace GalacticImperialism
                 audioSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
                 if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
+                    previousMenuSelected = menuSelected;
                     menuSelected = Menus.Settings;
                     menuChangeOnFrame = true;
                 }
@@ -352,6 +364,7 @@ namespace GalacticImperialism
                     graphics.ToggleFullScreen();
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
+                    previousMenuSelected = menuSelected;
                     menuSelected = Menus.Settings;
                     menuChangeOnFrame = true;
                 }
@@ -373,6 +386,12 @@ namespace GalacticImperialism
                         connection.getCon().Start();
                         connection.FindPeer(multiplayerMenuObject.getPort());
                     }
+                }
+                if (multiplayerMenuObject.designFlagButton.isClicked)
+                {
+                    previousMenuSelected = menuSelected;
+                    menuSelected = Menus.FlagCreation;
+                    menuChangeOnFrame = true;
                 }
 
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
@@ -415,6 +434,12 @@ namespace GalacticImperialism
             {
                 board.Update(gameTime, mouse, kb, oldMouse, oldKb);
                 playerFlagTexture.SetData<Color>(board.flagDataBaseObject.GetFlag(playerID).flagColorArray);
+                playerUIObject.ironAmount = board.players[playerID].getResources()[3];
+                playerUIObject.uraniumAmount = board.players[playerID].getResources()[5];
+                playerUIObject.tungstenAmount = board.players[playerID].getResources()[4];
+                playerUIObject.hydrogenAmount = board.players[playerID].getResources()[0];
+                playerUIObject.nitrogenAmount = board.players[playerID].getResources()[2];
+                playerUIObject.oxygenAmount = board.players[playerID].getResources()[1];
                 playerUIObject.Update(playerFlagTexture, mouse, oldMouse);
                 if (playerUIObject.endTurnButton.isClicked)
                     board.players[playerID].EndTurn();

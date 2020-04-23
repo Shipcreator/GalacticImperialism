@@ -51,12 +51,12 @@ namespace GalacticImperialism
 
         GraphicsDevice GraphicsDevice;
 
-        int ironAmount;
-        int uraniumAmount;
-        int tungstenAmount;
-        int hydrogenAmount;
-        int nitrogenAmount;
-        int oxygenAmount;
+        public int ironAmount;
+        public int uraniumAmount;
+        public int tungstenAmount;
+        public int hydrogenAmount;
+        public int nitrogenAmount;
+        public int oxygenAmount;
 
         public Button endTurnButton;
         public Button techTreeButton;

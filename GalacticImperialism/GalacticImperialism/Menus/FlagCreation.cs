@@ -204,8 +204,8 @@ namespace GalacticImperialism
             spriteBatch.Draw(symbolTextures[symbolSelected], flagRectangle, symbolColor);
             textSize = fontOfText.MeasureString("Use Left And Right Arrow Keys To Switch Modes");
             spriteBatch.DrawString(fontOfText, "Use Left And Right Arrow Keys To Switch Modes", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), flagRectangle.Y - 90), Color.White);
-            textSize = fontOfText.MeasureString("Press Escape To Return To New Game Menu");
-            spriteBatch.DrawString(fontOfText, "Press Escape To Return To New Game Menu", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), GraphicsDevice.Viewport.Height - textSize.Y), Color.White);
+            textSize = fontOfText.MeasureString("Press Escape To Return To Previous Menu");
+            spriteBatch.DrawString(fontOfText, "Press Escape To Return To Previous Menu", new Vector2((GraphicsDevice.Viewport.Width / 2) - (textSize.X / 2), GraphicsDevice.Viewport.Height - textSize.Y), Color.White);
             if (selectedObject == Selected.Background)
             {
                 textSize = fontOfText.MeasureString("Background");

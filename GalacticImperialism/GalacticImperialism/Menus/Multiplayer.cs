@@ -26,6 +26,7 @@ namespace GalacticImperialism
 
         TextBox port;
         Button join;
+        public Button designFlagButton;
 
         GraphicsDevice GraphicsDevice;
         Game game;
@@ -46,12 +47,14 @@ namespace GalacticImperialism
             statusVector = new Vector2(50, 250);
             port = new TextBox(new Rectangle(50, 350, 150, 50), 1, 5, Color.Black, Color.White, Color.White, Color.White, GraphicsDevice, fontOfText);
             join = new Button(new Rectangle(50, 450, 150, 50), unselected, selected, "Connect", fontOfText, Color.White, null, null);
+            designFlagButton = new Button(new Rectangle((game.GraphicsDevice.Viewport.Width / 2) - 200, game.GraphicsDevice.Viewport.Height - 200, 400, 100), unselected, selected, "Design Flag", fontOfText, Color.White, null, null);
         }
 
         public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
         {
             port.Update(mouse, oldMouse, kb, oldKb);
             join.Update(mouse, oldMouse);
+            designFlagButton.Update(mouse, oldMouse);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -63,6 +66,7 @@ namespace GalacticImperialism
             spriteBatch.DrawString(fontOfText, Game1.status, statusVector, Color.White);
             port.Draw(spriteBatch);
             join.Draw(spriteBatch);
+            designFlagButton.Draw(spriteBatch);
         }
 
         public String getPort()
