@@ -11,6 +11,7 @@ namespace GalacticImperialism
         int attack;
         int defend;
         int move;
+        public int currentmove;
         int constructionCost;
         string name;
 

@@ -18,7 +18,7 @@ namespace GalacticImperialism
     [Serializable] class Board
     {
         //Stores All Planets On Map
-        List<Planet> planets;
+        public List<Planet> planets;
         //Random Object
         Random rand;
         //Sets Radius For Game Movement
@@ -32,8 +32,6 @@ namespace GalacticImperialism
 
         //Data base of flags that links them to a player ID
         public FlagDataBase flagDataBaseObject;
-
-        public Rectangle selection;
         //Current Turn
         int turn;
 
@@ -223,8 +221,6 @@ namespace GalacticImperialism
         //NextTurn Handling
         public void NextTurn()
         {
-            //Reset Functions
-            selection = new Rectangle(0,0,0,0);
 
             //Goes to Next Player
             if (turn == players.Count - 1)
@@ -269,7 +265,6 @@ namespace GalacticImperialism
                 Rectangle tempRect = new Rectangle((int)p.position.X, (int)p.position.Y, p.size * 25, p.size * 25);
                 sb.Draw(Game1.planetTex[p.texID], tempRect, Color.White);
             }
-            sb.Draw(Game1.whiteCircle, selection, Color.White * 0.25f);
         }
     }
 }

@@ -38,6 +38,7 @@ namespace GalacticImperialism
         Rectangle hydrogenResourceRect;
         Rectangle nitrogenResourceRect;
         Rectangle oxygenResourceRect;
+        static Rectangle selection;
 
         SpriteFont Arial15;
 
@@ -111,6 +112,7 @@ namespace GalacticImperialism
         public static void drawPlanetMenu(Planet p)
         {
             currentPlanet = p;
+            selection = new Rectangle((int)p.position.X - (int)(p.size * 2.5), (int)p.position.Y - (int)(p.size * 2.5), p.size * 30, p.size * 30);
             planetMenu = true;
         }
 
@@ -152,6 +154,7 @@ namespace GalacticImperialism
 
             if (planetMenu == true)
             {
+                spriteBatch.Draw(Game1.whiteCircle, selection, Color.White * 0.25f);
                 spriteBatch.DrawString(Arial15, currentPlanet.planetShips.Count.ToString(), new Vector2(500,500), Color.White);
             }
         }

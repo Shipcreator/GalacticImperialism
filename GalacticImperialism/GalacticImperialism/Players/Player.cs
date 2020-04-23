@@ -30,6 +30,27 @@ namespace GalacticImperialism
             board = b;
         }
 
+
+        //Gets all Nearby Planets
+        public List<Planet> NearbyPlanets(Planet p)
+        {
+            List<Planet> planetList = new List<Planet>();
+            for (int i = 0; i < board.planets.Count; i++)
+            {
+                //Distance Formula
+                float x1 = p.position.X;
+                float x2 = board.planets[i].position.X;
+                float y1 = p.position.Y;
+                float y2 = board.planets[i].position.Y;
+
+                double distance = Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2));
+
+                if (distance <= 200)
+                    planetList.Add(board.planets[i]);
+            }
+            return planetList;
+        }
+
         //Adds Ownership of a Planet
         public void AddPlanet(Planet p)
         {
@@ -64,7 +85,10 @@ namespace GalacticImperialism
 
         public void OnTurn() //General On Turn Start 
         {
-
+            foreach (Ship s in ships)
+            {
+                s.currentmove = s.getMoves();
+            }
         }
 
         public void EndTurn() //Called On Turn End

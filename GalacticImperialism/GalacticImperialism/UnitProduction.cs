@@ -16,7 +16,6 @@ namespace GalacticImperialism
     {
         private List<object> productionQueue;
         private int production;
-        private Player player;
 
         private Rectangle Selectable_Production_Menu;
         private Rectangle Production_Menu;
@@ -55,7 +54,7 @@ namespace GalacticImperialism
             production = 0;
         }
 
-        public UnitProduction(Player p, Texture2D m_Tex, Texture2D t_Tex, Texture2D ResearchB_Tex, Texture2D MenuB_Tex)
+        public UnitProduction(Texture2D m_Tex, Texture2D t_Tex, Texture2D ResearchB_Tex, Texture2D MenuB_Tex)
         {
             Open = false;
             menuState = GameState.Armies;
@@ -65,7 +64,6 @@ namespace GalacticImperialism
             Production_Texture = t_Tex;
             Production_Bar_Texture = ResearchB_Tex;
             Menu_Backdrop = MenuB_Tex;
-            player = p;
         }
 
         public UnitProduction(Texture2D m_Tex, Texture2D t_Tex, Texture2D ResearchB_Tex, Texture2D MenuB_Tex, SpriteFont sf)
