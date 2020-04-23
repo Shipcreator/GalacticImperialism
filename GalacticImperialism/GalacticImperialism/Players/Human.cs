@@ -29,13 +29,6 @@ namespace GalacticImperialism
 
             if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
                 MouseClick(new Vector2(mb.X, mb.Y));
-
-            //Temporary End Turn Key
-            if (kb.IsKeyDown(Keys.Delete) && oldkb.IsKeyUp(Keys.Delete)) //Ends Turn
-            {
-                PlayerUI.closeMenus();
-                EndTurn();
-            }
         }
 
         public void MouseClick(Vector2 position)

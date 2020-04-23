@@ -19,18 +19,15 @@ namespace GalacticImperialism
     {
         public Color[] flagColorArray;
 
-        GraphicsDevice GraphicsDevice;
-
         int flagWidth;
         int flagHeight;
 
-        public Flag(Texture2D flagTexture, GraphicsDevice GraphicsDevice)
+        public Flag(Texture2D flagTexture)
         {
             flagWidth = flagTexture.Width;
             flagHeight = flagTexture.Height;
             flagColorArray = new Color[flagWidth * flagHeight];
             flagTexture.GetData<Color>(flagColorArray);
-            this.GraphicsDevice = GraphicsDevice;
         }
 
         public void SetColorArray(Texture2D flagTexture)
@@ -44,7 +41,7 @@ namespace GalacticImperialism
         //The method below causes the system to run out of memory, do not use unless for a one time access!
         public Texture2D GetFlagTexture()
         {
-            Texture2D temporaryFlagTexture = new Texture2D(GraphicsDevice, flagWidth, flagHeight);
+            Texture2D temporaryFlagTexture = new Texture2D(NewGame.graphics, flagWidth, flagHeight);
             temporaryFlagTexture.SetData<Color>(flagColorArray);
             return temporaryFlagTexture;
         }

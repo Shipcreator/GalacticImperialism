@@ -44,7 +44,7 @@ namespace GalacticImperialism
 
         Game1 game;
         ContentManager cm;
-        GraphicsDevice graphics;
+        public static GraphicsDevice graphics;
 
         public NewGame(Game1 game)
         {

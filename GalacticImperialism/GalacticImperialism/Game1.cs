@@ -168,7 +168,7 @@ namespace GalacticImperialism
             flagSymbolTextures[4] = Content.Load<Texture2D>("Flag/Lily");
             flagSymbolTextures[5] = Content.Load<Texture2D>("Flag/Star");
             flagCreationMenuObject = new FlagCreation(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), flagSymbolTextures, Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), GraphicsDevice);
-            playerFlag = new Flag(flagCreationMenuObject.flagTexture, GraphicsDevice);
+            playerFlag = new Flag(flagCreationMenuObject.flagTexture);
             playerFlagTexture = new Texture2D(GraphicsDevice, 500, 300);
             playerFlagTexture.SetData<Color>(playerFlag.flagColorArray);
             playerUIObject = new PlayerUI(Content.Load<Texture2D>("Player UI/Bar"), playerFlagTexture, whiteTexture, Content.Load<Texture2D>("Player UI/Resource Icons/Iron"), Content.Load<Texture2D>("Player UI/Resource Icons/Uranium"), Content.Load<Texture2D>("Player UI/Resource Icons/Tungsten"), Content.Load<Texture2D>("Player UI/Resource Icons/Hydrogen"), Content.Load<Texture2D>("Player UI/Resource Icons/Nitrogen"), Content.Load<Texture2D>("Player UI/Resource Icons/Oxygen"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), GraphicsDevice, Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
@@ -400,10 +400,11 @@ namespace GalacticImperialism
                         if (msg is Board)
                         {
                             board = (Board)msg;
-                            menuSelected = Menus.Game;
                         } else if (msg is int)
                         {
                             playerID = (int) msg;
+                            board.flagDataBaseObject.AddFlag(playerID, playerFlag);
+                            menuSelected = Menus.Game;
                         }
                     }
                     break;
@@ -416,7 +417,7 @@ namespace GalacticImperialism
                 playerFlagTexture.SetData<Color>(board.flagDataBaseObject.GetFlag(playerID).flagColorArray);
                 playerUIObject.Update(playerFlagTexture, mouse, oldMouse);
                 if (playerUIObject.endTurnButton.isClicked)
-                    board.NextTurn();
+                    board.players[playerID].EndTurn();
             }
 
             //Updates Unit Production

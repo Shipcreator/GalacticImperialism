@@ -45,6 +45,9 @@ namespace GalacticImperialism
         static Planet currentPlanet;
         static bool planetMenu;
 
+        //Tech Tree Menu
+        static bool techMenu;
+
         GraphicsDevice GraphicsDevice;
 
         int ironAmount;
@@ -71,6 +74,7 @@ namespace GalacticImperialism
             this.selectedButtonTexture = selectedButtonTexture;
             this.unselectedButtonTexture = unselectedButtonTexture;
             planetMenu = false;
+            techMenu = false;
             Arial15 = arial15;
             this.GraphicsDevice = GraphicsDevice;
             Initialize();

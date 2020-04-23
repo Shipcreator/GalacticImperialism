@@ -69,6 +69,7 @@ namespace GalacticImperialism
 
         public void EndTurn() //Called On Turn End
         {
+            PlayerUI.closeMenus();
             board.NextTurn();
         }
 
