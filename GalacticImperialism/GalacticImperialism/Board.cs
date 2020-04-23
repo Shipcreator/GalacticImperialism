@@ -30,6 +30,9 @@ namespace GalacticImperialism
         // Number of bots
         public int numBots;
 
+        //Data base of flags that links them to a player ID
+        public FlagDataBase flagDataBaseObject;
+
         public Rectangle selection;
         //Current Turn
         int turn;
@@ -60,6 +63,8 @@ namespace GalacticImperialism
                 for (int i = 0; i < numPlanets - numOfPlayers; i++) //Creates Planets
                     CreatePlanet();
             } while (CheckRoutes() == false);
+
+            flagDataBaseObject = new FlagDataBase();
         }
 
         //Creates Basic Planet

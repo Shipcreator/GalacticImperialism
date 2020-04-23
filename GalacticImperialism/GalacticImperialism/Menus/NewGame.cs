@@ -17,6 +17,7 @@ namespace GalacticImperialism
 
         Button playGame;
         Button createNetwork;
+        public Button designFlag;
 
         Texture2D selected;
         Texture2D unselected;
@@ -61,8 +62,9 @@ namespace GalacticImperialism
         public void Initialize()
         {
             // Creates the play game and create network button.
-            playGame = new Button(new Rectangle(graphics.Viewport.Width / 2 - 500, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Play Game", font, Color.White, null, null);
-            createNetwork = new Button(new Rectangle(graphics.Viewport.Width / 2 + 100, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Create Network", font, Color.White, null, null);
+            playGame = new Button(new Rectangle((graphics.Viewport.Width / 4) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Play Game", font, Color.White, null, null);
+            createNetwork = new Button(new Rectangle(((graphics.Viewport.Width / 4) * 2) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Create Network", font, Color.White, null, null);
+            designFlag = new Button(new Rectangle(((graphics.Viewport.Width / 4) * 3) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Design Flag", font, Color.White, null, null);
 
             npVector = new Vector2(50, 50);     // Vector for the "Number Planets" text
             // Creates a slider with a range of 75-125 for the starting planets.
@@ -98,6 +100,7 @@ namespace GalacticImperialism
             numPlayers.Update(ms, oldMS);
             createNetwork.Update(ms, oldMS);
             seedBox.Update(ms, oldMS, kbs, oldKBS);
+            designFlag.Update(ms, oldMS);
 
             oldKBS = kbs;
             oldMS = ms;
@@ -111,6 +114,7 @@ namespace GalacticImperialism
             numPlayers.Draw(spriteBatch);
             createNetwork.Draw(spriteBatch);
             seedBox.Draw(spriteBatch);
+            designFlag.Draw(spriteBatch);
 
             spriteBatch.DrawString(font, "Starting Gold", goldVector, Color.White);
             spriteBatch.DrawString(font, "Number of planets : " + ((int) (numPlanets.percentage * 50) + 75), npVector, Color.White);

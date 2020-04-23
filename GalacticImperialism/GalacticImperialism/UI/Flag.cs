@@ -17,7 +17,7 @@ namespace GalacticImperialism
 {
     [Serializable] class Flag
     {
-        Color[] flagColorArray;
+        public Color[] flagColorArray;
 
         GraphicsDevice GraphicsDevice;
 
@@ -41,6 +41,7 @@ namespace GalacticImperialism
             flagTexture.GetData<Color>(flagColorArray);
         }
 
+        //The method below causes the system to run out of memory, do not use unless for a one time access!
         public Texture2D GetFlagTexture()
         {
             Texture2D temporaryFlagTexture = new Texture2D(GraphicsDevice, flagWidth, flagHeight);
