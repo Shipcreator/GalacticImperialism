@@ -226,8 +226,8 @@ namespace GalacticImperialism
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                     this.Exit();
             }
-            if (kb.IsKeyDown(Keys.Insert))
-                menuSelected = Menus.FlagCreation;
+            /*if (kb.IsKeyDown(Keys.Insert))
+                menuSelected = Menus.FlagCreation;*/
             if (menuSelected == Menus.FlagCreation)
             {
                 starBackgroundObject.Update();
