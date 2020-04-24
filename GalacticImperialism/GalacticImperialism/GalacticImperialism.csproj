@@ -80,6 +80,7 @@
     <Compile Include="FlagDataBase.cs" />
     <Compile Include="Game Pieces\Army.cs" />
     <Compile Include="Game Pieces\Ship.cs" />
+    <Compile Include="UI\Line.cs" />
     <Compile Include="UI\Flag.cs" />
     <Compile Include="Menus\FlagCreation.cs" />
     <Compile Include="Menus\AudioSettings.cs" />

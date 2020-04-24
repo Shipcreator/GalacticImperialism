@@ -43,7 +43,7 @@ namespace GalacticImperialism
         Texture2D Tech_Texture;
         Texture2D Research_Bar_Texture;//Texture for research bar
 
-        Boolean Open;
+        public bool Open;
 
         SpriteFont spriteFont;
 
