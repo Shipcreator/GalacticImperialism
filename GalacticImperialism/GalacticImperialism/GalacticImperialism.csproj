@@ -17,7 +17,7 @@
     <XnaProfile>Reach</XnaProfile>
     <XnaCrossPlatformGroupID>32342073-7b1e-4370-8f07-c6835ae98100</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <ApplicationIcon>Union Jack Icon.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -114,6 +114,7 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <Content Include="Union Jack Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GalacticImperialismContent\GalacticImperialismContent.contentproj">
