@@ -434,7 +434,8 @@ namespace GalacticImperialism
             if (menuSelected == Menus.Game)
             {
                 board.Update(gameTime, mouse, kb, oldMouse, oldKb);
-                playerFlagTexture.SetData<Color>(board.flagDataBaseObject.GetFlag(playerID).flagColorArray);
+                //playerFlagTexture.SetData<Color>(board.flagDataBaseObject.GetFlag(playerID).flagColorArray);
+                playerFlagTexture = flagCreationMenuObject.flagTexture;
                 playerUIObject.ironAmount = board.players[playerID].getResources()[3];
                 playerUIObject.uraniumAmount = board.players[playerID].getResources()[5];
                 playerUIObject.tungstenAmount = board.players[playerID].getResources()[4];
