@@ -46,6 +46,11 @@ namespace GalacticImperialism
         ContentManager cm;
         public static GraphicsDevice graphics;
 
+        float masterVolume;
+        float soundEffectsVolume;
+
+        SoundEffect buttonSelectedSoundEffect;
+
         public NewGame(Game1 game)
         {
             graphics = game.GraphicsDevice;
@@ -55,6 +60,9 @@ namespace GalacticImperialism
             font = game.Content.Load<SpriteFont>("Sprite Fonts/Arial20");
             oldMS = Mouse.GetState();
             oldKBS = Keyboard.GetState();
+            masterVolume = 1.0f;
+            soundEffectsVolume = 1.0f;
+            buttonSelectedSoundEffect = game.Content.Load<SoundEffect>("Sound Effects/Mouse Over Button");
 
             Initialize();
         }
@@ -62,9 +70,9 @@ namespace GalacticImperialism
         public void Initialize()
         {
             // Creates the play game and create network button.
-            playGame = new Button(new Rectangle((graphics.Viewport.Width / 4) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Play Game", font, Color.White, null, null);
-            createNetwork = new Button(new Rectangle(((graphics.Viewport.Width / 4) * 2) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Create Network", font, Color.White, null, null);
-            designFlag = new Button(new Rectangle(((graphics.Viewport.Width / 4) * 3) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Design Flag", font, Color.White, null, null);
+            playGame = new Button(new Rectangle((graphics.Viewport.Width / 4) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Play Game", font, Color.White, buttonSelectedSoundEffect, null);
+            createNetwork = new Button(new Rectangle(((graphics.Viewport.Width / 4) * 2) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Create Network", font, Color.White, buttonSelectedSoundEffect, null);
+            designFlag = new Button(new Rectangle(((graphics.Viewport.Width / 4) * 3) - 200, graphics.Viewport.Height - 200, 400, 100), unselected, selected, "Design Flag", font, Color.White, buttonSelectedSoundEffect, null);
 
             npVector = new Vector2(50, 50);     // Vector for the "Number Planets" text
             // Creates a slider with a range of 75-125 for the starting planets.
@@ -89,18 +97,27 @@ namespace GalacticImperialism
             numPlayers = new Slider(new Rectangle(50, 400, 300, 25), new Vector2(10, 30), game.Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), game.Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"));
         }
 
-        public void Update()
+        public void Update(float masterVolume, float soundEffectsVolume)
         {
+            this.masterVolume = masterVolume;
+            this.soundEffectsVolume = soundEffectsVolume;
+
             MouseState ms = Mouse.GetState();
             KeyboardState kbs = Keyboard.GetState();
 
             playGame.Update(ms, oldMS);
+            if (playGame.isSelected && playGame.wasSelected == false)
+                playGame.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
             numPlanets.Update(ms, oldMS);
             startGold.Update(ms, oldMS, kbs, oldKBS);
             numPlayers.Update(ms, oldMS);
             createNetwork.Update(ms, oldMS);
+            if (createNetwork.isSelected && createNetwork.wasSelected == false)
+                createNetwork.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
             seedBox.Update(ms, oldMS, kbs, oldKBS);
             designFlag.Update(ms, oldMS);
+            if (designFlag.isSelected && designFlag.wasSelected == false)
+                designFlag.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
 
             oldKBS = kbs;
             oldMS = ms;

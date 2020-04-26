@@ -169,7 +169,7 @@ namespace GalacticImperialism
             flagSymbolTextures[3] = Content.Load<Texture2D>("Flag/Fist");
             flagSymbolTextures[4] = Content.Load<Texture2D>("Flag/Lily");
             flagSymbolTextures[5] = Content.Load<Texture2D>("Flag/Star");
-            flagCreationMenuObject = new FlagCreation(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), flagSymbolTextures, Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), GraphicsDevice);
+            flagCreationMenuObject = new FlagCreation(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), flagSymbolTextures, Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), GraphicsDevice, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
             playerFlag = new Flag(flagCreationMenuObject.flagTexture);
             playerFlagTexture = new Texture2D(GraphicsDevice, 500, 300);
             playerFlagTexture.SetData<Color>(playerFlag.flagColorArray);
@@ -202,6 +202,9 @@ namespace GalacticImperialism
             kb = Keyboard.GetState();
             mouse = Mouse.GetState();
             menuChangeOnFrame = false;
+            masterVolume = audioSettingsMenuObject.masterVolume;
+            musicVolume = audioSettingsMenuObject.musicVolume;
+            soundEffectsVolume = audioSettingsMenuObject.soundEffectsVolume;
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
@@ -226,12 +229,10 @@ namespace GalacticImperialism
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                     this.Exit();
             }
-            /*if (kb.IsKeyDown(Keys.Insert))
-                menuSelected = Menus.FlagCreation;*/
             if (menuSelected == Menus.FlagCreation)
             {
                 starBackgroundObject.Update();
-                flagCreationMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                flagCreationMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
                     if(previousMenuSelected == Menus.NewGame)
@@ -245,7 +246,7 @@ namespace GalacticImperialism
             if (menuSelected == Menus.NewGame)
             {
                 starBackgroundObject.Update();
-                newGameMenuObject.Update();
+                newGameMenuObject.Update(masterVolume, soundEffectsVolume);
 
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {

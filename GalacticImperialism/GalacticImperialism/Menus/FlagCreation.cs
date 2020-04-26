@@ -47,13 +47,18 @@ namespace GalacticImperialism
         bool selectedChangedOnFrame;
 
         Slider[,] sliders;
-        Button[] symbolChangingButtons;
+        public Button[] symbolChangingButtons;
 
         Color[] CombinedColorData;
         Color[] TempColorData;
         Color[] backgroundColorArray;
 
-        public FlagCreation(SpriteFont titleFont, SpriteFont textFont, Texture2D[] symbolTexturesArray, Texture2D textureOfSliderBackground, Texture2D textureOfSliderCursor, Texture2D unselectedTextureOfButton, Texture2D selectedTextureOfButton, GraphicsDevice GraphicsDevice)
+        public float masterVolume;
+        public float soundEffectsVolume;
+
+        SoundEffect buttonSelectedSoundEffect;
+
+        public FlagCreation(SpriteFont titleFont, SpriteFont textFont, Texture2D[] symbolTexturesArray, Texture2D textureOfSliderBackground, Texture2D textureOfSliderCursor, Texture2D unselectedTextureOfButton, Texture2D selectedTextureOfButton, GraphicsDevice GraphicsDevice, SoundEffect buttonSelectedSoundEffect)
         {
             fontOfTitle = titleFont;
             fontOfText = textFont;
@@ -63,6 +68,7 @@ namespace GalacticImperialism
             unselectedButtonTexture = unselectedTextureOfButton;
             selectedButtonTexture = selectedTextureOfButton;
             this.GraphicsDevice = GraphicsDevice;
+            this.buttonSelectedSoundEffect = buttonSelectedSoundEffect;
             Initialize();
         }
 
@@ -108,12 +114,16 @@ namespace GalacticImperialism
                 sliders[x, 1].SetPercentage(0.0f);
             }
             symbolChangingButtons = new Button[2];
-            symbolChangingButtons[0] = new Button(new Rectangle(125, (GraphicsDevice.Viewport.Height / 2) - ((693 / 4) / 2), (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Previous Symbol", fontOfText, Color.White, null, null);
-            symbolChangingButtons[1] = new Button(new Rectangle(1325, (GraphicsDevice.Viewport.Height / 2) - ((693 / 4) / 2), (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Next Symbol", fontOfText, Color.White, null, null);
+            symbolChangingButtons[0] = new Button(new Rectangle(125, (GraphicsDevice.Viewport.Height / 2) - ((693 / 4) / 2), (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Previous Symbol", fontOfText, Color.White, buttonSelectedSoundEffect, null);
+            symbolChangingButtons[1] = new Button(new Rectangle(1325, (GraphicsDevice.Viewport.Height / 2) - ((693 / 4) / 2), (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Next Symbol", fontOfText, Color.White, buttonSelectedSoundEffect, null);
+            masterVolume = 1.0f;
+            soundEffectsVolume = 1.0f;
         }
 
-        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
+        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse, float masterVolume, float soundEffectsVolume)
         {
+            this.masterVolume = masterVolume;
+            this.soundEffectsVolume = soundEffectsVolume;
             selectedChangedOnFrame = false;
 
             if(selectedObject == Selected.Background)
@@ -165,6 +175,10 @@ namespace GalacticImperialism
                             else
                                 symbolSelected = 0;
                         }
+                    }
+                    if (symbolChangingButtons[x].isSelected && symbolChangingButtons[x].wasSelected == false)
+                    {
+                        symbolChangingButtons[x].playSelectedSoundEffect(masterVolume * soundEffectsVolume);
                     }
                 }
                 for (int x = 0; x < sliders.GetLength(0); x++)
