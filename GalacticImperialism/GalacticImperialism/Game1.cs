@@ -456,7 +456,6 @@ namespace GalacticImperialism
 
             if(menuSelected == Menus.TechTree)
             {
-                techTree.Update(kb, oldKb, mouse, oldMouse);
                 if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
                     techTree.Open = false;
