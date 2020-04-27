@@ -37,7 +37,12 @@ namespace GalacticImperialism
 
         int readFileLineNumber;
 
-        public VideoSettings(Texture2D unselectedSaveSettingsButtonTexture, Texture2D selectedSaveSettingsButtonTexture, Texture2D unselectedButtonTexture, Texture2D selectedButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, GraphicsDevice GraphicsDevice)
+        float masterVolume;
+        float soundEffectsVolume;
+
+        SoundEffect buttonSelectedSoundEffect;
+
+        public VideoSettings(Texture2D unselectedSaveSettingsButtonTexture, Texture2D selectedSaveSettingsButtonTexture, Texture2D unselectedButtonTexture, Texture2D selectedButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, GraphicsDevice GraphicsDevice, SoundEffect buttonSelectedSoundEffect)
         {
             this.unselectedSaveSettingsButtonTexture = unselectedSaveSettingsButtonTexture;
             this.selectedSaveSettingsButtonTexture = selectedSaveSettingsButtonTexture;
@@ -46,6 +51,7 @@ namespace GalacticImperialism
             fontOfButtons = buttonFont;
             fontOfTitle = titleFont;
             this.GraphicsDevice = GraphicsDevice;
+            this.buttonSelectedSoundEffect = buttonSelectedSoundEffect;
             Initialize();
         }
 
@@ -53,11 +59,13 @@ namespace GalacticImperialism
         {
             titleText = "Video Settings";
             buttonsList = new List<Button>();
-            buttonsList.Add(new Button(new Rectangle((GraphicsDevice.Viewport.Width / 2) - ((1894 / 4) / 2), 350, (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Fullscreen: ", fontOfButtons, Color.White, null, null));
-            saveSettingsButton = new Button(new Rectangle(100, GraphicsDevice.Viewport.Height - 150, 100, 100), unselectedSaveSettingsButtonTexture, selectedSaveSettingsButtonTexture, "", fontOfButtons, Color.White, null, null);
+            buttonsList.Add(new Button(new Rectangle((GraphicsDevice.Viewport.Width / 2) - ((1894 / 4) / 2), 350, (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "Fullscreen: ", fontOfButtons, Color.White, buttonSelectedSoundEffect, null));
+            saveSettingsButton = new Button(new Rectangle(100, GraphicsDevice.Viewport.Height - 150, 100, 100), unselectedSaveSettingsButtonTexture, selectedSaveSettingsButtonTexture, "", fontOfButtons, Color.White, buttonSelectedSoundEffect, null);
             toggleFullScreen = false;
             fullScreenOn = false;
             readFileLineNumber = 0;
+            masterVolume = 1.0f;
+            soundEffectsVolume = 1.0f;
             ReadSettings(@"Content/Saved Settings/Video Settings.txt");
         }
 
@@ -101,13 +109,17 @@ namespace GalacticImperialism
             myFileOut.Close();
         }
 
-        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
+        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse, float masterVolume, float soundEffectsVolume)
         {
+            this.masterVolume = masterVolume;
+            this.soundEffectsVolume = soundEffectsVolume;
             toggleFullScreen = false;
 
             for(int x = 0; x < buttonsList.Count; x++)
             {
                 buttonsList[x].Update(mouse, oldMouse);
+                if (buttonsList[x].isSelected && buttonsList[x].wasSelected == false)
+                    buttonsList[x].playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
             }
 
             if (buttonsList[0].isClicked)
@@ -122,6 +134,8 @@ namespace GalacticImperialism
                 buttonsList[0].buttonText = "Fullscreen: Off";
 
             saveSettingsButton.Update(mouse, oldMouse);
+            if (saveSettingsButton.isSelected && saveSettingsButton.wasSelected == false)
+                saveSettingsButton.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
             if (saveSettingsButton.isClicked)
                 WriteSettings(@"Content/Saved Settings/Video Settings.txt");
         }

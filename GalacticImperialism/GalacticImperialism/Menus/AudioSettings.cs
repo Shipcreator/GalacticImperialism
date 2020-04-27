@@ -41,7 +41,9 @@ namespace GalacticImperialism
         Texture2D unselectedSaveSettingsButtonTexture;
         Texture2D selectedSaveSettingsButtonTexture;
 
-        public AudioSettings(Texture2D unselectedSaveSettingsButtonTexture, Texture2D selectedSaveSettingsButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, Texture2D sliderBackgroundTexture, Texture2D sliderCursorTexture, GraphicsDevice GraphicsDevice)
+        SoundEffect buttonSelectedSoundEffect;
+
+        public AudioSettings(Texture2D unselectedSaveSettingsButtonTexture, Texture2D selectedSaveSettingsButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, Texture2D sliderBackgroundTexture, Texture2D sliderCursorTexture, GraphicsDevice GraphicsDevice, SoundEffect buttonSelectedSoundEffect)
         {
             this.unselectedSaveSettingsButtonTexture = unselectedSaveSettingsButtonTexture;
             this.selectedSaveSettingsButtonTexture = selectedSaveSettingsButtonTexture;
@@ -50,6 +52,7 @@ namespace GalacticImperialism
             this.sliderBackgroundTexture = sliderBackgroundTexture;
             this.sliderCursorTexture = sliderCursorTexture;
             this.GraphicsDevice = GraphicsDevice;
+            this.buttonSelectedSoundEffect = buttonSelectedSoundEffect;
             Initialize();
         }
 
@@ -59,10 +62,7 @@ namespace GalacticImperialism
             masterVolumeSlider = new Slider(new Rectangle(900, 325, 500, 20), new Vector2(15, 30), sliderBackgroundTexture, sliderCursorTexture);
             musicVolumeSlider = new Slider(new Rectangle(900, 425, 500, 20), new Vector2(15, 30), sliderBackgroundTexture, sliderCursorTexture);
             soundEffectsVolumeSlider = new Slider(new Rectangle(900, 525, 500, 20), new Vector2(15, 30), sliderBackgroundTexture, sliderCursorTexture);
-            masterVolume = 1.0f;
-            musicVolume = 1.0f;
-            soundEffectsVolume = 1.0f;
-            saveSettingsButton = new Button(new Rectangle(100, GraphicsDevice.Viewport.Height - 150, 100, 100), unselectedSaveSettingsButtonTexture, selectedSaveSettingsButtonTexture, "", fontOfButtons, Color.White, null, null);
+            saveSettingsButton = new Button(new Rectangle(100, GraphicsDevice.Viewport.Height - 150, 100, 100), unselectedSaveSettingsButtonTexture, selectedSaveSettingsButtonTexture, "", fontOfButtons, Color.White, buttonSelectedSoundEffect, null);
             readFileLineNumber = 0;
             ReadSettings(@"Content/Saved Settings/Audio Settings.txt");
         }
@@ -77,11 +77,23 @@ namespace GalacticImperialism
                     {
                         string line = reader.ReadLine();
                         if (readFileLineNumber == 0)
+                        {
                             masterVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(27, line.Length - 27));
+                            masterVolumeSlider.DeterminePercentage();
+                            masterVolume = masterVolumeSlider.percentage;
+                        }
                         if(readFileLineNumber == 1)
+                        {
                             musicVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(26, line.Length - 26));
+                            musicVolumeSlider.DeterminePercentage();
+                            musicVolume = musicVolumeSlider.percentage;
+                        }
                         if (readFileLineNumber == 2)
+                        {
                             soundEffectsVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(33, line.Length - 33));
+                            soundEffectsVolumeSlider.DeterminePercentage();
+                            soundEffectsVolume = soundEffectsVolumeSlider.percentage;
+                        }
                         readFileLineNumber++;
                     }
                 }
@@ -111,6 +123,8 @@ namespace GalacticImperialism
             soundEffectsVolumeSlider.Update(mouse, oldMouse);
             soundEffectsVolume = soundEffectsVolumeSlider.percentage;
             saveSettingsButton.Update(mouse, oldMouse);
+            if (saveSettingsButton.isSelected && saveSettingsButton.wasSelected == false)
+                saveSettingsButton.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
             if (saveSettingsButton.isClicked)
                 WriteSettings(@"Content/Saved Settings/Audio Settings.txt");
         }

@@ -107,17 +107,17 @@ namespace GalacticImperialism
 
             playGame.Update(ms, oldMS);
             if (playGame.isSelected && playGame.wasSelected == false)
-                playGame.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
+                playGame.playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
             numPlanets.Update(ms, oldMS);
             startGold.Update(ms, oldMS, kbs, oldKBS);
             numPlayers.Update(ms, oldMS);
             createNetwork.Update(ms, oldMS);
             if (createNetwork.isSelected && createNetwork.wasSelected == false)
-                createNetwork.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
+                createNetwork.playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
             seedBox.Update(ms, oldMS, kbs, oldKBS);
             designFlag.Update(ms, oldMS);
             if (designFlag.isSelected && designFlag.wasSelected == false)
-                designFlag.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
+                designFlag.playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
 
             oldKBS = kbs;
             oldMS = ms;

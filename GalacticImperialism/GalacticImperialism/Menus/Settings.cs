@@ -28,13 +28,19 @@ namespace GalacticImperialism
 
         GraphicsDevice GraphicsDevice;
 
-        public Settings(Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, GraphicsDevice GraphicsDevice)
+        SoundEffect buttonSelectedSoundEffect;
+
+        float masterVolume;
+        float soundEffectsVolume;
+
+        public Settings(Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, GraphicsDevice GraphicsDevice, SoundEffect buttonSelectedSoundEffect)
         {
             buttonSelectedTexture = selectedButtonTexture;
             buttonUnselectedTexture = unselectedButtonTexture;
             fontOfButtons = buttonFont;
             fontOfTitle = titleFont;
             this.GraphicsDevice = GraphicsDevice;
+            this.buttonSelectedSoundEffect = buttonSelectedSoundEffect;
             Initialize();
         }
 
@@ -45,17 +51,23 @@ namespace GalacticImperialism
             titleText = "Settings";
             for(int x = 0; x < numberOfButtons; x++)
             {
-                buttonList.Add(new Button(new Rectangle((GraphicsDevice.Viewport.Width / 2) - ((1894 / 4) / 2), 350 + ((693 / 4) * x), (1894 / 4), (693 / 4)), buttonUnselectedTexture, buttonSelectedTexture, "", fontOfButtons, Color.White, null, null));
+                buttonList.Add(new Button(new Rectangle((GraphicsDevice.Viewport.Width / 2) - ((1894 / 4) / 2), 350 + ((693 / 4) * x), (1894 / 4), (693 / 4)), buttonUnselectedTexture, buttonSelectedTexture, "", fontOfButtons, Color.White, buttonSelectedSoundEffect, null));
             }
             buttonList[0].buttonText = "Audio Settings";
             buttonList[1].buttonText = "Video Settings";
+            masterVolume = 1.0f;
+            soundEffectsVolume = 1.0f;
         }
 
-        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
+        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse, float masterVolume, float soundEffectsVolume)
         {
+            this.masterVolume = masterVolume;
+            this.soundEffectsVolume = soundEffectsVolume;
             for (int x = 0; x < buttonList.Count; x++)
             {
                 buttonList[x].Update(mouse, oldMouse);
+                if (buttonList[x].isSelected && buttonList[x].wasSelected == false)
+                    buttonList[x].playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
             }
         }
 

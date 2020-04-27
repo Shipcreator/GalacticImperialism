@@ -157,12 +157,12 @@ namespace GalacticImperialism
 
             mainMenuObject = new MainMenu(Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), GraphicsDevice);
             newGameMenuObject = new NewGame(this);
-            settingsMenuObject = new Settings(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
+            settingsMenuObject = new Settings(Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
             creditsMenuObject = new Credits();
-            videoSettingsMenuObject = new VideoSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice);
+            videoSettingsMenuObject = new VideoSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
             if (videoSettingsMenuObject.toggleFullScreen)
                 graphics.ToggleFullScreen();
-            audioSettingsMenuObject = new AudioSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice);
+            audioSettingsMenuObject = new AudioSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
             flagSymbolTextures[0] = Content.Load<Texture2D>("Flag/Crown");
             flagSymbolTextures[1] = Content.Load<Texture2D>("Flag/Eagle");
             flagSymbolTextures[2] = Content.Load<Texture2D>("Flag/Cross");
@@ -174,7 +174,7 @@ namespace GalacticImperialism
             playerFlagTexture = new Texture2D(GraphicsDevice, 500, 300);
             playerFlagTexture.SetData<Color>(playerFlag.flagColorArray);
             playerUIObject = new PlayerUI(Content.Load<Texture2D>("Player UI/Bar"), playerFlagTexture, whiteTexture, Content.Load<Texture2D>("Player UI/Resource Icons/Iron"), Content.Load<Texture2D>("Player UI/Resource Icons/Uranium"), Content.Load<Texture2D>("Player UI/Resource Icons/Tungsten"), Content.Load<Texture2D>("Player UI/Resource Icons/Hydrogen"), Content.Load<Texture2D>("Player UI/Resource Icons/Nitrogen"), Content.Load<Texture2D>("Player UI/Resource Icons/Oxygen"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), GraphicsDevice, Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
-            multiplayerMenuObject = new Multiplayer(this);
+            multiplayerMenuObject = new Multiplayer(this, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
 
             //Creates TechTree
             techTree = new TechTree(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"));
@@ -321,7 +321,7 @@ namespace GalacticImperialism
             if(menuSelected == Menus.Settings)
             {
                 starBackgroundObject.Update();
-                settingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                settingsMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
                 if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
                     previousMenuSelected = menuSelected;
@@ -360,7 +360,7 @@ namespace GalacticImperialism
             if(menuSelected == Menus.VideoSettings)
             {
                 starBackgroundObject.Update();
-                videoSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                videoSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
                 if (videoSettingsMenuObject.toggleFullScreen && menuChangeOnFrame == false)
                     graphics.ToggleFullScreen();
                 if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
@@ -373,7 +373,7 @@ namespace GalacticImperialism
             if(menuSelected == Menus.Multiplayer)
             {
                 starBackgroundObject.Update();
-                multiplayerMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                multiplayerMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
 
                 if (multiplayerMenuObject.getJoin().isClicked)
                 {

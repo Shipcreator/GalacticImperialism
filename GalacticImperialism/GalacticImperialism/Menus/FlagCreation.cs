@@ -178,7 +178,7 @@ namespace GalacticImperialism
                     }
                     if (symbolChangingButtons[x].isSelected && symbolChangingButtons[x].wasSelected == false)
                     {
-                        symbolChangingButtons[x].playSelectedSoundEffect(masterVolume * soundEffectsVolume);
+                        symbolChangingButtons[x].playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
                     }
                 }
                 for (int x = 0; x < sliders.GetLength(0); x++)

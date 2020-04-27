@@ -31,7 +31,12 @@ namespace GalacticImperialism
         GraphicsDevice GraphicsDevice;
         Game game;
 
-        public Multiplayer(Game1 game)
+        float masterVolume;
+        float soundEffectsVolume;
+
+        SoundEffect buttonSelectedSoundEffect;
+
+        public Multiplayer(Game1 game, SoundEffect buttonSelectedSoundEffect)
         {
             this.game = game;
             fontOfTitle = game.Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point");
@@ -39,6 +44,7 @@ namespace GalacticImperialism
             selected = game.Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1");
             unselected = game.Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1");
             this.GraphicsDevice = game.GraphicsDevice;
+            this.buttonSelectedSoundEffect = buttonSelectedSoundEffect;
             Initialize();
         }
 
@@ -46,15 +52,23 @@ namespace GalacticImperialism
         {
             statusVector = new Vector2(50, 250);
             port = new TextBox(new Rectangle(50, 350, 150, 50), 1, 5, Color.Black, Color.White, Color.White, Color.White, GraphicsDevice, fontOfText);
-            join = new Button(new Rectangle(50, 450, 150, 50), unselected, selected, "Connect", fontOfText, Color.White, null, null);
-            designFlagButton = new Button(new Rectangle((game.GraphicsDevice.Viewport.Width / 2) - 200, game.GraphicsDevice.Viewport.Height - 200, 400, 100), unselected, selected, "Design Flag", fontOfText, Color.White, null, null);
+            join = new Button(new Rectangle(50, 450, 150, 50), unselected, selected, "Connect", fontOfText, Color.White, buttonSelectedSoundEffect, null);
+            designFlagButton = new Button(new Rectangle((game.GraphicsDevice.Viewport.Width / 2) - 200, game.GraphicsDevice.Viewport.Height - 200, 400, 100), unselected, selected, "Design Flag", fontOfText, Color.White, buttonSelectedSoundEffect, null);
+            masterVolume = 1.0f;
+            soundEffectsVolume = 1.0f;
         }
 
-        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse)
+        public void Update(KeyboardState kb, KeyboardState oldKb, MouseState mouse, MouseState oldMouse, float masterVolume, float soundEffectsVolume)
         {
+            this.masterVolume = masterVolume;
+            this.soundEffectsVolume = soundEffectsVolume;
             port.Update(mouse, oldMouse, kb, oldKb);
             join.Update(mouse, oldMouse);
+            if (join.isSelected && join.wasSelected == false)
+                join.playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
             designFlagButton.Update(mouse, oldMouse);
+            if (designFlagButton.isSelected && designFlagButton.wasSelected == false)
+                designFlagButton.playSelectedSoundEffect(this.masterVolume * this.soundEffectsVolume);
         }
 
         public void Draw(SpriteBatch spriteBatch)

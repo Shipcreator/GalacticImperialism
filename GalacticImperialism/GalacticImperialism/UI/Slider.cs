@@ -45,6 +45,11 @@ namespace GalacticImperialism
             cursorRect.X = (int)(((backgroundRect.Right - cursorRect.Width - backgroundRect.X) * temporaryPercentage) + backgroundRect.X);
         }
 
+        public void DeterminePercentage()
+        {
+            percentage = ((float)cursorRect.X - backgroundRect.X) / (backgroundRect.Right - cursorRect.Width - backgroundRect.X);
+        }
+
         public void Update(MouseState mouse, MouseState oldMouse)
         {
             if (mouse.X >= cursorRect.X && mouse.X <= cursorRect.Right && mouse.Y >= cursorRect.Y && mouse.Y <= cursorRect.Bottom && mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed && cursorMoving == false)
@@ -57,7 +62,7 @@ namespace GalacticImperialism
                 cursorRect.X = backgroundRect.X;
             if (cursorRect.Right > backgroundRect.Right)
                 cursorRect.X = backgroundRect.Right - cursorRect.Width;
-            percentage = ((float)cursorRect.X - backgroundRect.X) / (backgroundRect.Right - cursorRect.Width - backgroundRect.X);
+            DeterminePercentage();
         }
 
         public void Draw(SpriteBatch spriteBatch)
