@@ -15,7 +15,7 @@ namespace GalacticImperialism
 {
     /// <summary>
     /// This is the main type for your game
-    /// </summary>
+    /// </summary> 
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         public static Texture2D whiteCircle;
@@ -82,8 +82,8 @@ namespace GalacticImperialism
 
         bool menuChangeOnFrame;
 
-        UnitProduction unitProduction;
-        TechTree techTree;
+        public static UnitProduction unitProduction;
+        public static TechTree techTree;
 
         public static List<Texture2D> planetTex;
 
@@ -279,6 +279,7 @@ namespace GalacticImperialism
 
 
                     board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), newGameMenuObject.getPlayers() - (Game1.connection.getCon().ConnectionsCount + 1), startingGold); /////////////////////////////////////////////////////////////////////////////////////
+                    playerUIObject.InitBoard(board);
                     connection.SerializeData(board);
 
                     if (connection.getCon().ConnectionsCount > 0)
@@ -420,6 +421,7 @@ namespace GalacticImperialism
                         if (msg is Board)
                         {
                             board = (Board)msg;
+                            playerUIObject.InitBoard(board);
                         } else if (msg is int)
                         {
                             playerID = (int) msg;

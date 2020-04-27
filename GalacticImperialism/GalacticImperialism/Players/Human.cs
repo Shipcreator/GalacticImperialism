@@ -18,6 +18,7 @@ namespace GalacticImperialism
     {
         Planet selectedPlanet; //Used For Clicking On Planets
         List<Planet> nearbyPlanets; // All Planets within radius of selected Planet
+        public bool isMenuOpen;
 
         public Human(int startingGold, Board b) : base(startingGold, b)
         {

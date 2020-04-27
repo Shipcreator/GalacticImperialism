@@ -30,6 +30,8 @@ namespace GalacticImperialism
         Texture2D selectedButtonTexture;
         Texture2D unselectedButtonTexture;
 
+        Board board;
+
         Rectangle barRect;
         Rectangle flagRect;
         Rectangle ironResourceRect;
@@ -108,6 +110,11 @@ namespace GalacticImperialism
             techTreeButton.Update(mouse, oldMouse);
         }
 
+        public void InitBoard(Board b)
+        {
+            board = b;
+        }
+
         //Called When a Player Clicks on a Planet
         public static void drawPlanetMenu(Planet p)
         {
@@ -119,6 +126,7 @@ namespace GalacticImperialism
         public static void closeMenus()
         {
             planetMenu = false;
+            techMenu = false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
