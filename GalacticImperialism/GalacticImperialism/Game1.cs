@@ -53,7 +53,8 @@ namespace GalacticImperialism
             VideoSettings,
             Game,
             FlagCreation,
-            Multiplayer
+            Multiplayer,
+            TechTree
         }
 
         Menus menuSelected;
@@ -443,8 +444,25 @@ namespace GalacticImperialism
                 playerUIObject.nitrogenAmount = board.players[playerID].getResources()[2];
                 playerUIObject.oxygenAmount = board.players[playerID].getResources()[1];
                 playerUIObject.Update(playerFlagTexture, mouse, oldMouse);
+                if (playerUIObject.techTreeButton.isClicked)
+                {
+                    techTree.Open = true;
+                    menuSelected = Menus.TechTree;
+                    menuChangeOnFrame = true;
+                }
                 if (playerUIObject.endTurnButton.isClicked)
                     board.players[playerID].EndTurn();
+            }
+
+            if(menuSelected == Menus.TechTree)
+            {
+                techTree.Update(kb, oldKb, mouse, oldMouse);
+                if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                {
+                    techTree.Open = false;
+                    menuSelected = Menus.Game;
+                    menuChangeOnFrame = true;
+                }
             }
 
             //Updates Unit Production
@@ -470,7 +488,7 @@ namespace GalacticImperialism
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
-            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings || menuSelected == Menus.Game || menuSelected == Menus.FlagCreation || menuSelected == Menus.Multiplayer)
+            if (menuSelected == Menus.MainMenu || menuSelected == Menus.NewGame || menuSelected == Menus.Settings || menuSelected == Menus.Credits || menuSelected == Menus.AudioSettings || menuSelected == Menus.VideoSettings || menuSelected == Menus.Game || menuSelected == Menus.FlagCreation || menuSelected == Menus.Multiplayer || menuSelected == Menus.TechTree)
             {
                 spriteBatch.Draw(whiteTexture, wholeScreenRect, Color.Black);
                 starBackgroundObject.Draw(spriteBatch);
