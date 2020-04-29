@@ -60,6 +60,9 @@
     <PlatformTarget>x86</PlatformTarget>
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Lidgren.Network">
       <HintPath>..\GalacticImperialismContent\Lidgren.Network.dll</HintPath>
@@ -77,9 +80,11 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomSong.cs" />
     <Compile Include="FlagDataBase.cs" />
     <Compile Include="Game Pieces\Army.cs" />
     <Compile Include="Game Pieces\Ship.cs" />
+    <Compile Include="MusicPlayer.cs" />
     <Compile Include="UI\Line.cs" />
     <Compile Include="UI\Flag.cs" />
     <Compile Include="Menus\FlagCreation.cs" />

@@ -88,6 +88,8 @@ namespace GalacticImperialism
 
         public static List<Texture2D> planetTex;
 
+        MusicPlayer musicPlayerObject;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -138,6 +140,8 @@ namespace GalacticImperialism
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            musicPlayerObject = new MusicPlayer(@"Content/Songs/Song List.txt", Content, GraphicsDevice);
+
             whiteTexture = new Texture2D(GraphicsDevice, 1, 1);
             whiteTexture.SetData<Color>(new Color[] { Color.White });
 
@@ -468,6 +472,8 @@ namespace GalacticImperialism
             unitProduction.Update(kb, oldKb, mouse, oldMouse);
             //Update TechTree
             techTree.Update(kb, oldKb, mouse, oldMouse);
+
+            musicPlayerObject.Update(masterVolume, musicVolume);
 
             masterVolume = audioSettingsMenuObject.masterVolume;
             musicVolume = audioSettingsMenuObject.musicVolume;
