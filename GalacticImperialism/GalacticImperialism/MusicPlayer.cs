@@ -98,6 +98,7 @@ namespace GalacticImperialism
                             if (random != indexOfPreviousSong)
                             {
                                 songsQueued.Add(random);
+                                //Console.WriteLine(random);
                                 break;
                             }
                         }
@@ -111,6 +112,7 @@ namespace GalacticImperialism
                             if (canContinueWithRandom == false)
                                 continue;
                             songsQueued.Add(random);
+                            //Console.WriteLine(random);
                             break;
                         }
                     }
@@ -131,7 +133,13 @@ namespace GalacticImperialism
                         FillUpSongQueue();
                     }
                     MediaPlayer.Play(songList[songsQueued[0]].song);
+                    songsQueued.Remove(songsQueued[0]);
                 }
+                /*Console.WriteLine();
+                for(int x = 0; x < songsQueued.Count; x++)
+                {
+                    Console.WriteLine(songsQueued[x]);
+                }*/
             }
         }
     }
