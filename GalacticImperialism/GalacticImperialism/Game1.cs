@@ -167,7 +167,7 @@ namespace GalacticImperialism
             videoSettingsMenuObject = new VideoSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), GraphicsDevice, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
             if (videoSettingsMenuObject.toggleFullScreen)
                 graphics.ToggleFullScreen();
-            audioSettingsMenuObject = new AudioSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
+            audioSettingsMenuObject = new AudioSettings(Content.Load<Texture2D>("Button Textures/UnselectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/SelectedSaveSettingsButton"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"), Content.Load<Texture2D>("Slider Textures/500x20SelectionBarTexture"), Content.Load<Texture2D>("Slider Textures/PillSelectionCursor"), GraphicsDevice, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
             flagSymbolTextures[0] = Content.Load<Texture2D>("Flag/Crown");
             flagSymbolTextures[1] = Content.Load<Texture2D>("Flag/Eagle");
             flagSymbolTextures[2] = Content.Load<Texture2D>("Flag/Cross");
@@ -210,6 +210,7 @@ namespace GalacticImperialism
             masterVolume = audioSettingsMenuObject.masterVolume;
             musicVolume = audioSettingsMenuObject.musicVolume;
             soundEffectsVolume = audioSettingsMenuObject.soundEffectsVolume;
+            musicPlayerObject.newSongScroll = audioSettingsMenuObject.newSongScroll;
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
@@ -521,6 +522,7 @@ namespace GalacticImperialism
             }
             techTree.Draw(spriteBatch);
             unitProduction.Draw(spriteBatch);
+            musicPlayerObject.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

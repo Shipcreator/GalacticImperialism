@@ -43,6 +43,7 @@ namespace GalacticImperialism
         public void SetPercentage(float temporaryPercentage)     //Pass in a number from 0-1.
         {
             cursorRect.X = (int)(((backgroundRect.Right - cursorRect.Width - backgroundRect.X) * temporaryPercentage) + backgroundRect.X);
+            DeterminePercentage();
         }
 
         public void DeterminePercentage()

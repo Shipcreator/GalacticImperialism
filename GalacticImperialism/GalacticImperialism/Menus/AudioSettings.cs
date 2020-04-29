@@ -37,16 +37,23 @@ namespace GalacticImperialism
         int readFileLineNumber;
 
         Button saveSettingsButton;
+        Button newSongScrollButton;
+
+        public bool newSongScroll;
 
         Texture2D unselectedSaveSettingsButtonTexture;
         Texture2D selectedSaveSettingsButtonTexture;
+        Texture2D unselectedButtonTexture;
+        Texture2D selectedButtonTexture;
 
         SoundEffect buttonSelectedSoundEffect;
 
-        public AudioSettings(Texture2D unselectedSaveSettingsButtonTexture, Texture2D selectedSaveSettingsButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, Texture2D sliderBackgroundTexture, Texture2D sliderCursorTexture, GraphicsDevice GraphicsDevice, SoundEffect buttonSelectedSoundEffect)
+        public AudioSettings(Texture2D unselectedSaveSettingsButtonTexture, Texture2D selectedSaveSettingsButtonTexture, Texture2D unselectedButtonTexture, Texture2D selectedButtonTexture, SpriteFont buttonFont, SpriteFont titleFont, Texture2D sliderBackgroundTexture, Texture2D sliderCursorTexture, GraphicsDevice GraphicsDevice, SoundEffect buttonSelectedSoundEffect)
         {
             this.unselectedSaveSettingsButtonTexture = unselectedSaveSettingsButtonTexture;
             this.selectedSaveSettingsButtonTexture = selectedSaveSettingsButtonTexture;
+            this.unselectedButtonTexture = unselectedButtonTexture;
+            this.selectedButtonTexture = selectedButtonTexture;
             fontOfButtons = buttonFont;
             fontOfTitle = titleFont;
             this.sliderBackgroundTexture = sliderBackgroundTexture;
@@ -58,11 +65,16 @@ namespace GalacticImperialism
 
         public void Initialize()
         {
+            newSongScroll = true;
+            masterVolume = 1.0f;
+            soundEffectsVolume = 1.0f;
+            musicVolume = 1.0f;
             titleText = "Audio Settings";
             masterVolumeSlider = new Slider(new Rectangle(900, 325, 500, 20), new Vector2(15, 30), sliderBackgroundTexture, sliderCursorTexture);
             musicVolumeSlider = new Slider(new Rectangle(900, 425, 500, 20), new Vector2(15, 30), sliderBackgroundTexture, sliderCursorTexture);
             soundEffectsVolumeSlider = new Slider(new Rectangle(900, 525, 500, 20), new Vector2(15, 30), sliderBackgroundTexture, sliderCursorTexture);
             saveSettingsButton = new Button(new Rectangle(100, GraphicsDevice.Viewport.Height - 150, 100, 100), unselectedSaveSettingsButtonTexture, selectedSaveSettingsButtonTexture, "", fontOfButtons, Color.White, buttonSelectedSoundEffect, null);
+            newSongScrollButton = new Button(new Rectangle(450, 600, (1894 / 4), (693 / 4)), unselectedButtonTexture, selectedButtonTexture, "New Song Scroll: On", fontOfButtons, Color.White, buttonSelectedSoundEffect, null);
             readFileLineNumber = 0;
             ReadSettings(@"Content/Saved Settings/Audio Settings.txt");
         }
@@ -78,21 +90,25 @@ namespace GalacticImperialism
                         string line = reader.ReadLine();
                         if (readFileLineNumber == 0)
                         {
-                            masterVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(27, line.Length - 27));
-                            masterVolumeSlider.DeterminePercentage();
+                            masterVolumeSlider.SetPercentage(Convert.ToInt32(line.Substring(line.IndexOf('=') + 2, line.Length - (line.IndexOf('=') + 2))) / 100.0f);
                             masterVolume = masterVolumeSlider.percentage;
                         }
                         if(readFileLineNumber == 1)
                         {
-                            musicVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(26, line.Length - 26));
-                            musicVolumeSlider.DeterminePercentage();
+                            musicVolumeSlider.SetPercentage(Convert.ToInt32(line.Substring(line.IndexOf('=') + 2, line.Length - (line.IndexOf('=') + 2))) / 100.0f);
                             musicVolume = musicVolumeSlider.percentage;
                         }
                         if (readFileLineNumber == 2)
                         {
-                            soundEffectsVolumeSlider.cursorRect.X = Convert.ToInt32(line.Substring(33, line.Length - 33));
-                            soundEffectsVolumeSlider.DeterminePercentage();
+                            soundEffectsVolumeSlider.SetPercentage(Convert.ToInt32(line.Substring(line.IndexOf('=') + 2, line.Length - (line.IndexOf('=') + 2))) / 100.0f);
                             soundEffectsVolume = soundEffectsVolumeSlider.percentage;
+                        }
+                        if(readFileLineNumber == 3)
+                        {
+                            if (line.Contains("true"))
+                                newSongScroll = true;
+                            if (line.Contains("false"))
+                                newSongScroll = false;
                         }
                         readFileLineNumber++;
                     }
@@ -108,9 +124,13 @@ namespace GalacticImperialism
         private void WriteSettings(string path)
         {
             StreamWriter myFileOut = new StreamWriter(path, false);
-            myFileOut.WriteLine("masterVolumeCursorRect.X = " + masterVolumeSlider.cursorRect.X);
-            myFileOut.WriteLine("musicVolumeCursorRect.X = " + musicVolumeSlider.cursorRect.X);
-            myFileOut.WriteLine("soundEffectsVolumeCursorRect.X = " + soundEffectsVolumeSlider.cursorRect.X);
+            myFileOut.WriteLine("masterVolumeCursorRect.percentage = " + (int)(masterVolumeSlider.percentage * 100));
+            myFileOut.WriteLine("musicVolumeCursorRect.X = " + (int)(musicVolumeSlider.percentage * 100));
+            myFileOut.WriteLine("soundEffectsVolumeCursorRect.X = " + (int)(soundEffectsVolumeSlider.percentage * 100));
+            if (newSongScroll)
+                myFileOut.WriteLine("newSongScroll = true");
+            else
+                myFileOut.WriteLine("newSongScroll = false");
             myFileOut.Close();
         }
 
@@ -127,6 +147,15 @@ namespace GalacticImperialism
                 saveSettingsButton.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
             if (saveSettingsButton.isClicked)
                 WriteSettings(@"Content/Saved Settings/Audio Settings.txt");
+            newSongScrollButton.Update(mouse, oldMouse);
+            if (newSongScrollButton.isSelected && newSongScrollButton.wasSelected == false)
+                newSongScrollButton.playSelectedSoundEffect(masterVolume * soundEffectsVolume);
+            if (newSongScrollButton.isClicked)
+                newSongScroll = !newSongScroll;
+            if (newSongScroll)
+                newSongScrollButton.buttonText = "New Song Scroll: On";
+            else
+                newSongScrollButton.buttonText = "New Song Scroll: Off";
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -147,6 +176,7 @@ namespace GalacticImperialism
             saveSettingsButton.Draw(spriteBatch);
             textSize = fontOfButtons.MeasureString("Save");
             spriteBatch.DrawString(fontOfButtons, "Save", new Vector2(150 - (textSize.X / 2), GraphicsDevice.Viewport.Height - textSize.Y), Color.White);
+            newSongScrollButton.Draw(spriteBatch);
         }
     }
 }

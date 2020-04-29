@@ -18,7 +18,8 @@ namespace GalacticImperialism
     {
         enum NewSongDeterminationMode
         {
-            Shuffle
+            Shuffle,
+            Random
         }
         NewSongDeterminationMode mode;
 
@@ -37,7 +38,17 @@ namespace GalacticImperialism
         Random rnd;
 
         int random;
+        int newSongScrollSpeed;
+
         bool canContinueWithRandom;
+        public bool newSongScroll;
+
+        string newSongScrollText;
+
+        Vector2 textSize;
+        Vector2 textPosition;
+
+        SpriteFont newSongScrollFont;
 
         public MusicPlayer(string textFilePath, ContentManager Content, GraphicsDevice GraphicsDevice)
         {
@@ -52,11 +63,17 @@ namespace GalacticImperialism
             mode = NewSongDeterminationMode.Shuffle;
             songList = new List<CustomSong>();
             songsQueued = new List<int>();
-            indexOfSongPlaying = 0;
-            indexOfPreviousSong = 0;
+            indexOfSongPlaying = -1;
+            indexOfPreviousSong = -1;
             random = 0;
+            newSongScrollSpeed = 6;
             canContinueWithRandom = true;
+            newSongScroll = true;
+            newSongScrollText = "";
+            textSize = new Vector2(0, 0);
+            textPosition = new Vector2(0, 0);
             rnd = new Random();
+            newSongScrollFont = Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point");
             ReadInSongs();
         }
 
@@ -133,14 +150,34 @@ namespace GalacticImperialism
                         FillUpSongQueue();
                     }
                     MediaPlayer.Play(songList[songsQueued[0]].song);
+                    newSongScrollText = songList[songsQueued[0]].songName + " - " + songList[songsQueued[0]].songCredits;
                     songsQueued.Remove(songsQueued[0]);
                 }
-                /*Console.WriteLine();
-                for(int x = 0; x < songsQueued.Count; x++)
+                if(mode == NewSongDeterminationMode.Random)
                 {
-                    Console.WriteLine(songsQueued[x]);
-                }*/
+                    for(int x = 0; x > -1; x++)
+                    {
+                        random = rnd.Next(0, songList.Count);
+                        if(random != indexOfPreviousSong)
+                        {
+                            MediaPlayer.Play(songList[random].song);
+                            newSongScrollText = songList[random].songName + " - " + songList[random].songCredits;
+                            break;
+                        }
+                    }
+                }
+                textSize = newSongScrollFont.MeasureString(newSongScrollText);
+                textPosition.X = GraphicsDevice.Viewport.Width;
+                textPosition.Y = 0;
             }
+            if (textPosition.X > textSize.X * -1)
+                textPosition.X -= newSongScrollSpeed;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            if (newSongScroll == true)
+                spriteBatch.DrawString(newSongScrollFont, newSongScrollText, textPosition, Color.White);
         }
     }
 }
