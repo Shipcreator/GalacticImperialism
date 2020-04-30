@@ -33,7 +33,7 @@ namespace GalacticImperialism
         //Data base of flags that links them to a player ID
         public FlagDataBase flagDataBaseObject;
         //Current Turn
-        int turn;
+        public int turn;
 
         //Creates Board, Assigns Texture Objects
         public Board(int r)

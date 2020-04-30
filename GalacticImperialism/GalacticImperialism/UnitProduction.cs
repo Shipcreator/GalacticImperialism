@@ -12,7 +12,7 @@ using System.IO;
 
 namespace GalacticImperialism
 {
-    class UnitProduction
+    public class UnitProduction
     {
         private List<object> productionQueue;
         private int production;

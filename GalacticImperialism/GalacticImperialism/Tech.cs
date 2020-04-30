@@ -12,7 +12,7 @@ using System.IO;
 
 namespace GalacticImperialism
 {
-    class Tech
+    public class Tech
     {
         String Name;//What is the tech
         String Txt;//What prints when the tech is clicked to tell the player what the tech does

@@ -29,8 +29,12 @@ namespace GalacticImperialism
         {
             base.Update(gt);
 
-            if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
-                MouseClick(new Vector2(mb.X, mb.Y));
+            if (Game1.menuSelected == Game1.Menus.Game)
+            {
+                if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
+                    MouseClick(new Vector2(mb.X, mb.Y));
+
+            }
 
             if (nearbyPlanets != null)
             {

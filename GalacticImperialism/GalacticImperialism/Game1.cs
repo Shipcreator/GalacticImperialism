@@ -43,7 +43,7 @@ namespace GalacticImperialism
 
         Flag playerFlag;
 
-        enum Menus
+        public enum Menus
         {
             MainMenu,
             NewGame,
@@ -57,8 +57,8 @@ namespace GalacticImperialism
             TechTree
         }
 
-        Menus menuSelected;
-        Menus previousMenuSelected;
+        public static Menus menuSelected;
+        public static Menus previousMenuSelected;
 
         MainMenu mainMenuObject;
         NewGame newGameMenuObject;
@@ -458,7 +458,12 @@ namespace GalacticImperialism
                     menuChangeOnFrame = true;
                 }
                 if (playerUIObject.endTurnButton.isClicked)
-                    board.players[playerID].EndTurn();
+                {
+                    if (board.turn == playerID)
+                    {
+                        board.players[playerID].EndTurn();
+                    }
+                }
             }
 
             if(menuSelected == Menus.TechTree)
