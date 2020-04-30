@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -21,7 +20,7 @@ namespace GalacticImperialism
         Texture2D pixel;
         Vector2 p1, p2; //this will be the position in the center of the line
         int length, thickness; //length and thickness of the line, or width and height of rectangle
-        Rectangle rect; //where the line will be drawn
+        public Rectangle rect; //where the line will be drawn
         float rotation; // rotation of the line, with axis at the center of the line
         Color color;
 

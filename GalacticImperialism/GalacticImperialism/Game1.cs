@@ -75,7 +75,7 @@ namespace GalacticImperialism
 
         List<Color> listOfStarColors;
 
-        Texture2D whiteTexture;
+        public static Texture2D whiteTexture;
         Texture2D[] flagSymbolTextures;
         Texture2D playerFlagTexture;
 
@@ -459,6 +459,8 @@ namespace GalacticImperialism
                 }
                 if (playerUIObject.endTurnButton.isClicked)
                 {
+                    Console.WriteLine(board.turn);
+                    Console.WriteLine(playerID);
                     if (board.turn == playerID)
                     {
                         board.players[playerID].EndTurn();

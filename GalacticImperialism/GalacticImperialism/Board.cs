@@ -91,18 +91,10 @@ namespace GalacticImperialism
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
 
-                Ship shiptemp = new Ship(2, 2, 2, 5, "Basic");
-                players[0].ownedPlanets[0].planetShips.Add(shiptemp);
-                players[0].ships.Add(shiptemp);////////////////////////////////////////Test Ships
-
                 //Create Planet Two
                 temp = new Planet(rand.Next(0, 19), new Vector2(1860, 1020));
                 planets.Add(temp);
                 players[1].AddPlanet(temp);
-
-                shiptemp = new Ship(2, 2, 2, 5, "Basic");
-                players[1].ownedPlanets[0].planetShips.Add(shiptemp);//////////////////////////////////////////////Test Ships
-                players[1].ships.Add(shiptemp);
             }
             if (p >= 3)
             {

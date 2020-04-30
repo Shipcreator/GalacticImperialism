@@ -17,8 +17,6 @@ namespace GalacticImperialism
     class Human : Player
     {
         Planet selectedPlanet; //Used For Clicking On Planets
-        List<Planet> nearbyPlanets; // All Planets within radius of selected Planet
-        public bool isMenuOpen;
 
         public Human(int startingGold, Board b) : base(startingGold, b)
         {
@@ -28,16 +26,12 @@ namespace GalacticImperialism
         public void Update(GameTime gt, MouseState mb, KeyboardState kb, MouseState oldms, KeyboardState oldkb)
         {
             base.Update(gt);
-
+            
+            //Detects Click on board only
             if (Game1.menuSelected == Game1.Menus.Game)
             {
                 if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
                     MouseClick(new Vector2(mb.X, mb.Y));
-
-            }
-
-            if (nearbyPlanets != null)
-            {
 
             }
         }
@@ -53,8 +47,7 @@ namespace GalacticImperialism
                 if (mouse.Intersects(planetRect))
                 {
                     selectedPlanet = ownedPlanets[i];
-                    PlayerUI.drawPlanetMenu(selectedPlanet);
-                    nearbyPlanets = NearbyPlanets(selectedPlanet);
+                    PlayerUI.drawPlanetMenu(selectedPlanet, NearbyPlanets(selectedPlanet));
                     break;
                 }
             }

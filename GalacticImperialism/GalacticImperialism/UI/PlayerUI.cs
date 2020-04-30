@@ -51,6 +51,9 @@ namespace GalacticImperialism
         //Tech Tree Menu
         static bool techMenu;
 
+        //Lines
+        static List<Line> lines = new List<Line>();
+
         GraphicsDevice GraphicsDevice;
 
         public int ironAmount;
@@ -105,6 +108,10 @@ namespace GalacticImperialism
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse)
         {
+            foreach (Line line in lines)
+            {
+                line.Update();
+            }
             flagTexture = playerFlagTexture;
             endTurnButton.Update(mouse, oldMouse);
             techTreeButton.Update(mouse, oldMouse);
@@ -116,11 +123,24 @@ namespace GalacticImperialism
         }
 
         //Called When a Player Clicks on a Planet
-        public static void drawPlanetMenu(Planet p)
+        public static void drawPlanetMenu(Planet p, List<Planet> nearby)
         {
             currentPlanet = p;
             selection = new Rectangle((int)p.position.X - (int)(p.size * 2.5), (int)p.position.Y - (int)(p.size * 2.5), p.size * 30, p.size * 30);
+            nearbyPlanetLines(nearby);
             planetMenu = true;
+        }
+
+        private static void nearbyPlanetLines(List<Planet> nearby)
+        {
+            lines = new List<Line>();
+            foreach (Planet p in nearby)
+            {
+                Vector2 temp1 = new Vector2(currentPlanet.position.X + ((currentPlanet.size * 25) /2), currentPlanet.position.Y + ((currentPlanet.size * 25) / 2));
+                Vector2 temp2 = new Vector2(p.position.X + ((p.size * 25) / 2), p.position.Y + ((p.size * 25) / 2));
+                Line temp = new Line(temp1, temp2, 3, Color.White * .25f, Game1.whiteTexture);
+                lines.Add(temp);
+            }
         }
 
         public static void closeMenus()
@@ -131,6 +151,7 @@ namespace GalacticImperialism
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
             spriteBatch.Draw(barTexture, barRect, Color.White);
             spriteBatch.Draw(flagTexture, flagRect, Color.White);
             //spriteBatch.Draw(whiteTexture, ironResourceRect, Color.Black);
@@ -162,6 +183,10 @@ namespace GalacticImperialism
 
             if (planetMenu == true)
             {
+                foreach (Line line in lines)
+                {
+                    line.Draw(spriteBatch);
+                }
                 spriteBatch.Draw(Game1.whiteCircle, selection, Color.White * 0.25f);
                 spriteBatch.DrawString(Arial15, currentPlanet.planetShips.Count.ToString(), new Vector2(500,500), Color.White);
             }
