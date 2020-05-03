@@ -66,6 +66,11 @@ namespace GalacticImperialism
         public Button endTurnButton;
         public Button techTreeButton;
 
+        public List<string> PlanetNames;
+        public List<Rectangle> PlanetRectangles;
+
+        Vector2 textSize;
+
         public PlayerUI(Texture2D topBarTexture, Texture2D flagTexture, Texture2D whiteTexture, Texture2D ironTexture, Texture2D uraniumTexture, Texture2D tungstenTexture, Texture2D hydrogenTexture, Texture2D nitrogenTexture, Texture2D oxygenTexture, Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, GraphicsDevice GraphicsDevice, SpriteFont arial15)
         {
             barTexture = topBarTexture;
@@ -102,8 +107,11 @@ namespace GalacticImperialism
             hydrogenAmount = 0;
             nitrogenAmount = 0;
             oxygenAmount = 0;
+            textSize = new Vector2(0, 0);
             endTurnButton = new Button(new Rectangle(1755, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "End Turn", Arial15, Color.White, null, null);
             techTreeButton = new Button(new Rectangle(1605, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Tech Tree", Arial15, Color.White, null, null);
+            PlanetNames = new List<string>();
+            PlanetRectangles = new List<Rectangle>();
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse)
@@ -189,6 +197,12 @@ namespace GalacticImperialism
                 }
                 spriteBatch.Draw(Game1.whiteCircle, selection, Color.White * 0.25f);
                 spriteBatch.DrawString(Arial15, currentPlanet.planetShips.Count.ToString(), new Vector2(500,500), Color.White);
+            }
+
+            for(int x = 0; x < PlanetNames.Count; x++)
+            {
+                textSize = Arial15.MeasureString(PlanetNames[x]);
+                spriteBatch.DrawString(Arial15, PlanetNames[x], new Vector2(PlanetRectangles[x].Center.X - (textSize.X / 2), PlanetRectangles[x].Bottom), Color.White);
             }
         }
     }

@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using GalacticImperialism.Networking;
 using Lidgren.Network;
+using System.IO;
 
 namespace GalacticImperialism
 {
@@ -35,6 +36,13 @@ namespace GalacticImperialism
         //Current Turn
         public int turn;
 
+        //List of all planet names, named loaded in from a text file.
+        List<string> planetNames;
+        //List of all indexes of the planetNames list that has already been applied to a planet.
+        List<int> planetNamesUsedIndexes;
+        int randomPlanetNumber;
+        bool breakLoop;
+
         //Creates Board, Assigns Texture Objects
         public Board(int r)
         {
@@ -44,6 +52,12 @@ namespace GalacticImperialism
         //Creates A New Board(Assume numOfBots < numOfPlayers)
         public void NewBoard(int numPlanets, int seed, int numOfPlayers, int numOfBots, int gold)
         {
+            planetNames = new List<string>();
+            planetNamesUsedIndexes = new List<int>();
+            randomPlanetNumber = 0;
+            breakLoop = true;
+            ReadInPlanetNames(@"Content/Planets/Planet Names.txt");
+
             turn = 0;
             players = new List<Player>(); //Resets Players
             numBots = numOfBots;
@@ -65,6 +79,26 @@ namespace GalacticImperialism
             flagDataBaseObject = new FlagDataBase();
         }
 
+        private void ReadInPlanetNames(string path)
+        {
+            try
+            {
+                using(StreamReader reader = new StreamReader(path))
+                {
+                    while (!reader.EndOfStream)
+                    {
+                        string line = reader.ReadLine();
+                        planetNames.Add(line);
+                    }
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("The planet names file could not be read: ");
+                Console.WriteLine(e.Message);
+            }
+        }
+
         //Creates Basic Planet
         private void CreatePlanet()
         {
@@ -77,7 +111,25 @@ namespace GalacticImperialism
                 pos = new Vector2(rand.Next(1860), rand.Next(75,1000));
             } while (CheckPos(pos) == false); //Checks Distance
 
-            Planet temp = new Planet(size, rand.Next(0, 19), pos, AssignResources()); //Creates and Adds Planet to List
+            if (planetNamesUsedIndexes.Count > 0)
+            {
+                for (int x = 0; x > -1; x++)
+                {
+                    breakLoop = true;
+                    randomPlanetNumber = rand.Next(0, planetNames.Count);
+                    for (int y = 0; y < planetNamesUsedIndexes.Count; y++)
+                    {
+                        if (planetNamesUsedIndexes[y] == randomPlanetNumber)
+                            breakLoop = false;
+                    }
+                    if (breakLoop)
+                        break;
+                }
+            }
+            else
+                randomPlanetNumber = rand.Next(0, planetNames.Count);
+            planetNamesUsedIndexes.Add(randomPlanetNumber);
+            Planet temp = new Planet(size, rand.Next(0, 19), planetNames[randomPlanetNumber], pos, AssignResources()); //Creates and Adds Planet to List
             planets.Add(temp);
         }
 
@@ -87,26 +139,98 @@ namespace GalacticImperialism
             if (p >= 2)
             {
                 //Create Planet One
-                Planet temp = new Planet(rand.Next(0,19), new Vector2(10, 75));
+                if (planetNamesUsedIndexes.Count > 0)
+                {
+                    for (int x = 0; x > -1; x++)
+                    {
+                        breakLoop = true;
+                        randomPlanetNumber = rand.Next(0, planetNames.Count);
+                        for (int y = 0; y < planetNamesUsedIndexes.Count; y++)
+                        {
+                            if (planetNamesUsedIndexes[y] == randomPlanetNumber)
+                                breakLoop = false;
+                        }
+                        if (breakLoop)
+                            break;
+                    }
+                }
+                else
+                    randomPlanetNumber = rand.Next(0, planetNames.Count);
+                planetNamesUsedIndexes.Add(randomPlanetNumber);
+                Planet temp = new Planet(rand.Next(0,19), planetNames[randomPlanetNumber], new Vector2(10, 75));
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
 
                 //Create Planet Two
-                temp = new Planet(rand.Next(0, 19), new Vector2(1860, 1020));
+                if (planetNamesUsedIndexes.Count > 0)
+                {
+                    for (int x = 0; x > -1; x++)
+                    {
+                        breakLoop = true;
+                        randomPlanetNumber = rand.Next(0, planetNames.Count);
+                        for (int y = 0; y < planetNamesUsedIndexes.Count; y++)
+                        {
+                            if (planetNamesUsedIndexes[y] == randomPlanetNumber)
+                                breakLoop = false;
+                        }
+                        if (breakLoop)
+                            break;
+                    }
+                }
+                else
+                    randomPlanetNumber = rand.Next(0, planetNames.Count);
+                planetNamesUsedIndexes.Add(randomPlanetNumber);
+                temp = new Planet(rand.Next(0, 19), planetNames[randomPlanetNumber], new Vector2(1860, 1020));
                 planets.Add(temp);
                 players[1].AddPlanet(temp);
             }
             if (p >= 3)
             {
                 //Create Planet Three
-                Planet temp = new Planet(rand.Next(0, 19), new Vector2(1860, 75));
+                if (planetNamesUsedIndexes.Count > 0)
+                {
+                    for (int x = 0; x > -1; x++)
+                    {
+                        breakLoop = true;
+                        randomPlanetNumber = rand.Next(0, planetNames.Count);
+                        for (int y = 0; y < planetNamesUsedIndexes.Count; y++)
+                        {
+                            if (planetNamesUsedIndexes[y] == randomPlanetNumber)
+                                breakLoop = false;
+                        }
+                        if (breakLoop)
+                            break;
+                    }
+                }
+                else
+                    randomPlanetNumber = rand.Next(0, planetNames.Count);
+                planetNamesUsedIndexes.Add(randomPlanetNumber);
+                Planet temp = new Planet(rand.Next(0, 19), planetNames[randomPlanetNumber], new Vector2(1860, 75));
                 planets.Add(temp);
                 players[2].AddPlanet(temp);
             }
             if (p == 4)
             {
                 //Create Planet Four
-                Planet temp = new Planet(rand.Next(0, 19), new Vector2(10, 1020));
+                if (planetNamesUsedIndexes.Count > 0)
+                {
+                    for (int x = 0; x > -1; x++)
+                    {
+                        breakLoop = true;
+                        randomPlanetNumber = rand.Next(0, planetNames.Count);
+                        for (int y = 0; y < planetNamesUsedIndexes.Count; y++)
+                        {
+                            if (planetNamesUsedIndexes[y] == randomPlanetNumber)
+                                breakLoop = false;
+                        }
+                        if (breakLoop)
+                            break;
+                    }
+                }
+                else
+                    randomPlanetNumber = rand.Next(0, planetNames.Count);
+                planetNamesUsedIndexes.Add(randomPlanetNumber);
+                Planet temp = new Planet(rand.Next(0, 19), planetNames[randomPlanetNumber], new Vector2(10, 1020));
                 planets.Add(temp);
                 players[3].AddPlanet(temp);
             }

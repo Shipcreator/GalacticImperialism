@@ -450,6 +450,15 @@ namespace GalacticImperialism
                 playerUIObject.hydrogenAmount = board.players[playerID].getResources()[0];
                 playerUIObject.nitrogenAmount = board.players[playerID].getResources()[2];
                 playerUIObject.oxygenAmount = board.players[playerID].getResources()[1];
+                if(playerUIObject.PlanetNames.Count > 0)
+                    playerUIObject.PlanetNames.Clear();
+                if(playerUIObject.PlanetRectangles.Count > 0)
+                    playerUIObject.PlanetRectangles.Clear();
+                for(int x = 0; x < board.planets.Count; x++)
+                {
+                    playerUIObject.PlanetNames.Add(board.planets[x].planetName);
+                    playerUIObject.PlanetRectangles.Add(new Rectangle((int)board.planets[x].position.X, (int)board.planets[x].position.Y, board.planets[x].size * 25, board.planets[x].size * 25));
+                }
                 playerUIObject.Update(playerFlagTexture, mouse, oldMouse);
                 if (playerUIObject.techTreeButton.isClicked)
                 {

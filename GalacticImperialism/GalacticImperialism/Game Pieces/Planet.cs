@@ -16,25 +16,28 @@ namespace GalacticImperialism
     {
         //Planet Attributes
         public int size;
+        public string planetName;
         public Vector2 position;
         public List<string> resources = new List<string>(); //Holds Resources
         public int texID; //Texture for the Planet
         public List<Ship> planetShips = new List<Ship>();
 
         //Create Base Planets
-        public Planet(int s, int t, Vector2 p, List<string> r)
+        public Planet(int s, int t, string n, Vector2 p, List<string> r)
         {
             size = s;
             texID = t;
+            planetName = n;
             position = p;
             resources = r;
         }
 
         //Create Starting Planet
-        public Planet(int t, Vector2 p)
+        public Planet(int t, string n, Vector2 p)
         {
             size = 2;
             texID = t;
+            planetName = n;
             position = p;
             resources.Add("iron"); resources.Add("hydrogen");
         }
