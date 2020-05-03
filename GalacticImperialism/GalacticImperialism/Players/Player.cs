@@ -22,12 +22,15 @@ namespace GalacticImperialism
 
         protected Board board; // Holds Current Board
 
+        public Color empireColor;
+
         //Creates Base Player
-        public Player(int startingGold, Board b)
+        public Player(int startingGold, Board b, Vector3 playerEmpireColor)
         {
             gold = startingGold;
             science = hydrogen = oxygen = nitrogen = iron = tungsten = uranium = 0;
             board = b;
+            empireColor = new Color((int)playerEmpireColor.X, (int)playerEmpireColor.Y, (int)playerEmpireColor.Z);
         }
 
 

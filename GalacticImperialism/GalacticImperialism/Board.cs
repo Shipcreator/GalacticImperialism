@@ -58,16 +58,17 @@ namespace GalacticImperialism
             breakLoop = true;
             ReadInPlanetNames(@"Content/Planets/Planet Names.txt");
 
+            rand = new Random(seed); //Resets Random with New Seed
+
             turn = 0;
             players = new List<Player>(); //Resets Players
             numBots = numOfBots;
 
             for (int i = 0; i < numOfBots; i++)
-                players.Add(new Computer(gold, this));
+                players.Add(new Computer(gold, this, new Vector3(rand.Next(100, 256), rand.Next(100, 256), rand.Next(100, 256))));
             for (int i = 0; i < numOfPlayers - numOfBots; i++)
-                players.Add(new Human(gold, this));
+                players.Add(new Human(gold, this, new Vector3(rand.Next(100, 256), rand.Next(100, 256), rand.Next(100, 256))));
 
-            rand = new Random(seed); //Resets Random with New Seed
             do
             {
                 planets = new List<Planet>(); //Resets Planets Object

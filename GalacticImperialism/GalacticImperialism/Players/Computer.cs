@@ -15,7 +15,7 @@ namespace GalacticImperialism
 {
     [Serializable] class Computer : Player
     {
-        public Computer(int startingGold, Board b) : base(startingGold, b)
+        public Computer(int startingGold, Board b, Vector3 empireColor) : base(startingGold, b, empireColor)
         {
 
         }

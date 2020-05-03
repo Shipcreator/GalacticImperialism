@@ -68,6 +68,10 @@ namespace GalacticImperialism
 
         public List<string> PlanetNames;
         public List<Rectangle> PlanetRectangles;
+        public List<Player> playerList;
+        Rectangle temporaryPlanetRect;
+        public List<Vector2> positionsDrawnAlready;
+        bool skipPlanet;
 
         Vector2 textSize;
 
@@ -112,6 +116,10 @@ namespace GalacticImperialism
             techTreeButton = new Button(new Rectangle(1605, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Tech Tree", Arial15, Color.White, null, null);
             PlanetNames = new List<string>();
             PlanetRectangles = new List<Rectangle>();
+            playerList = new List<Player>();
+            temporaryPlanetRect = new Rectangle(0, 0, 0, 0);
+            positionsDrawnAlready = new List<Vector2>();
+            skipPlanet = false;
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse)
@@ -123,6 +131,8 @@ namespace GalacticImperialism
             flagTexture = playerFlagTexture;
             endTurnButton.Update(mouse, oldMouse);
             techTreeButton.Update(mouse, oldMouse);
+            if (positionsDrawnAlready.Count > 0)
+                positionsDrawnAlready.Clear();
         }
 
         public void InitBoard(Board b)
@@ -199,9 +209,28 @@ namespace GalacticImperialism
                 spriteBatch.DrawString(Arial15, currentPlanet.planetShips.Count.ToString(), new Vector2(500,500), Color.White);
             }
 
-            for(int x = 0; x < PlanetNames.Count; x++)
+            for(int x = 0; x < playerList.Count; x++)
             {
+                for(int y = 0; y < playerList[x].ownedPlanets.Count; y++)
+                {
+                    textSize = Arial15.MeasureString(playerList[x].ownedPlanets[y].planetName);
+                    temporaryPlanetRect = new Rectangle((int)playerList[x].ownedPlanets[y].position.X, (int)playerList[x].ownedPlanets[y].position.Y, playerList[x].ownedPlanets[y].size * 25, playerList[x].ownedPlanets[y].size * 25);
+                    spriteBatch.DrawString(Arial15, playerList[x].ownedPlanets[y].planetName, new Vector2(temporaryPlanetRect.Center.X - (textSize.X / 2), temporaryPlanetRect.Bottom), playerList[x].empireColor);
+                    positionsDrawnAlready.Add(new Vector2(temporaryPlanetRect.Center.X - (textSize.X / 2), temporaryPlanetRect.Bottom));
+                }
+            }
+
+            for (int x = 0; x < PlanetNames.Count; x++)
+            {
+                skipPlanet = false;
                 textSize = Arial15.MeasureString(PlanetNames[x]);
+                for(int y = 0; y < positionsDrawnAlready.Count; y++)
+                {
+                    if (new Vector2(PlanetRectangles[x].Center.X - (textSize.X / 2), PlanetRectangles[x].Bottom) == positionsDrawnAlready[y])
+                        skipPlanet = true;
+                }
+                if (skipPlanet)
+                    continue;
                 spriteBatch.DrawString(Arial15, PlanetNames[x], new Vector2(PlanetRectangles[x].Center.X - (textSize.X / 2), PlanetRectangles[x].Bottom), Color.White);
             }
         }
