@@ -180,6 +180,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sprite Fonts\Castellar15Point.spritefont">
+      <Name>Castellar15Point</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
     <None Include="Saved Settings\Audio Settings.txt">
       <Name>Audio Settings</Name>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

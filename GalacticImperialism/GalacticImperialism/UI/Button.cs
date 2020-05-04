@@ -14,7 +14,7 @@ namespace GalacticImperialism
 {
     public class Button
     {
-        Rectangle buttonRect;       //This rectangle will be the rectangle that sets the dimensions of the button and will have its values passed in via the constructor.
+        public Rectangle buttonRect;       //This rectangle will be the rectangle that sets the dimensions of the button and will have its values passed in via the constructor.
 
         public bool isClicked;      //Boolean that will say if the button was clicked on each update.
         public bool isSelected;     //Boolean that will say if the mouse is hovering over the button on each update.

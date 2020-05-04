@@ -44,6 +44,8 @@ namespace GalacticImperialism
         static Rectangle selection;
 
         SpriteFont Arial15;
+        SpriteFont Castellar15;
+        SpriteFont Castellar20;
 
         //Planet Stats Menu
         static Planet currentPlanet;
@@ -71,6 +73,10 @@ namespace GalacticImperialism
 
         public Button endTurnButton;
         public Button techTreeButton;
+        Button closePlanetManagementMenuButton;
+        Button confirmChangePlanetNameButton;
+
+        TextBox changePlanetNameTextBox;
 
         public List<string> PlanetNames;
         public List<Rectangle> PlanetRectangles;
@@ -81,7 +87,7 @@ namespace GalacticImperialism
 
         Vector2 textSize;
 
-        public PlayerUI(Texture2D topBarTexture, Texture2D flagTexture, Texture2D whiteTexture, Texture2D ironTexture, Texture2D uraniumTexture, Texture2D tungstenTexture, Texture2D hydrogenTexture, Texture2D nitrogenTexture, Texture2D oxygenTexture, Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, GraphicsDevice GraphicsDevice, SpriteFont arial15)
+        public PlayerUI(Texture2D topBarTexture, Texture2D flagTexture, Texture2D whiteTexture, Texture2D ironTexture, Texture2D uraniumTexture, Texture2D tungstenTexture, Texture2D hydrogenTexture, Texture2D nitrogenTexture, Texture2D oxygenTexture, Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, GraphicsDevice GraphicsDevice, SpriteFont arial15, SpriteFont castellar20, SpriteFont castellar15)
         {
             barTexture = topBarTexture;
             flagTexture = this.flagTexture;
@@ -97,6 +103,8 @@ namespace GalacticImperialism
             planetMenu = false;
             techMenu = false;
             Arial15 = arial15;
+            Castellar20 = castellar20;
+            Castellar15 = castellar15;
             this.GraphicsDevice = GraphicsDevice;
             Initialize();
         }
@@ -122,6 +130,9 @@ namespace GalacticImperialism
             textSize = new Vector2(0, 0);
             endTurnButton = new Button(new Rectangle(1755, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "End Turn", Arial15, Color.White, null, null);
             techTreeButton = new Button(new Rectangle(1605, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Tech Tree", Arial15, Color.White, null, null);
+            closePlanetManagementMenuButton = new Button(new Rectangle(0, 0, 40, 40), unselectedButtonTexture, selectedButtonTexture, "X", Castellar20, Color.White, null, null);
+            confirmChangePlanetNameButton = new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Confirm", Castellar15, Color.White, null, null);
+            changePlanetNameTextBox = new TextBox(new Rectangle(0, 0, 200, 50), 3, 20, Color.Black, Color.White, Color.White, Color.White, GraphicsDevice, Arial15);
             PlanetNames = new List<string>();
             PlanetRectangles = new List<Rectangle>();
             playerList = new List<Player>();
@@ -132,8 +143,15 @@ namespace GalacticImperialism
             planetMenuLastFrame = false;
         }
 
-        public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse)
+        public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse, KeyboardState kb, KeyboardState oldKb)
         {
+            ironAmount = playerList[playerID].getResources()[3];
+            uraniumAmount = playerList[playerID].getResources()[5];
+            tungstenAmount = playerList[playerID].getResources()[4];
+            hydrogenAmount = playerList[playerID].getResources()[0];
+            nitrogenAmount = playerList[playerID].getResources()[2];
+            oxygenAmount = playerList[playerID].getResources()[1];
+
             foreach (Line line in lines)
             {
                 line.Update();
@@ -160,6 +178,21 @@ namespace GalacticImperialism
             if (planetManagementMenuOpen)
             {
                 playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.Update(mouse, oldMouse);
+                closePlanetManagementMenuButton.buttonRect.X = playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Right - closePlanetManagementMenuButton.buttonRect.Width;
+                closePlanetManagementMenuButton.buttonRect.Y = playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y;
+                closePlanetManagementMenuButton.Update(mouse, oldMouse);
+                changePlanetNameTextBox.Update(mouse, oldMouse, kb, oldKb);
+                changePlanetNameTextBox.outlineRect.X = playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X;
+                changePlanetNameTextBox.outlineRect.Y = playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + (int)Castellar20.MeasureString(playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetName).Y;
+                changePlanetNameTextBox.boxRect.X = changePlanetNameTextBox.outlineRect.X + changePlanetNameTextBox.textBoxOutlineWidth;
+                changePlanetNameTextBox.boxRect.Y = changePlanetNameTextBox.outlineRect.Y + changePlanetNameTextBox.textBoxOutlineWidth;
+                confirmChangePlanetNameButton.buttonRect.X = changePlanetNameTextBox.boxRect.Right + 10;
+                confirmChangePlanetNameButton.buttonRect.Y = changePlanetNameTextBox.boxRect.Center.Y - (confirmChangePlanetNameButton.buttonRect.Height / 2);
+                confirmChangePlanetNameButton.Update(mouse, oldMouse);
+                if (confirmChangePlanetNameButton.isClicked)
+                    playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetName = changePlanetNameTextBox.text;
+                if (closePlanetManagementMenuButton.isClicked)
+                    planetManagementMenuOpen = false;
             }
 
             planetMenuLastFrame = planetMenu;
@@ -266,8 +299,11 @@ namespace GalacticImperialism
 
             if (planetManagementMenuOpen)
             {
-                spriteBatch.Draw(whiteTexture, new Rectangle((int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, (int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y, (int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Z, (int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.W), Color.Blue);
-                spriteBatch.DrawString(Arial15, playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetName, new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y), Color.White);
+                spriteBatch.Draw(whiteTexture, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle, Color.Navy);
+                closePlanetManagementMenuButton.Draw(spriteBatch);
+                spriteBatch.DrawString(Castellar20, "Planet Name: " + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetName, new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y), Color.White);
+                changePlanetNameTextBox.Draw(spriteBatch);
+                confirmChangePlanetNameButton.Draw(spriteBatch);
             }
         }
     }

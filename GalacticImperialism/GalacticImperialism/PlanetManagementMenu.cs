@@ -17,16 +17,20 @@ namespace GalacticImperialism
 {
     [Serializable] class PlanetManagementMenu
     {
-        public Vector4 menuRectangle;
+        public Rectangle menuRectangle;
 
         int viewportWidth;
         int viewportHeight;
         int menuRectWidth;
         int menuRectHeight;
+        int topBarHeight;
 
         Planet assignedPlanet;
 
         Vector2 textSize;
+        Vector2 originalDistanceAwayFromMouse;
+
+        bool moving;
 
         public PlanetManagementMenu(Planet planetAssigned)
         {
@@ -40,13 +44,45 @@ namespace GalacticImperialism
             viewportHeight = 1080;
             menuRectWidth = 900;
             menuRectHeight = 900;
-            menuRectangle = new Vector4((viewportWidth / 2) - (menuRectWidth / 2), (viewportHeight / 2) - (menuRectHeight / 2), menuRectWidth, menuRectHeight);
+            topBarHeight = 67;
+            menuRectangle = new Rectangle((viewportWidth / 2) - (menuRectWidth / 2), (viewportHeight / 2) - (menuRectHeight / 2), menuRectWidth, menuRectHeight);
             textSize = new Vector2(0, 0);
+            originalDistanceAwayFromMouse = new Vector2(0, 0);
+            moving = false;
         }
 
         public void Update(MouseState mouse, MouseState oldMouse)
         {
+            if(mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton == ButtonState.Pressed && moving == false && mouse.X >= menuRectangle.X && mouse.X <= menuRectangle.Right && mouse.Y >= menuRectangle.Y && mouse.Y <= menuRectangle.Bottom)
+            {
+                moving = true;
+                originalDistanceAwayFromMouse.X = mouse.X - menuRectangle.X;
+                originalDistanceAwayFromMouse.Y = mouse.Y - menuRectangle.Y;
+            }
+            if (moving)
+            {
+                if (mouse.LeftButton != ButtonState.Pressed)
+                    moving = false;
+                menuRectangle.X = mouse.X - (int)originalDistanceAwayFromMouse.X;
+                menuRectangle.Y = mouse.Y - (int)originalDistanceAwayFromMouse.Y;
+            }
 
+            if (menuRectangle.X < 0)
+                menuRectangle.X = 0;
+            if(mouse.X < 0)
+                originalDistanceAwayFromMouse.X = 0;
+            if (menuRectangle.Right > viewportWidth)
+                menuRectangle.X = viewportWidth - menuRectangle.Width;
+            if (mouse.X > viewportWidth)
+                originalDistanceAwayFromMouse.X = menuRectangle.Width;
+            if (menuRectangle.Y <= topBarHeight)
+                menuRectangle.Y = topBarHeight + 1;
+            if (mouse.Y <= topBarHeight)
+                originalDistanceAwayFromMouse.Y = 0;
+            if (menuRectangle.Bottom > viewportHeight)
+                menuRectangle.Y = viewportHeight - menuRectangle.Height;
+            if (mouse.Y > viewportHeight)
+                originalDistanceAwayFromMouse.Y = menuRectangle.Height;
         }
     }
 }

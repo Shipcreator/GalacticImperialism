@@ -14,11 +14,11 @@ namespace GalacticImperialism
 {
     class TextBox
     {
-        Rectangle outlineRect;
-        Rectangle boxRect;
-        Rectangle cursorRect;
+        public Rectangle outlineRect;
+        public Rectangle boxRect;
+        public Rectangle cursorRect;
 
-        int textBoxOutlineWidth;
+        public int textBoxOutlineWidth;
         int cursorTimer;
         int backTimer;
         int textBoxMaxCharacters;
@@ -104,6 +104,8 @@ namespace GalacticImperialism
 
             if (text.Length > textBoxMaxCharacters)
                 text = text.Substring(0, textBoxMaxCharacters);
+
+            cursorRect.Y = outlineRect.Center.Y - (cursorRect.Height / 2);
         }
 
         private void DetectPressedKeys(MouseState mouse, MouseState oldMouse, KeyboardState kb, KeyboardState oldKb)

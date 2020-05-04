@@ -306,14 +306,14 @@ namespace GalacticImperialism
         {
             SelectableT();
             SelectReset();
-            if (kb.IsKeyDown(Keys.T) && kb!=oldKb && Open == false)
+            /*if (kb.IsKeyDown(Keys.T) && kb!=oldKb && Open == false)
             {
                 Open = true;
             }
             else if (kb.IsKeyDown(Keys.T) && kb != oldKb && Open == true)
             {
                 Open = false;
-            }
+            }*/
 
             if (mouse.LeftButton == ButtonState.Pressed
                 && oldMouse.LeftButton == ButtonState.Released 
