@@ -50,7 +50,7 @@ namespace GalacticImperialism
         //Planet Stats Menu
         static Planet currentPlanet;
         static bool planetMenu;
-        bool planetManagementMenuOpen;
+        public static bool planetManagementMenuOpen;
         bool planetMenuLastFrame;
 
         //Tech Tree Menu
@@ -269,7 +269,6 @@ namespace GalacticImperialism
                     line.Draw(spriteBatch);
                 }
                 spriteBatch.Draw(Game1.whiteCircle, selection, Color.White * 0.25f);
-                spriteBatch.DrawString(Arial15, currentPlanet.planetShips.Count.ToString(), new Vector2(500,500), Color.White);
             }
 
             for(int x = 0; x < playerList.Count; x++)

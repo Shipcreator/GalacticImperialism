@@ -28,7 +28,7 @@ namespace GalacticImperialism
             base.Update(gt);
             
             //Detects Click on board only
-            if (Game1.menuSelected == Game1.Menus.Game)
+            if (Game1.menuSelected == Game1.Menus.Game && PlayerUI.planetManagementMenuOpen == false)
             {
                 if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
                     MouseClick(new Vector2(mb.X, mb.Y));

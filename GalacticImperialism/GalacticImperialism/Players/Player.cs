@@ -18,7 +18,6 @@ namespace GalacticImperialism
         int gold, science, hydrogen, oxygen, nitrogen, iron, tungsten, uranium; //All Item Values That every Player stores
         public List<Planet> ownedPlanets = new List<Planet>(); //Owned Planets
         public List<Ship> ships = new List<Ship>();
-        public List<Army> armies = new List<Army>();
 
         protected Board board; // Holds Current Board
 
@@ -56,6 +55,54 @@ namespace GalacticImperialism
             }
             return planetList;
         }
+
+        //Precondition-Planet is valid and Ship has points left
+        //Ship will have moved to new planet
+        public void moveShip(Ship s, Planet arrival, Planet destination)
+        {
+            arrival.planetShips.Add(s);
+            destination.planetShips.Remove(s);
+
+            if (!ownedPlanets.Contains(destination))
+                ownedPlanets.Add(destination);
+
+            s.currentmove--;
+        }
+
+        //Checks if you own the planet or it is neutral
+        public bool isValidPlanet(Planet selectedplanet)
+        {
+            List<Planet> planets = board.planets;
+
+            foreach (Player player in board.players)
+            {
+                foreach (Planet p in player.ownedPlanets)
+                {
+                    planets.Remove(p);
+                }
+            }
+
+            if (ownedPlanets.Contains(selectedplanet) || planets.Contains(selectedplanet))
+                return true;
+            else
+                return false;
+        }
+
+        //Ship Movement points
+        public bool CanShipMove(Ship s)
+        {
+            if (s.currentmove > 0)
+                return true;
+            else
+                return false;
+        }
+
+
+        public void Attack()
+        {
+
+        }
+
 
         //Adds Ownership of a Planet
         public void AddPlanet(Planet p)
