@@ -85,6 +85,7 @@
     <Compile Include="Game Pieces\Army.cs" />
     <Compile Include="Game Pieces\Ship.cs" />
     <Compile Include="MusicPlayer.cs" />
+    <Compile Include="PlanetManagementMenu.cs" />
     <Compile Include="UI\Line.cs" />
     <Compile Include="UI\Flag.cs" />
     <Compile Include="Menus\FlagCreation.cs" />

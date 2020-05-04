@@ -482,6 +482,7 @@ namespace GalacticImperialism
                         board.players[playerID].EndTurn();
                     }
                 }
+                board.players = playerUIObject.playerList;
             }
 
             if(menuSelected == Menus.TechTree)

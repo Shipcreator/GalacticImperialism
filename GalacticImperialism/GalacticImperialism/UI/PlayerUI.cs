@@ -48,6 +48,8 @@ namespace GalacticImperialism
         //Planet Stats Menu
         static Planet currentPlanet;
         static bool planetMenu;
+        bool planetManagementMenuOpen;
+        bool planetMenuLastFrame;
 
         //Tech Tree Menu
         static bool techMenu;
@@ -65,6 +67,7 @@ namespace GalacticImperialism
         public int oxygenAmount;
 
         public int playerID;
+        int indexOfPlanetSelected;
 
         public Button endTurnButton;
         public Button techTreeButton;
@@ -115,6 +118,7 @@ namespace GalacticImperialism
             nitrogenAmount = 0;
             oxygenAmount = 0;
             playerID = 0;
+            indexOfPlanetSelected = 0;
             textSize = new Vector2(0, 0);
             endTurnButton = new Button(new Rectangle(1755, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "End Turn", Arial15, Color.White, null, null);
             techTreeButton = new Button(new Rectangle(1605, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Tech Tree", Arial15, Color.White, null, null);
@@ -124,6 +128,8 @@ namespace GalacticImperialism
             temporaryPlanetRect = new Rectangle(0, 0, 0, 0);
             positionsDrawnAlready = new List<Vector2>();
             skipPlanet = false;
+            planetManagementMenuOpen = false;
+            planetMenuLastFrame = false;
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse)
@@ -137,6 +143,26 @@ namespace GalacticImperialism
             techTreeButton.Update(mouse, oldMouse);
             if (positionsDrawnAlready.Count > 0)
                 positionsDrawnAlready.Clear();
+            if (planetMenu && planetMenuLastFrame && mouse.X >= (int)currentPlanet.position.X - (int)(currentPlanet.size * 2.5) && mouse.X <= ((int)currentPlanet.position.X - (int)(currentPlanet.size * 2.5)) + (currentPlanet.size * 30) && mouse.Y >= (int)currentPlanet.position.Y - (int)(currentPlanet.size * 2.5) && mouse.Y <= ((int)currentPlanet.position.Y - (int)(currentPlanet.size * 2.5)) + (currentPlanet.size * 30) && mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed)
+            {
+                for(int x = 0; x < playerList[playerID].ownedPlanets.Count; x++)
+                {
+                    if(playerList[playerID].ownedPlanets[x].position == currentPlanet.position)
+                    {
+                        indexOfPlanetSelected = x;
+                        break;
+                    }
+                }
+                planetManagementMenuOpen = true;
+            }
+            if (planetMenu == false)
+                planetManagementMenuOpen = false;
+            if (planetManagementMenuOpen)
+            {
+                playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.Update(mouse, oldMouse);
+            }
+
+            planetMenuLastFrame = planetMenu;
         }
 
         public void InitBoard(Board b)
@@ -236,6 +262,12 @@ namespace GalacticImperialism
                 if (skipPlanet)
                     continue;
                 spriteBatch.DrawString(Arial15, PlanetNames[x], new Vector2(PlanetRectangles[x].Center.X - (textSize.X / 2), PlanetRectangles[x].Bottom), Color.White);
+            }
+
+            if (planetManagementMenuOpen)
+            {
+                spriteBatch.Draw(whiteTexture, new Rectangle((int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, (int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y, (int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Z, (int)playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.W), Color.Blue);
+                spriteBatch.DrawString(Arial15, playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetName, new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y), Color.White);
             }
         }
     }

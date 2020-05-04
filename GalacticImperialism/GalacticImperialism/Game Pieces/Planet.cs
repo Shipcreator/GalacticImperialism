@@ -21,6 +21,7 @@ namespace GalacticImperialism
         public List<string> resources = new List<string>(); //Holds Resources
         public int texID; //Texture for the Planet
         public List<Ship> planetShips = new List<Ship>();
+        public PlanetManagementMenu managementMenuObject;       //Pop-up menu that allows the player to manage the building and resources of a planet.
 
         //Create Base Planets
         public Planet(int s, int t, string n, Vector2 p, List<string> r)
@@ -30,6 +31,8 @@ namespace GalacticImperialism
             planetName = n;
             position = p;
             resources = r;
+
+            managementMenuObject = new PlanetManagementMenu(this);
         }
 
         //Create Starting Planet
@@ -40,6 +43,8 @@ namespace GalacticImperialism
             planetName = n;
             position = p;
             resources.Add("iron"); resources.Add("hydrogen");
+
+            managementMenuObject = new PlanetManagementMenu(this);
         }
     }
 }
