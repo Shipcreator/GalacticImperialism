@@ -29,6 +29,7 @@ namespace GalacticImperialism
         Texture2D whiteTexture;
         Texture2D selectedButtonTexture;
         Texture2D unselectedButtonTexture;
+        Texture2D temporaryTexture;
 
         Board board;
 
@@ -62,6 +63,8 @@ namespace GalacticImperialism
         public int hydrogenAmount;
         public int nitrogenAmount;
         public int oxygenAmount;
+
+        public int playerID;
 
         public Button endTurnButton;
         public Button techTreeButton;
@@ -111,6 +114,7 @@ namespace GalacticImperialism
             hydrogenAmount = 0;
             nitrogenAmount = 0;
             oxygenAmount = 0;
+            playerID = 0;
             textSize = new Vector2(0, 0);
             endTurnButton = new Button(new Rectangle(1755, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "End Turn", Arial15, Color.White, null, null);
             techTreeButton = new Button(new Rectangle(1605, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Tech Tree", Arial15, Color.White, null, null);

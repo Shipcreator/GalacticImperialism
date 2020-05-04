@@ -18,7 +18,7 @@ namespace GalacticImperialism
     {
         Planet selectedPlanet; //Used For Clicking On Planets
 
-        public Human(int startingGold, Board b, Vector3 empireColor) : base(startingGold, b, empireColor)
+        public Human(int startingGold, Board b, Vector3 empireColor, Flag empireFlag) : base(startingGold, b, empireColor, empireFlag)
         {
 
         }

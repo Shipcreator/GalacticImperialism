@@ -33,6 +33,8 @@ namespace GalacticImperialism
 
         //Data base of flags that links them to a player ID
         public FlagDataBase flagDataBaseObject;
+        public Flag defaultFlag;
+
         //Current Turn
         public int turn;
 
@@ -50,13 +52,14 @@ namespace GalacticImperialism
         }
 
         //Creates A New Board(Assume numOfBots < numOfPlayers)
-        public void NewBoard(int numPlanets, int seed, int numOfPlayers, int numOfBots, int gold)
+        public void NewBoard(int numPlanets, int seed, int numOfPlayers, int numOfBots, int gold, Flag empireDefaultFlag)
         {
             planetNames = new List<string>();
             planetNamesUsedIndexes = new List<int>();
             randomPlanetNumber = 0;
             breakLoop = true;
             ReadInPlanetNames(@"Content/Planets/Planet Names.txt");
+            defaultFlag = empireDefaultFlag;
 
             rand = new Random(seed); //Resets Random with New Seed
 
@@ -65,9 +68,9 @@ namespace GalacticImperialism
             numBots = numOfBots;
 
             for (int i = 0; i < numOfBots; i++)
-                players.Add(new Computer(gold, this, new Vector3(rand.Next(100, 256), rand.Next(100, 256), rand.Next(100, 256))));
+                players.Add(new Computer(gold, this, new Vector3(rand.Next(100, 256), rand.Next(100, 256), rand.Next(100, 256)), defaultFlag));
             for (int i = 0; i < numOfPlayers - numOfBots; i++)
-                players.Add(new Human(gold, this, new Vector3(rand.Next(100, 256), rand.Next(100, 256), rand.Next(100, 256))));
+                players.Add(new Human(gold, this, new Vector3(rand.Next(100, 256), rand.Next(100, 256), rand.Next(100, 256)), defaultFlag));
 
             do
             {

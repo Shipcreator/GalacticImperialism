@@ -24,13 +24,16 @@ namespace GalacticImperialism
 
         public Color empireColor;
 
+        public Flag empireFlag;
+
         //Creates Base Player
-        public Player(int startingGold, Board b, Vector3 playerEmpireColor)
+        public Player(int startingGold, Board b, Vector3 playerEmpireColor, Flag playerEmpireFlag)
         {
             gold = startingGold;
             science = hydrogen = oxygen = nitrogen = iron = tungsten = uranium = 0;
             board = b;
             empireColor = new Color((int)playerEmpireColor.X, (int)playerEmpireColor.Y, (int)playerEmpireColor.Z);
+            empireFlag = playerEmpireFlag;
         }
 
 

@@ -284,7 +284,9 @@ namespace GalacticImperialism
                         seed = newGameMenuObject.getSeed();
 
 
-                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), newGameMenuObject.getPlayers() - (Game1.connection.getCon().ConnectionsCount + 1), startingGold); /////////////////////////////////////////////////////////////////////////////////////
+                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), newGameMenuObject.getPlayers() - (Game1.connection.getCon().ConnectionsCount + 1), startingGold, new Flag(whiteTexture)); /////////////////////////////////////////////////////////////////////////////////////
+                    //Pass in deafult flag here.
+                    board.defaultFlag = new Flag(whiteTexture);
                     playerUIObject.InitBoard(board);
                     connection.SerializeData(board);
 
@@ -450,6 +452,7 @@ namespace GalacticImperialism
                 playerUIObject.hydrogenAmount = board.players[playerID].getResources()[0];
                 playerUIObject.nitrogenAmount = board.players[playerID].getResources()[2];
                 playerUIObject.oxygenAmount = board.players[playerID].getResources()[1];
+                playerUIObject.playerID = playerID;
 
                 if (playerUIObject.PlanetNames.Count > 0)
                     playerUIObject.PlanetNames.Clear();
