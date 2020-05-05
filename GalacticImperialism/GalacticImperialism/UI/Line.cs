@@ -18,8 +18,8 @@ namespace GalacticImperialism
     class Line
     {
         Texture2D pixel;
-        Vector2 p1, p2; //this will be the position in the center of the line
-        int length, thickness; //length and thickness of the line, or width and height of rectangle
+        public Vector2 p1, p2; //this will be the position in the center of the line
+        public int length, thickness; //length and thickness of the line, or width and height of rectangle
         public Rectangle rect; //where the line will be drawn
         float rotation; // rotation of the line, with axis at the center of the line
         Color color;

@@ -99,6 +99,9 @@ namespace GalacticImperialism
 
         Vector2 textSize;
 
+        Line topLine;
+        Line lineUnderResources;
+
         public PlayerUI(Texture2D topBarTexture, Texture2D flagTexture, Texture2D whiteTexture, Texture2D ironTexture, Texture2D uraniumTexture, Texture2D tungstenTexture, Texture2D hydrogenTexture, Texture2D nitrogenTexture, Texture2D oxygenTexture, Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, GraphicsDevice GraphicsDevice, SpriteFont arial15, SpriteFont castellar20, SpriteFont castellar15, Texture2D textureOfShip)
         {
             barTexture = topBarTexture;
@@ -144,7 +147,7 @@ namespace GalacticImperialism
             textSize = new Vector2(0, 0);
             endTurnButton = new Button(new Rectangle(1755, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "End Turn", Arial15, Color.White, null, null);
             techTreeButton = new Button(new Rectangle(1605, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Tech Tree", Arial15, Color.White, null, null);
-            closePlanetManagementMenuButton = new Button(new Rectangle(0, 0, 40, 40), unselectedButtonTexture, selectedButtonTexture, "X", Castellar20, Color.White, null, null);
+            closePlanetManagementMenuButton = new Button(new Rectangle(0, 0, 100, 100), unselectedButtonTexture, selectedButtonTexture, "X", Castellar20, Color.White, null, null);
             confirmChangePlanetNameButton = new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Confirm", Castellar15, Color.White, null, null);
             tabButtons = new List<Button>();
             tabSelected = Tabs.Buildings;
@@ -161,6 +164,8 @@ namespace GalacticImperialism
             planetManagementMenuOpen = false;
             planetMenuLastFrame = false;
             shipNotAlreadySelected = true;
+            topLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
+            lineUnderResources = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse, KeyboardState kb, KeyboardState oldKb)
@@ -234,6 +239,13 @@ namespace GalacticImperialism
                     //playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips.Add(new Ship(1, 1, 1, 1, "test"));
                 }
 
+                topLine.p1 = new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 100);
+                topLine.p2 = new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Right, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 100);
+                topLine.Update();
+                lineUnderResources.p1 = new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 140);
+                lineUnderResources.p2 = new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Right, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 140);
+                lineUnderResources.Update();
+
                 if(tabSelected == Tabs.Ships)
                 {
                     for(int x = 0; x < playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips.Count; x++)
@@ -266,7 +278,6 @@ namespace GalacticImperialism
                                     shipNotAlreadySelected = false;
                                     shipsSelected.RemoveAt(y);
                                 }
-                                    shipNotAlreadySelected = false;
                             }
                             if (shipNotAlreadySelected)
                                 shipsSelected.Add(x);
@@ -389,6 +400,21 @@ namespace GalacticImperialism
                 spriteBatch.DrawString(Castellar20, "Planet Name: " + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetName, new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y), Color.White);
                 changePlanetNameTextBox.Draw(spriteBatch);
                 confirmChangePlanetNameButton.Draw(spriteBatch);
+                topLine.Draw(spriteBatch);
+                lineUnderResources.Draw(spriteBatch);
+                spriteBatch.DrawString(Castellar20, "Resources: ", new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 105), Color.White);
+                spriteBatch.Draw(ironResourceTexture, new Rectangle(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + (int)Castellar20.MeasureString("Resources: ").X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 110, 25, 25), Color.White);
+                spriteBatch.DrawString(Castellar20, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].resourceNumbers[0], new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + (int)Castellar20.MeasureString("Resources: ").X + 35, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 105), Color.White);
+                spriteBatch.Draw(uraniumResourceTexture, new Rectangle(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 250, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 108, 25, 25), Color.White);
+                spriteBatch.DrawString(Castellar20, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].resourceNumbers[1], new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 280, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 105), Color.White);
+                spriteBatch.Draw(tungstenResourceTexture, new Rectangle(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 325, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 108, 25, 25), Color.White);
+                spriteBatch.DrawString(Castellar20, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].resourceNumbers[2], new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 355, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 105), Color.White);
+                spriteBatch.Draw(hydrogenResourceTexture, new Rectangle(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 410, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 108, 25, 25), Color.White);
+                spriteBatch.DrawString(Castellar20, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].resourceNumbers[3], new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 445, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 105), Color.White);
+                spriteBatch.Draw(nitrogenResourceTexture, new Rectangle(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 490, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 108, 25, 25), Color.White);
+                spriteBatch.DrawString(Castellar20, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].resourceNumbers[4], new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 520, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 105), Color.White);
+                spriteBatch.Draw(oxygenResourceTexture, new Rectangle(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 570, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 108, 25, 25), Color.White);
+                spriteBatch.DrawString(Castellar20, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].resourceNumbers[5], new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X + 605, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 105), Color.White);
                 for(int x = 0; x < tabButtons.Count; x++)
                 {
                     tabButtons[x].Draw(spriteBatch);
@@ -401,7 +427,7 @@ namespace GalacticImperialism
                         for(int y = 0; y < shipsSelected.Count; y++)
                         {
                             if (x == shipsSelected[y])
-                                spriteBatch.Draw(whiteTexture, shipIconRects[x], Color.LightGray);
+                                spriteBatch.Draw(whiteTexture, shipIconRects[x], Color.White * 0.50f);
                         }
                         spriteBatch.Draw(shipTexture, shipIconRects[x], Color.White);
                         textSize = Castellar15.MeasureString(playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName());
