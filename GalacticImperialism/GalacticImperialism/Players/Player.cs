@@ -122,14 +122,14 @@ namespace GalacticImperialism
         {
             ships.Remove(s);
         }
-        public void AddArmy(Army a)
+        /*public void AddArmy(Army a)
         {
             armies.Add(a);
         }
         public void RemoveArmy(Army a)
         {
             armies.Remove(a);
-        }
+        }*/
 
         public void Update(GameTime gt) //General Update
         {

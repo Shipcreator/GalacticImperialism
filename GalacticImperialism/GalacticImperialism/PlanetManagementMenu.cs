@@ -21,8 +21,8 @@ namespace GalacticImperialism
 
         int viewportWidth;
         int viewportHeight;
-        int menuRectWidth;
-        int menuRectHeight;
+        public int menuRectWidth;
+        public int menuRectHeight;
         int topBarHeight;
 
         Planet assignedPlanet;
