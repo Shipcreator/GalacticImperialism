@@ -153,28 +153,20 @@ namespace GalacticImperialism
                 foreach (Ship aship in attack)
                 {
                     int roll = die.Next(1, 21);
-                    Console.Write(roll + " ");
                     if (roll <= aship.getAttack())
                     {
                         ahits++;
                     }
                 }
-                Console.WriteLine();
-                Console.WriteLine(ahits);
 
                 foreach (Ship dship in defense)
                 {
                     int roll = die.Next(1, 21);
-                    Console.Write(roll + " ");
                     if (roll <= dship.getDefence())
                     {
                         dhits++;
                     }
                 }
-                Console.WriteLine();
-                Console.WriteLine(dhits);
-
-                Console.WriteLine();
 
                 //Removes Ships
                 for (int i = 1; i <= ahits; i++)
