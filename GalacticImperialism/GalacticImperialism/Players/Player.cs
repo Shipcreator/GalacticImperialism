@@ -26,6 +26,7 @@ namespace GalacticImperialism
         public Flag empireFlag;
         public int[] resourcesPerTurn = new int[6];
         public int goldPerTurn = 0;
+        public int sciencePerTurn = 0;
 
         //Creates Base Player
         public Player(int startingGold, Board b, Vector3 playerEmpireColor, Flag playerEmpireFlag)
@@ -131,10 +132,79 @@ namespace GalacticImperialism
                 return false;
         }
 
-
-        public void Attack()
+        //Preforms Attacking Think Axis and Allies
+        public bool Attack(List<Ship> attack, List<Ship> defense, Planet p, Planet surrender)
         {
+            Random die = new Random();
+            Player defender = null;
+            int ahits = 0;
+            int dhits = 0;
 
+            //Gets Defender
+            foreach (Player player in board.players)
+            {
+                if (player.ownedPlanets.Contains(p))
+                    defender = player;
+            }
+
+            if (!defender.Equals(null))
+            {
+                //Gets Number Of Hits
+                foreach (Ship aship in attack)
+                {
+                    int roll = die.Next(1, 21);
+                    if (roll <= aship.getAttack())
+                    {
+                        ahits++;
+                    }
+                }
+
+                foreach (Ship dship in defense)
+                {
+                    int roll = die.Next(1, 21);
+                    if (roll <= dship.getDefence())
+                    {
+                        dhits++;
+                    }
+                }
+
+
+                //Removes Ships
+                for (int i = 0; i <= ahits; i++)
+                {
+                    if (defense.Count > 0)
+                    {
+                        int index = die.Next(0, defense.Count);
+                        Ship temp = defense[index];
+                        defense.Remove(temp);
+                        defender.ships.Remove(temp);
+                        p.planetShips.Remove(temp);
+                    }
+                }
+                for (int i = 0; i <= dhits; i++)
+                {
+                    if (attack.Count > 0)
+                    {
+                        int index = die.Next(0, attack.Count);
+                        Ship temp = attack[index];
+                        attack.Remove(temp);
+                        this.ships.Remove(temp);
+                    }
+                }
+
+                //Takeover Planet
+                if (defense.Count <= 0 && attack.Count > 0)
+                {
+                    defender.ownedPlanets.Remove(p);
+                    this.ownedPlanets.Add(p);
+                    foreach (Ship ship in attack)
+                    {
+                        p.planetShips.Add(ship);
+                    }
+                    return true;
+                }
+            }
+            return false;
         }
 
 
@@ -166,6 +236,8 @@ namespace GalacticImperialism
         public void OnTurn() //General On Turn Start 
         {
             addResources(resourcesPerTurn);
+            gold += goldPerTurn;
+            science += sciencePerTurn;
             foreach (Ship s in ships)
             {
                 s.currentmove = s.getMoves();
@@ -175,6 +247,7 @@ namespace GalacticImperialism
         public void EndTurn() //Called On Turn End
         {
             PlayerUI.closeMenus();
+            PlayerUI.shipsSelected = new List<Ship>();
             board.NextTurn();
         }
 

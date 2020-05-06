@@ -164,6 +164,12 @@ namespace GalacticImperialism
                 Planet temp = new Planet(rand.Next(0,19), planetNames[randomPlanetNumber], new Vector2(10, 75));
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
+                Ship test3 = new Ship(10, 1, 2, 2, "Corvete");
+                players[0].AddShip(test3);
+                temp.planetShips.Add(test3);
+                Ship test4 = new Ship(10, 1, 2, 2, "Corvete");
+                players[0].AddShip(test4);
+                temp.planetShips.Add(test4);
 
                 //Create Planet Two
                 if (planetNamesUsedIndexes.Count > 0)
@@ -187,10 +193,10 @@ namespace GalacticImperialism
                 temp = new Planet(rand.Next(0, 19), planetNames[randomPlanetNumber], new Vector2(1860, 1020));
                 planets.Add(temp);
                 players[1].AddPlanet(temp);
-                Ship test = new Ship(4,4,2,2,"Corvete");
+                Ship test = new Ship(20,10,6,2,"Corvete");
                 players[1].AddShip(test);
                 temp.planetShips.Add(test);
-                Ship test2 = new Ship(4, 4, 2, 2, "Corvete");
+                Ship test2 = new Ship(20,10, 6, 2, "Corvete");
                 players[1].AddShip(test2);
                 temp.planetShips.Add(test2);
             }
@@ -313,7 +319,7 @@ namespace GalacticImperialism
         //Gets List of Resources for A planet
         private int[] AssignResources()
         {
-            int numOfResources = rand.Next(3, 9); //How many resources on a planet 1-4
+            int numOfResources = rand.Next(2, 6); //How many resources on a planet 1-4
             int[] resources = new int[6];
 
             for (int i = 0; i <= numOfResources; i++)

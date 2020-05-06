@@ -54,29 +54,48 @@ namespace GalacticImperialism
                     Rectangle mouse = new Rectangle((int)position.X, (int)position.Y + 15, 1, 1);
                     if (mouse.Intersects(planetRect))
                     {
-                        selected = temp;
-                        Planet destination = selectedPlanet;
-                        foreach (Ship s in PlayerUI.shipsSelected)
+                        List<Planet> nearby = NearbyPlanets(selectedPlanet);
+                        if (nearby.Contains(temp))
                         {
-                            if (CanShipMove(s))
+                            selected = temp;
+                            Planet destination = selectedPlanet;
+
+                            if (isValidPlanet(selected))
                             {
-                                if (isValidPlanet(selected))
+                                foreach (Ship s in PlayerUI.shipsSelected)
                                 {
-                                    moveShip(s, selected, destination);
+                                    if (CanShipMove(s))
+                                    {
+                                        moveShip(s, selected, destination);
+                                        selectedPlanet = selected;
+                                        PlayerUI.drawPlanetMenu(selectedPlanet, NearbyPlanets(selectedPlanet));
+                                        if (isNeutral(selected))
+                                            AddPlanet(selected);
+                                    }
+                                }
+                            }
+                            else //Attacking
+                            {
+                                List<Ship> attacking = new List<Ship>();
+
+                                foreach (Ship s in PlayerUI.shipsSelected)
+                                {
+                                    if (CanShipMove(s))
+                                    {
+                                        s.currentmove--;
+                                        destination.planetShips.Remove(s);
+                                        attacking.Add(s);
+                                    }
+                                }
+
+                                PlayerUI.shipsSelected = new List<Ship>();
+
+                                if (Attack(attacking, selected.planetShips, selected, destination))
+                                {
                                     selectedPlanet = selected;
                                     PlayerUI.drawPlanetMenu(selectedPlanet, NearbyPlanets(selectedPlanet));
-                                    if (isNeutral(selected))
-                                        AddPlanet(selected);
                                 }
-                                else
-                                {
-                                    //if ()
-                                    //{
-                                    //}
-                                    //else
-                                    //{
-                                    //}           
-                                }
+                                
                             }
                         }
                     }
@@ -86,7 +105,7 @@ namespace GalacticImperialism
 
 
 
-
+        //Left Mouse Click
         public void MouseClick(Vector2 position)
         {
             //Selects Planet
