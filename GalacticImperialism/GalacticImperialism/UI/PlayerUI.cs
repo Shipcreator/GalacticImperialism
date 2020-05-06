@@ -432,6 +432,7 @@ namespace GalacticImperialism
                         spriteBatch.Draw(shipTexture, shipIconRects[x], Color.White);
                         textSize = Castellar15.MeasureString(playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName());
                         spriteBatch.DrawString(Castellar15, playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName(), new Vector2(shipIconRects[x].Center.X - (textSize.X / 2), shipIconRects[x].Bottom), Color.White);
+                        spriteBatch.DrawString(Castellar15, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getMoves(), new Vector2(shipIconRects[x].Center.X - ((int)Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getMoves()).X / 2), shipIconRects[x].Bottom - Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getMoves()).Y), Color.White);
                     }
                 }
             }

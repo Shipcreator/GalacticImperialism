@@ -100,11 +100,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomSong.cs" />
-    <Compile Include="FlagDataBase.cs" />
+    <Compile Include="UI\FlagDataBase.cs" />
     <Compile Include="Game Pieces\Army.cs" />
     <Compile Include="Game Pieces\Ship.cs" />
     <Compile Include="MusicPlayer.cs" />
-    <Compile Include="PlanetManagementMenu.cs" />
+    <Compile Include="UI\PlanetManagementMenu.cs" />
     <Compile Include="UI\Line.cs" />
     <Compile Include="UI\Flag.cs" />
     <Compile Include="Menus\FlagCreation.cs" />
@@ -112,7 +112,7 @@
     <Compile Include="Board.cs" />
     <Compile Include="Menus\Multiplayer.cs" />
     <Compile Include="Tech.cs" />
-    <Compile Include="TechTree.cs" />
+    <Compile Include="Menus\TechTree.cs" />
     <Compile Include="UI\Slider.cs" />
     <Compile Include="UI\PlayerUI.cs" />
     <Compile Include="UI\Button.cs" />

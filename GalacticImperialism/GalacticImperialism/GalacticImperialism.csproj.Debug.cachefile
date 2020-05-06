@@ -1,6 +1,9 @@
 Content\Sprite Fonts\Castellar60Point.xnb
-Content\Sprite Fonts\Arial20.xnb
 Content\Sprite Fonts\Castellar20Point.xnb
+Content\Sprite Fonts\Castellar15Point.xnb
+Content\Sprite Fonts\Castellar10Point.xnb
+Content\Sprite Fonts\Arial20.xnb
+Content\Sprite Fonts\Arial15.xnb
 Content\Star Background\WhiteCircle.xnb
 Content\Button Textures\SelectedButtonTexture1.xnb
 Content\Button Textures\UnselectedButtonTexture1.xnb
@@ -28,25 +31,24 @@ Content\Planets\9.xnb
 Content\Button Textures\SelectedSaveSettingsButton.xnb
 Content\Button Textures\UnselectedSaveSettingsButton.xnb
 Content\Player UI\Bar.xnb
-Content\Videos\XNA Galacic Imperialism Crawl.xnb
-Content\Sprite Fonts\Castellar10Point.xnb
+Content\Flag\Crown.xnb
+Content\Flag\Eagle.xnb
 Content\Tech Textures\Circuit.xnb
 Content\Tech Textures\Sci-Fi Steel Wall.xnb
 Content\Tech Textures\Tech Backdrop.xnb
 Content\Tech Textures\TechMenuBackdrop.xnb
-Content\Flag\Crown.xnb
-Content\Flag\Eagle.xnb
 Content\Flag\Cross.xnb
 Content\Flag\Fist.xnb
 Content\Flag\Lily.xnb
 Content\Flag\Star.xnb
-Content\Sprite Fonts\Arial15.xnb
 Content\Player UI\Resource Icons\Hydrogen.xnb
 Content\Player UI\Resource Icons\Iron.xnb
 Content\Player UI\Resource Icons\Nitrogen.xnb
 Content\Player UI\Resource Icons\Oxygen.xnb
 Content\Player UI\Resource Icons\Tungsten.xnb
 Content\Player UI\Resource Icons\Uranium.xnb
+Content\Player UI\Planet Management Menu\Spaceship.xnb
+Content\Videos\XNA Galacic Imperialism Crawl.xnb
 Content\Sound Effects\Mouse Over Button.xnb
 Content\Songs\Chronometry.xnb
 Content\Songs\Paradigm.xnb
@@ -63,8 +65,6 @@ Content\Songs\Misty Effect.xnb
 Content\Songs\No Regrets.xnb
 Content\Songs\Written in the Shadows.xnb
 Content\Songs\Beyond Life.xnb
-Content\Sprite Fonts\Castellar15Point.xnb
-Content\Player UI\Planet Management Menu\Spaceship.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
 Content\Songs\Chronometry.wma
 Content\Songs\Paradigm.wma
