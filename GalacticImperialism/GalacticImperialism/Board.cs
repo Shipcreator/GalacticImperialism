@@ -81,6 +81,10 @@ namespace GalacticImperialism
             } while (CheckRoutes() == false);
 
             flagDataBaseObject = new FlagDataBase();
+            foreach (Ship ship in players[0].ships)
+            {
+                ship.currentmove = ship.getMoves();              
+            }
         }
 
         private void ReadInPlanetNames(string path)
