@@ -475,8 +475,6 @@ namespace GalacticImperialism
                 }
                 if (playerUIObject.endTurnButton.isClicked)
                 {
-                    Console.WriteLine(board.turn);
-                    Console.WriteLine(playerID);
                     if (board.turn == playerID)
                     {
                         board.players[playerID].EndTurn();

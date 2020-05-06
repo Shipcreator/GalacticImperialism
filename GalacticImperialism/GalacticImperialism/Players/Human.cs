@@ -66,11 +66,16 @@ namespace GalacticImperialism
                                     selectedPlanet = selected;
                                     PlayerUI.drawPlanetMenu(selectedPlanet, NearbyPlanets(selectedPlanet));
                                     if (isNeutral(selected))
-                                        ownedPlanets.Add(selected);
+                                        AddPlanet(selected);
                                 }
                                 else
                                 {
-                                    //Attack or Not 
+                                    //if ()
+                                    //{
+                                    //}
+                                    //else
+                                    //{
+                                    //}           
                                 }
                             }
                         }

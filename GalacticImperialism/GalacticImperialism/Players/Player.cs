@@ -24,6 +24,8 @@ namespace GalacticImperialism
         public Color empireColor;
 
         public Flag empireFlag;
+        public int[] resourcesPerTurn = new int[6];
+        public int goldPerTurn = 0;
 
         //Creates Base Player
         public Player(int startingGold, Board b, Vector3 playerEmpireColor, Flag playerEmpireFlag)
@@ -140,6 +142,7 @@ namespace GalacticImperialism
         public void AddPlanet(Planet p)
         {
             ownedPlanets.Add(p);
+            addResourcesPerTurn(p.resourceNumbers);
         }
         //Removes Ownership of a Planet
         public void RemovePlanet(Planet p)
@@ -154,14 +157,6 @@ namespace GalacticImperialism
         {
             ships.Remove(s);
         }
-        /*public void AddArmy(Army a)
-        {
-            armies.Add(a);
-        }
-        public void RemoveArmy(Army a)
-        {
-            armies.Remove(a);
-        }*/
 
         public void Update(GameTime gt) //General Update
         {
@@ -170,6 +165,7 @@ namespace GalacticImperialism
 
         public void OnTurn() //General On Turn Start 
         {
+            addResources(resourcesPerTurn);
             foreach (Ship s in ships)
             {
                 s.currentmove = s.getMoves();
@@ -206,11 +202,28 @@ namespace GalacticImperialism
         }
         public void addResources(int[] r)
         {
-            r[0] += hydrogen; r[1] += oxygen; r[2] += nitrogen; r[3] += iron; r[4] += tungsten; r[5] += uranium; //Sets All Resource Back
+            hydrogen += r[0]; oxygen += r[1]; nitrogen += r[2]; iron += r[3]; tungsten += r[4]; uranium += r[5]; //Sets All Resource Back
         }
         public void subResources(int[] r)
         {
-            r[0] -= hydrogen; r[1] -= oxygen; r[2] -= nitrogen; r[3] -= iron; r[4] -= tungsten; r[5] -= uranium; //Sets All Resource Back
+            hydrogen -= r[0]; oxygen -= r[1]; nitrogen -= r[2]; iron -= r[3]; tungsten -= r[4]; uranium -= r[5]; //Sets All Resource Back
         }
+
+        //For ResourcesPerTurn
+        public void addResourcesPerTurn(int[] r)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                resourcesPerTurn[i] += r[i];
+            }
+        }
+        public void subResourcesPerTurn(int[] r)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                resourcesPerTurn[i] -= r[i];
+            }
+        }
+
     }
 }
