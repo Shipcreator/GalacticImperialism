@@ -79,7 +79,7 @@ namespace GalacticImperialism
 
         public int playerID;
         int indexOfPlanetSelected;
-        public static List<int> shipsSelected;
+        public static List<Ship> shipsSelected;
 
         public Button endTurnButton;
         public Button techTreeButton;
@@ -143,7 +143,7 @@ namespace GalacticImperialism
             oxygenAmount = 0;
             playerID = 0;
             indexOfPlanetSelected = 0;
-            shipsSelected = new List<int>();
+            shipsSelected = new List<Ship>();
             textSize = new Vector2(0, 0);
             endTurnButton = new Button(new Rectangle(1755, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "End Turn", Arial15, Color.White, null, null);
             techTreeButton = new Button(new Rectangle(1605, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Tech Tree", Arial15, Color.White, null, null);
@@ -273,14 +273,14 @@ namespace GalacticImperialism
                         {
                             for(int y = shipsSelected.Count - 1; y > -1; y--)
                             {
-                                if (shipsSelected[y] == x)
+                                if (shipsSelected[y] == currentPlanet.planetShips[x])
                                 {
                                     shipNotAlreadySelected = false;
                                     shipsSelected.RemoveAt(y);
                                 }
                             }
                             if (shipNotAlreadySelected)
-                                shipsSelected.Add(x);
+                                shipsSelected.Add(currentPlanet.planetShips[x]);
                         }
                     }
                 }
@@ -426,7 +426,7 @@ namespace GalacticImperialism
                     {
                         for(int y = 0; y < shipsSelected.Count; y++)
                         {
-                            if (x == shipsSelected[y])
+                            if (currentPlanet.planetShips[x] == shipsSelected[y])
                                 spriteBatch.Draw(whiteTexture, shipIconRects[x], Color.White * 0.50f);
                         }
                         spriteBatch.Draw(shipTexture, shipIconRects[x], Color.White);

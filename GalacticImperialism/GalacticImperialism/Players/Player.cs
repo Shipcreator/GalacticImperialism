@@ -72,7 +72,12 @@ namespace GalacticImperialism
         //Checks if you own the planet or it is neutral
         public bool isValidPlanet(Planet selectedplanet)
         {
-            List<Planet> planets = board.planets;
+            List<Planet> planets = new List<Planet>();
+
+            foreach (Planet planet in board.planets)
+            {
+                planets.Add(planet);
+            }
 
             foreach (Player player in board.players)
             {
@@ -87,6 +92,33 @@ namespace GalacticImperialism
             else
                 return false;
         }
+
+
+        //Checks For Planet Neutrality
+        public bool isNeutral(Planet selectedplanet)
+        {
+            List<Planet> planets = new List<Planet>();
+
+            foreach (Planet planet in board.planets)
+            {
+                planets.Add(planet);
+            }
+
+            foreach (Player player in board.players)
+            {
+                foreach (Planet p in player.ownedPlanets)
+                {
+                    planets.Remove(p);
+                }
+            }
+
+            if (planets.Contains(selectedplanet))
+                return true;
+            else
+                return false;
+        }
+
+
 
         //Ship Movement points
         public bool CanShipMove(Ship s)

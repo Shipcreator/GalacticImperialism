@@ -32,9 +32,55 @@ namespace GalacticImperialism
             {
                 if (mb.LeftButton == ButtonState.Pressed && oldms.LeftButton == ButtonState.Released) // On Left Mouse Click
                     MouseClick(new Vector2(mb.X, mb.Y));
+                if (mb.RightButton == ButtonState.Pressed && oldms.RightButton == ButtonState.Released)
+                    RightMouseClick(new Vector2(mb.X, mb.Y));
 
             }
         }
+
+
+        //Called On Right Mouse Click
+        public void RightMouseClick(Vector2 position)
+        {
+            //Handles Moving Ships
+            if (PlayerUI.shipsSelected.Count > 0)
+            {
+                Planet selected;
+                //Gets Planet
+                for (int i = 0; i < board.planets.Count; i++)
+                {
+                    Planet temp = board.planets[i];
+                    Rectangle planetRect = new Rectangle((int)temp.position.X, (int)temp.position.Y, temp.size * 25, temp.size * 25);
+                    Rectangle mouse = new Rectangle((int)position.X, (int)position.Y + 15, 1, 1);
+                    if (mouse.Intersects(planetRect))
+                    {
+                        selected = temp;
+                        Planet destination = selectedPlanet;
+                        foreach (Ship s in PlayerUI.shipsSelected)
+                        {
+                            if (CanShipMove(s))
+                            {
+                                if (isValidPlanet(selected))
+                                {
+                                    moveShip(s, selected, destination);
+                                    selectedPlanet = selected;
+                                    PlayerUI.drawPlanetMenu(selectedPlanet, NearbyPlanets(selectedPlanet));
+                                    if (isNeutral(selected))
+                                        ownedPlanets.Add(selected);
+                                }
+                                else
+                                {
+                                    //Attack or Not 
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+
 
         public void MouseClick(Vector2 position)
         {

@@ -167,7 +167,7 @@ namespace GalacticImperialism
 
                 //Create Planet Two
                 if (planetNamesUsedIndexes.Count > 0)
-                {
+                {                    
                     for (int x = 0; x > -1; x++)
                     {
                         breakLoop = true;
@@ -187,6 +187,12 @@ namespace GalacticImperialism
                 temp = new Planet(rand.Next(0, 19), planetNames[randomPlanetNumber], new Vector2(1860, 1020));
                 planets.Add(temp);
                 players[1].AddPlanet(temp);
+                Ship test = new Ship(4,4,2,2,"Corvete");
+                players[1].AddShip(test);
+                temp.planetShips.Add(test);
+                Ship test2 = new Ship(4, 4, 2, 2, "Corvete");
+                players[1].AddShip(test2);
+                temp.planetShips.Add(test2);
             }
             if (p >= 3)
             {
@@ -305,21 +311,17 @@ namespace GalacticImperialism
         }
 
         //Gets List of Resources for A planet
-        private List<string> AssignResources()
+        private int[] AssignResources()
         {
-            int numOfResources = rand.Next(1, 5); //How many resources on a planet 1-4
-            List<string> resources = new List<string>();
+            int numOfResources = rand.Next(3, 9); //How many resources on a planet 1-4
+            int[] resources = new int[6];
 
-            do
+            for (int i = 0; i <= numOfResources; i++)
             {
                 int index = rand.Next(0, 6); // Index Of ResourceList Array
+                resources[index]++; //Adds resource to array
+            }
 
-                if (resources.IndexOf(resourceList[index]) == -1) //Checks to make sure the resource is not already in use.
-                {
-                    resources.Add(resourceList[index]); //Adds resource to array
-                }
-
-            } while (resources.Count != numOfResources); //Keeps running until there are enough resources.
             return resources; //Returns List
         }
 
