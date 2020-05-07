@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using GalacticImperialism.UI.Components;
 
 namespace GalacticImperialism
 {
@@ -24,42 +25,35 @@ namespace GalacticImperialism
             Ships = 2
         }
         Tabs tabSelected;
+        TopBar topBar;
         BuildingsTab buildingsTabObject;
 
-        Texture2D barTexture;
-        Texture2D flagTexture;
-        Texture2D ironResourceTexture;
-        Texture2D uraniumResourceTexture;
-        Texture2D tungstenResourceTexture;
-        Texture2D hydrogenResourceTexture;
-        Texture2D nitrogenResourceTexture;
-        Texture2D oxygenResourceTexture;
-        Texture2D whiteTexture;
-        Texture2D selectedButtonTexture;
-        Texture2D unselectedButtonTexture;
-        Texture2D temporaryTexture;
-        Texture2D shipTexture;
-        Texture2D goldResourceTexture;
-        Texture2D scienceResourceTexture;
+        public Texture2D barTexture;
+        public Texture2D flagTexture;
+        public Texture2D ironResourceTexture;
+        public Texture2D uraniumResourceTexture;
+        public Texture2D tungstenResourceTexture;
+        public Texture2D hydrogenResourceTexture;
+        public Texture2D nitrogenResourceTexture;
+        public Texture2D oxygenResourceTexture;
+        public Texture2D whiteTexture;
+        public Texture2D selectedButtonTexture;
+        public Texture2D unselectedButtonTexture;
+        public Texture2D temporaryTexture;
+        public Texture2D shipTexture;
+        public Texture2D goldResourceTexture;
+        public Texture2D scienceResourceTexture;
 
         Board board;
+        public int playerID;
 
         Rectangle barRect;
-        Rectangle flagRect;
-        Rectangle ironResourceRect;
-        Rectangle uraniumResourceRect;
-        Rectangle tungstenResourceRect;
-        Rectangle hydrogenResourceRect;
-        Rectangle nitrogenResourceRect;
-        Rectangle oxygenResourceRect;
-        Rectangle goldResourceRect;
-        Rectangle scienceResourceRect;
         static Rectangle selection;
 
-        SpriteFont Arial15;
-        SpriteFont Castellar15;
-        SpriteFont Castellar20;
-        SpriteFont Castellar60;
+        public SpriteFont Arial15;
+        public SpriteFont Castellar15;
+        public SpriteFont Castellar20;
+        public SpriteFont Castellar60;
 
         //Planet Stats Menu
         static Planet currentPlanet;
@@ -76,16 +70,6 @@ namespace GalacticImperialism
 
         GraphicsDevice GraphicsDevice;
 
-        public int ironAmount;
-        public int uraniumAmount;
-        public int tungstenAmount;
-        public int hydrogenAmount;
-        public int nitrogenAmount;
-        public int oxygenAmount;
-        public int goldAmount;
-        public int scienceAmount;
-
-        public int playerID;
         int indexOfPlanetSelected;
         public static List<Ship> shipsSelected;
 
@@ -111,52 +95,46 @@ namespace GalacticImperialism
         Line lineUnderResources;
         Line lineAboveTabs;
 
-        public PlayerUI(Texture2D topBarTexture, Texture2D flagTexture, Texture2D whiteTexture, Texture2D ironTexture, Texture2D uraniumTexture, Texture2D tungstenTexture, Texture2D hydrogenTexture, Texture2D nitrogenTexture, Texture2D oxygenTexture, Texture2D selectedButtonTexture, Texture2D unselectedButtonTexture, GraphicsDevice GraphicsDevice, SpriteFont arial15, SpriteFont castellar20, SpriteFont castellar15, Texture2D textureOfShip, Texture2D goldTexture, Texture2D scienceTexture, SpriteFont castellar60)
+        public PlayerUI(ContentManager c, Texture2D playerFlag, Texture2D white, GraphicsDevice g)
         {
-            barTexture = topBarTexture;
-            flagTexture = this.flagTexture;
-            this.whiteTexture = whiteTexture;
-            ironResourceTexture = ironTexture;
-            shipTexture = textureOfShip;
-            uraniumResourceTexture = uraniumTexture;
-            tungstenResourceTexture = tungstenTexture;
-            hydrogenResourceTexture = hydrogenTexture;
-            nitrogenResourceTexture = nitrogenTexture;
-            oxygenResourceTexture = oxygenTexture;
-            this.selectedButtonTexture = selectedButtonTexture;
-            this.unselectedButtonTexture = unselectedButtonTexture;
-            goldResourceTexture = goldTexture;
-            scienceResourceTexture = scienceTexture;
+            this.GraphicsDevice = g;
             planetMenu = false;
             techMenu = false;
-            Arial15 = arial15;
-            Castellar20 = castellar20;
-            Castellar15 = castellar15;
-            Castellar60 = castellar60;
-            this.GraphicsDevice = GraphicsDevice;
+            LoadContent(c, playerFlag, white);
             Initialize();
+        }
+
+        public void LoadContent(ContentManager Content, Texture2D playerFlag, Texture2D white)
+        {
+            // Useful stuff
+            barTexture = Content.Load<Texture2D>("Player UI/Bar");
+            flagTexture = playerFlag;
+            whiteTexture = white;
+
+            // Resources
+            ironResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Iron");
+            shipTexture = Content.Load<Texture2D>("Player UI/Planet Management Menu/Spaceship");
+            uraniumResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Uranium");
+            tungstenResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Tungsten");
+            hydrogenResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Hydrogen");
+            nitrogenResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Nitrogen");
+            oxygenResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Oxygen");
+            selectedButtonTexture = Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1");
+            unselectedButtonTexture = Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1");
+            goldResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Gold");
+            scienceResourceTexture = Content.Load<Texture2D>("Player UI/Resource Icons/Science");
+
+            // Fonts
+            Arial15 = Content.Load<SpriteFont>("Sprite Fonts/Arial15");
+            Castellar15 = Content.Load<SpriteFont>("Sprite Fonts/Castellar15Point");
+            Castellar20 = Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point");
+            Castellar60 = Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point");
         }
 
         public void Initialize()
         {
-            barRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, (int)((GraphicsDevice.Viewport.Height / 100.0f) * 6.25f));
-            flagRect = new Rectangle((int)((barRect.Width / 1920.0f) * 15), (int)((barRect.Height / 135.0f) * 15), (int)((((int)(barRect.Height - ((barRect.Height / 135.0f) * 30))) / 3.0f) * 5.0f), (int)(barRect.Height - ((barRect.Height / 135.0f) * 30)));
-            ironResourceRect = new Rectangle(110, barRect.Center.Y - (40 / 2), 40, 40);
-            uraniumResourceRect = new Rectangle(258, barRect.Center.Y - (40 / 2), 40, 40);
-            tungstenResourceRect = new Rectangle(441, barRect.Center.Y - (40 / 2), 40, 40);
-            hydrogenResourceRect = new Rectangle(639, barRect.Center.Y - (40 / 2), 40, 40);
-            nitrogenResourceRect = new Rectangle(842, barRect.Center.Y - (40 / 2), 40, 40);
-            oxygenResourceRect = new Rectangle(1025, barRect.Center.Y - (40 / 2), 40, 40);
-            goldResourceRect = new Rectangle(1208, barRect.Center.Y - (40 / 2), 40, 40);
-            scienceResourceRect = new Rectangle(1396, barRect.Center.Y - (40 / 2), 40, 40);
-            ironAmount = 0;
-            uraniumAmount = 0;
-            tungstenAmount = 0;
-            hydrogenAmount = 0;
-            nitrogenAmount = 0;
-            oxygenAmount = 0;
-            playerID = 0;
             indexOfPlanetSelected = 0;
+            barRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, (int)((GraphicsDevice.Viewport.Height / 100.0f) * 6.25f));
             shipsSelected = new List<Ship>();
             textSize = new Vector2(0, 0);
             endTurnButton = new Button(new Rectangle(1755, barRect.Center.Y - (55 / 2) + 3, 150, 50), unselectedButtonTexture, selectedButtonTexture, "End Turn", Arial15, Color.White, null, null);
@@ -181,24 +159,20 @@ namespace GalacticImperialism
             topLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
             lineUnderResources = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
             lineAboveTabs = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
+            playerID = Game1.playerID;
+
+            topBar = new TopBar(this, barRect, GraphicsDevice);
             buildingsTabObject = new BuildingsTab(whiteTexture, Castellar60);
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse, KeyboardState kb, KeyboardState oldKb)
         {
+            topBar.Update(playerList);
+
             if(shipIconRects.Count > 0)
             {
                 shipIconRects.Clear();
             }
-
-            ironAmount = playerList[playerID].getResources()[3];
-            uraniumAmount = playerList[playerID].getResources()[5];
-            tungstenAmount = playerList[playerID].getResources()[4];
-            hydrogenAmount = playerList[playerID].getResources()[0];
-            nitrogenAmount = playerList[playerID].getResources()[2];
-            oxygenAmount = playerList[playerID].getResources()[1];
-            goldAmount = playerList[playerID].getGold();
-            scienceAmount = playerList[playerID].getScience();
 
             foreach (Line line in lines)
             {
@@ -355,39 +329,7 @@ namespace GalacticImperialism
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-            spriteBatch.Draw(barTexture, barRect, Color.White);
-            spriteBatch.Draw(flagTexture, flagRect, Color.White);
-            //spriteBatch.Draw(whiteTexture, ironResourceRect, Color.Black);
-            spriteBatch.Draw(ironResourceTexture, ironResourceRect, Color.White);
-            Vector2 textSize = Arial15.MeasureString("Iron: " + ironAmount + " +" + playerList[playerID].resourcesPerTurn[3]);
-            spriteBatch.DrawString(Arial15, "Iron: " + ironAmount + " +" + playerList[playerID].resourcesPerTurn[3], new Vector2(ironResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
-            //spriteBatch.Draw(whiteTexture, uraniumResourceRect, Color.Black);
-            spriteBatch.Draw(uraniumResourceTexture, uraniumResourceRect, Color.White);
-            textSize = Arial15.MeasureString("Uranium: " + uraniumAmount + " +" + playerList[playerID].resourcesPerTurn[5]);
-            spriteBatch.DrawString(Arial15, "Uranium: " + uraniumAmount + " +" + playerList[playerID].resourcesPerTurn[5], new Vector2(uraniumResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
-            //spriteBatch.Draw(whiteTexture, tungstenResourceRect, Color.Black);
-            spriteBatch.Draw(tungstenResourceTexture, tungstenResourceRect, Color.White);
-            textSize = Arial15.MeasureString("Tungsten: " + tungstenAmount + " +" + playerList[playerID].resourcesPerTurn[4]);
-            spriteBatch.DrawString(Arial15, "Tungsten: " + tungstenAmount + " +" + playerList[playerID].resourcesPerTurn[4], new Vector2(tungstenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
-            //spriteBatch.Draw(whiteTexture, hydrogenResourceRect, Color.Black);
-            spriteBatch.Draw(hydrogenResourceTexture, hydrogenResourceRect, Color.White);
-            textSize = Arial15.MeasureString("Hydrogen: " + hydrogenAmount + " +" + playerList[playerID].resourcesPerTurn[0]);
-            spriteBatch.DrawString(Arial15, "Hydrogen: " + hydrogenAmount + " +" + playerList[playerID].resourcesPerTurn[0], new Vector2(hydrogenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
-            //spriteBatch.Draw(whiteTexture, nitrogenResourceRect, Color.Black);
-            spriteBatch.Draw(nitrogenResourceTexture, nitrogenResourceRect, Color.White);
-            textSize = Arial15.MeasureString("Nitrogen: " + nitrogenAmount + " +" + playerList[playerID].resourcesPerTurn[2]);
-            spriteBatch.DrawString(Arial15, "Nitrogen: " + nitrogenAmount + " +" + playerList[playerID].resourcesPerTurn[2], new Vector2(nitrogenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
-            //spriteBatch.Draw(whiteTexture, oxygenResourceRect, Color.Black);
-            spriteBatch.Draw(oxygenResourceTexture, oxygenResourceRect, Color.White);
-            textSize = Arial15.MeasureString("Oxygen: " + oxygenAmount);
-            spriteBatch.DrawString(Arial15, "Oxygen: " + oxygenAmount + " +" + playerList[playerID].resourcesPerTurn[1], new Vector2(oxygenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
-            spriteBatch.Draw(goldResourceTexture, goldResourceRect, Color.White);
-            textSize = Arial15.MeasureString("Gold: " + goldAmount + " +" + playerList[playerID].goldPerTurn);
-            spriteBatch.DrawString(Arial15, "Gold: " + goldAmount + " +" + playerList[playerID].goldPerTurn, new Vector2(goldResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
-            spriteBatch.Draw(scienceResourceTexture, scienceResourceRect, Color.White);
-            textSize = Arial15.MeasureString("Science: " + scienceAmount + " +" + playerList[playerID].sciencePerTurn);
-            spriteBatch.DrawString(Arial15, "Science: " + scienceAmount + " +" + playerList[playerID].sciencePerTurn, new Vector2(scienceResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            topBar.Draw(spriteBatch);
             endTurnButton.Draw(spriteBatch);
             techTreeButton.Draw(spriteBatch);
 

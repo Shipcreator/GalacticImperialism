@@ -100,8 +100,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game Pieces\BuildingSlot.cs" />
-    <Compile Include="UI\BuildingsTab.cs" />
+    <Compile Include="UI\Components\BuildingsTab.cs" />
     <Compile Include="CustomSong.cs" />
+    <Compile Include="UI\Components\TopBar.cs" />
     <Compile Include="UI\FlagDataBase.cs" />
     <Compile Include="Game Pieces\Army.cs" />
     <Compile Include="Game Pieces\Ship.cs" />

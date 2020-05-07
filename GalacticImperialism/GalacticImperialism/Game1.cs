@@ -178,7 +178,7 @@ namespace GalacticImperialism
             playerFlag = new Flag(flagCreationMenuObject.flagTexture);
             playerFlagTexture = new Texture2D(GraphicsDevice, 500, 300);
             playerFlagTexture.SetData<Color>(playerFlag.flagColorArray);
-            playerUIObject = new PlayerUI(Content.Load<Texture2D>("Player UI/Bar"), playerFlagTexture, whiteTexture, Content.Load<Texture2D>("Player UI/Resource Icons/Iron"), Content.Load<Texture2D>("Player UI/Resource Icons/Uranium"), Content.Load<Texture2D>("Player UI/Resource Icons/Tungsten"), Content.Load<Texture2D>("Player UI/Resource Icons/Hydrogen"), Content.Load<Texture2D>("Player UI/Resource Icons/Nitrogen"), Content.Load<Texture2D>("Player UI/Resource Icons/Oxygen"), Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1"), Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1"), GraphicsDevice, Content.Load<SpriteFont>("Sprite Fonts/Arial15"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"), Content.Load<SpriteFont>("Sprite Fonts/Castellar15Point"), Content.Load<Texture2D>("Player UI/Planet Management Menu/Spaceship"), Content.Load<Texture2D>("Player UI/Resource Icons/Gold"), Content.Load<Texture2D>("Player UI/Resource Icons/Science"), Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point"));
+            playerUIObject = new PlayerUI(Content, playerFlagTexture, whiteTexture, GraphicsDevice);
             multiplayerMenuObject = new Multiplayer(this, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
 
             //Creates TechTree
@@ -428,7 +428,7 @@ namespace GalacticImperialism
                     {
                         if (msg is Board)
                         {
-                            board = (Board)msg;
+                            board = (Board) msg;
                             playerUIObject.InitBoard(board);
                         } else if (msg is int)
                         {
@@ -444,14 +444,7 @@ namespace GalacticImperialism
             if (menuSelected == Menus.Game)
             {
                 board.Update(gameTime, mouse, kb, oldMouse, oldKb);
-                //playerFlagTexture.SetData<Color>(board.flagDataBaseObject.GetFlag(playerID).flagColorArray);
                 playerFlagTexture = flagCreationMenuObject.flagTexture;
-                /*playerUIObject.ironAmount = board.players[playerID].getResources()[3];
-                playerUIObject.uraniumAmount = board.players[playerID].getResources()[5];
-                playerUIObject.tungstenAmount = board.players[playerID].getResources()[4];
-                playerUIObject.hydrogenAmount = board.players[playerID].getResources()[0];
-                playerUIObject.nitrogenAmount = board.players[playerID].getResources()[2];
-                playerUIObject.oxygenAmount = board.players[playerID].getResources()[1];*/
                 playerUIObject.playerID = playerID;
 
                 if (playerUIObject.PlanetNames.Count > 0)
