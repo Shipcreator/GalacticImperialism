@@ -99,6 +99,8 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game Pieces\BuildingSlot.cs" />
+    <Compile Include="UI\BuildingsTab.cs" />
     <Compile Include="CustomSong.cs" />
     <Compile Include="UI\FlagDataBase.cs" />
     <Compile Include="Game Pieces\Army.cs" />
