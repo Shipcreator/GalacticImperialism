@@ -129,6 +129,9 @@ namespace GalacticImperialism
             Castellar15 = Content.Load<SpriteFont>("Sprite Fonts/Castellar15Point");
             Castellar20 = Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point");
             Castellar60 = Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point");
+
+            //Tabs
+            buildingsTabObject = new BuildingsTab(Content, whiteTexture);
         }
 
         public void Initialize()
@@ -162,7 +165,6 @@ namespace GalacticImperialism
             playerID = Game1.playerID;
 
             topBar = new TopBar(this, barRect, GraphicsDevice);
-            buildingsTabObject = new BuildingsTab(whiteTexture, Castellar60);
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse, KeyboardState kb, KeyboardState oldKb)
@@ -281,7 +283,7 @@ namespace GalacticImperialism
                 }
                 if(tabSelected == Tabs.Buildings)
                 {
-                    buildingsTabObject.Update(playerList[playerID].ownedPlanets[indexOfPlanetSelected]);
+                    buildingsTabObject.Update(playerList[playerID].ownedPlanets[indexOfPlanetSelected], mouse, oldMouse);
                     playerList[playerID].ownedPlanets[indexOfPlanetSelected] = buildingsTabObject.planetSelected;
                 }
 

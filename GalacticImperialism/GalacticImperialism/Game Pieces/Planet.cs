@@ -52,9 +52,9 @@ namespace GalacticImperialism
 
             managementMenuObject = new PlanetManagementMenu(this);
             buildingSlotsList = new List<BuildingSlot>();
-            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
-            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
-            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
+            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.ResearchFacility));
+            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.MilitaryBase));
+            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Factory));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
