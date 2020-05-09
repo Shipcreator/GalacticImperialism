@@ -291,6 +291,7 @@ namespace GalacticImperialism
                 {
                     planetManagementMenuOpen = false;
                     tabSelected = Tabs.Buildings;
+                    buildingsTabObject.indexOfBuildingSlotSelected = 0;
                 }
             }
 

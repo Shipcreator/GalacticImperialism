@@ -33,7 +33,7 @@ namespace GalacticImperialism
         Line rightSideLine;
         Line underButtonLine;
 
-        int indexOfBuildingSlotSelected;
+        public int indexOfBuildingSlotSelected;
 
         Button demolishOrBuildButton;
 
