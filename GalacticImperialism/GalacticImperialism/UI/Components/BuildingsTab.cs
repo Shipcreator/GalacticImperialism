@@ -27,6 +27,7 @@ namespace GalacticImperialism
         SpriteFont tabFont;
         SpriteFont textFont;
         SpriteFont descriptionFont;
+        SpriteFont smallestFont;
 
         public Planet planetSelected;
 
@@ -34,6 +35,7 @@ namespace GalacticImperialism
         Line underButtonLine;
 
         public int indexOfBuildingSlotSelected;
+        public int whatToBuildType;
 
         Button demolishOrBuildButton;
 
@@ -50,6 +52,7 @@ namespace GalacticImperialism
             rightSideLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
             underButtonLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
             indexOfBuildingSlotSelected = 0;
+            whatToBuildType = 0;
             demolishOrBuildButton = new Button(new Rectangle(0, 0, 200, 100), unselectedButtonTexture, selectedButtonTexture, "Build", textFont, Color.White, null, null);
         }
 
@@ -58,6 +61,7 @@ namespace GalacticImperialism
             tabFont = Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point");
             textFont = Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point");
             descriptionFont = Content.Load<SpriteFont>("Sprite Fonts/Castellar15Point");
+            smallestFont = Content.Load<SpriteFont>("Sprite Fonts/Castellar12Point");
             unselectedButtonTexture = Content.Load<Texture2D>("Button Textures/UnselectedButtonTexture1");
             selectedButtonTexture = Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1");
             researchFacilityBuildingTexture = Content.Load<Texture2D>("Player UI/Planet Management Menu/Research Facility Icon");
@@ -102,6 +106,16 @@ namespace GalacticImperialism
                 }
             }
 
+            if(planetSelected.buildingSlotsList[indexOfBuildingSlotSelected].typeOfBuilding == BuildingSlot.BuildingType.Empty)
+            {
+                if (mouse.X >= (int)(rightSideLine.p1.X + 10) && mouse.X <= (int)(rightSideLine.p1.X + 10) + 100 && mouse.Y >= planetSelected.managementMenuObject.menuRectangle.Y + 150 && mouse.Y <= planetSelected.managementMenuObject.menuRectangle.Y + 250 && mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed)
+                    whatToBuildType = 0;
+                if (mouse.X >= (int)(rightSideLine.p1.X + 10) && mouse.X <= (int)(rightSideLine.p1.X + 10) + 100 && mouse.Y >= planetSelected.managementMenuObject.menuRectangle.Y + 260 && mouse.Y <= planetSelected.managementMenuObject.menuRectangle.Y + 360 && mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed)
+                    whatToBuildType = 1;
+                if (mouse.X >= (int)(rightSideLine.p1.X + 10) && mouse.X <= (int)(rightSideLine.p1.X + 10) + 100 && mouse.Y >= planetSelected.managementMenuObject.menuRectangle.Y + 370 && mouse.Y <= planetSelected.managementMenuObject.menuRectangle.Y + 470 && mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed)
+                    whatToBuildType = 2;
+            }
+
             demolishOrBuildButton.buttonRect.X = planetSelected.managementMenuObject.menuRectangle.Right - 250;
             demolishOrBuildButton.buttonRect.Y = planetSelected.managementMenuObject.menuRectangle.Bottom - 400;
             demolishOrBuildButton.Update(mouse, oldMouse);
@@ -138,7 +152,33 @@ namespace GalacticImperialism
                     if(x != indexOfBuildingSlotSelected)
                         spriteBatch.DrawString(tabFont, "+", new Vector2(planetSelected.buildingSlotsList[x].buildingSlotRectangle.Center.X - (tabFont.MeasureString("+").X / 2), planetSelected.buildingSlotsList[x].buildingSlotRectangle.Center.Y - (tabFont.MeasureString("+").Y / 2)), Color.White);
                     else
+                    {
                         spriteBatch.DrawString(tabFont, "+", new Vector2(planetSelected.buildingSlotsList[x].buildingSlotRectangle.Center.X - (tabFont.MeasureString("+").X / 2), planetSelected.buildingSlotsList[x].buildingSlotRectangle.Center.Y - (tabFont.MeasureString("+").Y / 2)), Color.Gold);
+                        if(whatToBuildType != 0)
+                            spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10), planetSelected.managementMenuObject.menuRectangle.Y + 150, 100, 100), Color.White);
+                        else
+                            spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10), planetSelected.managementMenuObject.menuRectangle.Y + 150, 100, 100), Color.Gold);
+                        spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10) + 5, planetSelected.managementMenuObject.menuRectangle.Y + 150 + 5, 90, 90), Color.Black);
+                        spriteBatch.Draw(researchFacilityBuildingTexture, new Rectangle((int)(rightSideLine.p1.X + 10) + 5, planetSelected.managementMenuObject.menuRectangle.Y + 150 + 5, 90, 90), Color.White);
+                        spriteBatch.DrawString(smallestFont, "Research Facility", new Vector2((int)(rightSideLine.p1.X + 10) + 100 + 10, planetSelected.managementMenuObject.menuRectangle.Y + 150), Color.White);
+                        spriteBatch.DrawString(smallestFont, "Boosts empire's\nscience\nproduction", new Vector2((int)(rightSideLine.p1.X + 10) + 100 + 10, planetSelected.managementMenuObject.menuRectangle.Y + 150 + 35), Color.White);
+                        if(whatToBuildType != 1)
+                            spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10), planetSelected.managementMenuObject.menuRectangle.Y + 260, 100, 100), Color.White);
+                        else
+                            spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10), planetSelected.managementMenuObject.menuRectangle.Y + 260, 100, 100), Color.Gold);
+                        spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10) + 5, planetSelected.managementMenuObject.menuRectangle.Y + 260 + 5, 90, 90), Color.Black);
+                        spriteBatch.Draw(militaryBaseBuildingTexture, new Rectangle((int)(rightSideLine.p1.X + 10) + 5, planetSelected.managementMenuObject.menuRectangle.Y + 260 + 5, 90, 90), Color.White);
+                        spriteBatch.DrawString(smallestFont, "Military Base", new Vector2((int)(rightSideLine.p1.X + 10) + 100 + 10, planetSelected.managementMenuObject.menuRectangle.Y + 260), Color.White);
+                        spriteBatch.DrawString(smallestFont, "Boosts the\nproduction of\nunits.", new Vector2((int)(rightSideLine.p1.X + 10) + 100 + 10, planetSelected.managementMenuObject.menuRectangle.Y + 260 + 35), Color.White);
+                        if(whatToBuildType != 2)
+                            spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10), planetSelected.managementMenuObject.menuRectangle.Y + 370, 100, 100), Color.White);
+                        else
+                            spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10), planetSelected.managementMenuObject.menuRectangle.Y + 370, 100, 100), Color.Gold);
+                        spriteBatch.Draw(whiteTexture, new Rectangle((int)(rightSideLine.p1.X + 10) + 5, planetSelected.managementMenuObject.menuRectangle.Y + 370 + 5, 90, 90), Color.Black);
+                        spriteBatch.Draw(factoryBuildingTexture, new Rectangle((int)(rightSideLine.p1.X + 10) + 5, planetSelected.managementMenuObject.menuRectangle.Y + 370 + 5, 90, 90), Color.White);
+                        spriteBatch.DrawString(smallestFont, "Factory", new Vector2((int)(rightSideLine.p1.X + 10) + 100 + 10, planetSelected.managementMenuObject.menuRectangle.Y + 370), Color.White);
+                        spriteBatch.DrawString(smallestFont, "Boosts the\nproduction of\nother buildings", new Vector2((int)(rightSideLine.p1.X + 10) + 100 + 10, planetSelected.managementMenuObject.menuRectangle.Y + 370 + 35), Color.White);
+                    }
                 }
                 if(planetSelected.buildingSlotsList[x].typeOfBuilding == BuildingSlot.BuildingType.ResearchFacility)
                 {

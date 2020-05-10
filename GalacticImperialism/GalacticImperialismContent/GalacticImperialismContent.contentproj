@@ -216,8 +216,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprite Fonts\Castellar10Point.spritefont">
-      <Name>Castellar10Point</Name>
+    <Compile Include="Sprite Fonts\Castellar12Point.spritefont">
+      <Name>Castellar12Point</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

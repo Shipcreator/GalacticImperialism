@@ -1,7 +1,6 @@
 Content\Sprite Fonts\Castellar60Point.xnb
 Content\Sprite Fonts\Castellar20Point.xnb
 Content\Sprite Fonts\Castellar15Point.xnb
-Content\Sprite Fonts\Castellar10Point.xnb
 Content\Sprite Fonts\Arial20.xnb
 Content\Sprite Fonts\Arial15.xnb
 Content\Star Background\WhiteCircle.xnb
@@ -70,6 +69,7 @@ Content\Player UI\Resource Icons\Science.xnb
 Content\Player UI\Planet Management Menu\Research Facility Icon.xnb
 Content\Player UI\Planet Management Menu\Military Base Icon.xnb
 Content\Player UI\Planet Management Menu\Factory Icon.xnb
+Content\Sprite Fonts\Castellar12Point.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
 Content\Songs\Chronometry.wma
 Content\Songs\Paradigm.wma
