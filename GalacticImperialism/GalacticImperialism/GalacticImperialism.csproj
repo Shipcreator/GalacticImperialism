@@ -99,7 +99,9 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game Pieces\BuildingSlot.cs" />
+    <Compile Include="BuildingQueued.cs" />
+    <Compile Include="UI\Components\BuildingQueue.cs" />
+    <Compile Include="UI\Components\BuildingSlot.cs" />
     <Compile Include="UI\Components\BuildingsTab.cs" />
     <Compile Include="CustomSong.cs" />
     <Compile Include="UI\Components\TopBar.cs" />

@@ -33,11 +33,20 @@ namespace GalacticImperialism
 
         Line rightSideLine;
         Line underButtonLine;
+        Line underBuildingQueueTitleLine;
+        Line underBuildingQueueTabsLine;
+        Line typeFromSlotLine;
+        Line slotFromTurnsLine;
 
         public int indexOfBuildingSlotSelected;
         public int whatToBuildType;
+        int collectiveBuildCost;
+        int numberOfFactories;
+        int turnsToBuild;
 
         Button demolishOrBuildButton;
+
+        bool addBuildingToQueue;
 
         public BuildingsTab(ContentManager Content, Texture2D whiteTexture)
         {
@@ -51,9 +60,17 @@ namespace GalacticImperialism
         {
             rightSideLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
             underButtonLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
+            underBuildingQueueTitleLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
+            underBuildingQueueTabsLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
+            typeFromSlotLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
+            slotFromTurnsLine = new Line(new Vector2(0, 0), new Vector2(0, 0), 1, Color.White, whiteTexture);
             indexOfBuildingSlotSelected = 0;
             whatToBuildType = 0;
+            collectiveBuildCost = 0;
+            numberOfFactories = 0;
+            turnsToBuild = 0;
             demolishOrBuildButton = new Button(new Rectangle(0, 0, 200, 100), unselectedButtonTexture, selectedButtonTexture, "Build", textFont, Color.White, null, null);
+            addBuildingToQueue = true;
         }
 
         public void LoadContent()
@@ -82,6 +99,26 @@ namespace GalacticImperialism
             underButtonLine.p2.X = selectedPlanet.managementMenuObject.menuRectangle.Right;
             underButtonLine.p2.Y = selectedPlanet.managementMenuObject.menuRectangle.Bottom - 300;
             underButtonLine.Update();
+            underBuildingQueueTitleLine.p1.X = rightSideLine.p1.X + rightSideLine.thickness;
+            underBuildingQueueTitleLine.p1.Y = planetSelected.managementMenuObject.menuRectangle.Bottom - 300 + descriptionFont.MeasureString("Building Queue").Y;
+            underBuildingQueueTitleLine.p2.X = planetSelected.managementMenuObject.menuRectangle.Right;
+            underBuildingQueueTitleLine.p2.Y = underBuildingQueueTitleLine.p1.Y;
+            underBuildingQueueTitleLine.Update();
+            underBuildingQueueTabsLine.p1.X = rightSideLine.p1.X + rightSideLine.thickness;
+            underBuildingQueueTabsLine.p1.Y = underBuildingQueueTitleLine.p1.Y + underBuildingQueueTitleLine.thickness + descriptionFont.MeasureString("Type").Y;
+            underBuildingQueueTabsLine.p2.X = planetSelected.managementMenuObject.menuRectangle.Right;
+            underBuildingQueueTabsLine.p2.Y = underBuildingQueueTabsLine.p1.Y;
+            underBuildingQueueTabsLine.Update();
+            typeFromSlotLine.p1.X = planetSelected.managementMenuObject.menuRectangle.Right - 155;
+            typeFromSlotLine.p1.Y = underBuildingQueueTitleLine.p1.Y;
+            typeFromSlotLine.p2.X = typeFromSlotLine.p1.X;
+            typeFromSlotLine.p2.Y = planetSelected.managementMenuObject.menuRectangle.Bottom - 50;
+            typeFromSlotLine.Update();
+            slotFromTurnsLine.p1.X = planetSelected.managementMenuObject.menuRectangle.Right - descriptionFont.MeasureString("Turns").X - 5;
+            slotFromTurnsLine.p1.Y = underBuildingQueueTitleLine.p1.Y;
+            slotFromTurnsLine.p2.X = slotFromTurnsLine.p1.X;
+            slotFromTurnsLine.p2.Y = planetSelected.managementMenuObject.menuRectangle.Bottom - 50;
+            slotFromTurnsLine.Update();
 
             for(int x = 0; x < planetSelected.buildingSlotsList.Count; x++)
             {
@@ -122,6 +159,24 @@ namespace GalacticImperialism
             if (planetSelected.buildingSlotsList[indexOfBuildingSlotSelected].typeOfBuilding == BuildingSlot.BuildingType.Empty)
             {
                 demolishOrBuildButton.buttonText = "Build";
+                if (demolishOrBuildButton.isClicked)
+                {
+                    addBuildingToQueue = true;
+                    for(int x = 0; x < planetSelected.buildingQueue.queuedBuildings.Count; x++)
+                    {
+                        if (planetSelected.buildingQueue.queuedBuildings[x].buildingSlotIndex == indexOfBuildingSlotSelected)
+                            addBuildingToQueue = false;
+                    }
+                    if (addBuildingToQueue)
+                    {
+                        if (whatToBuildType == 0)
+                            planetSelected.buildingQueue.AddBuildingToQueue("ResearchFacility", indexOfBuildingSlotSelected);
+                        if (whatToBuildType == 1)
+                            planetSelected.buildingQueue.AddBuildingToQueue("MilitaryBase", indexOfBuildingSlotSelected);
+                        if (whatToBuildType == 2)
+                            planetSelected.buildingQueue.AddBuildingToQueue("Factory", indexOfBuildingSlotSelected);
+                    }
+                }
             }
             else
             {
@@ -212,6 +267,49 @@ namespace GalacticImperialism
                         spriteBatch.DrawString(descriptionFont, "Boosts the production", new Vector2(planetSelected.managementMenuObject.menuRectangle.Right - 150 - (descriptionFont.MeasureString("Boosts the production").X / 2), planetSelected.managementMenuObject.menuRectangle.Y + 150 + (int)textFont.MeasureString("Factory").Y + 100 + 10), Color.White);
                         spriteBatch.DrawString(descriptionFont, "of other buildings.", new Vector2(planetSelected.managementMenuObject.menuRectangle.Right - 150 - (descriptionFont.MeasureString("of other buildings.").X / 2), planetSelected.managementMenuObject.menuRectangle.Y + 150 + (int)textFont.MeasureString("Factory").Y + 100 + 10 + descriptionFont.MeasureString("Boosts the production").Y), Color.White);
                     }
+                }
+            }
+
+            //This is where the building queue will be drawn.
+            spriteBatch.DrawString(descriptionFont, "Building Queue", new Vector2(planetSelected.managementMenuObject.menuRectangle.Right - 150 - (descriptionFont.MeasureString("Building Queue").X / 2), underButtonLine.p1.Y + underButtonLine.thickness), Color.White);
+            underBuildingQueueTitleLine.Draw(spriteBatch);
+            spriteBatch.DrawString(descriptionFont, "Type", new Vector2(planetSelected.managementMenuObject.menuRectangle.Right - 300, underBuildingQueueTitleLine.p1.Y + underBuildingQueueTitleLine.thickness), Color.White);
+            spriteBatch.DrawString(descriptionFont, "Slot", new Vector2(planetSelected.managementMenuObject.menuRectangle.Right - 150, underBuildingQueueTitleLine.p1.Y + underBuildingQueueTitleLine.thickness), Color.White);
+            spriteBatch.DrawString(descriptionFont, "Turns", new Vector2(planetSelected.managementMenuObject.menuRectangle.Right - descriptionFont.MeasureString("Turns").X, underBuildingQueueTitleLine.p1.Y + underBuildingQueueTitleLine.thickness), Color.White);
+            underBuildingQueueTabsLine.Draw(spriteBatch);
+            typeFromSlotLine.Draw(spriteBatch);
+            slotFromTurnsLine.Draw(spriteBatch);
+            for(int x = 0; x < planetSelected.buildingQueue.queuedBuildings.Count; x++)
+            {
+                if(x < 10)
+                {
+                    collectiveBuildCost = 0;
+                    numberOfFactories = 0;
+                    for(int y = 0; y < x + 1; y++)
+                    {
+                        collectiveBuildCost += planetSelected.buildingQueue.queuedBuildings[x].buildCost;
+                    }
+                    for(int y = 0; y < planetSelected.buildingSlotsList.Count; y++)
+                    {
+                        if (planetSelected.buildingSlotsList[y].typeOfBuilding == BuildingSlot.BuildingType.Factory)
+                            numberOfFactories++;
+                    }
+                    turnsToBuild = (int)((collectiveBuildCost - planetSelected.buildingQueue.productionTowardsNextBuilding) / (1000 + (500.0f * numberOfFactories)) + 0.99);
+
+                    if (planetSelected.buildingQueue.queuedBuildings[x].typeOfBuilding == BuildingQueued.BuildingType.ResearchFacility)
+                    {
+                        spriteBatch.DrawString(descriptionFont, "Research F.", new Vector2(rightSideLine.p1.X + rightSideLine.thickness, underBuildingQueueTabsLine.p1.Y + underBuildingQueueTabsLine.thickness + (x * 18)), Color.White);
+                    }
+                    if (planetSelected.buildingQueue.queuedBuildings[x].typeOfBuilding == BuildingQueued.BuildingType.MilitaryBase)
+                    {
+                        spriteBatch.DrawString(descriptionFont, "Military B.", new Vector2(rightSideLine.p1.X + rightSideLine.thickness, underBuildingQueueTabsLine.p1.Y + underBuildingQueueTabsLine.thickness + (x * 18)), Color.White);
+                    }
+                    if (planetSelected.buildingQueue.queuedBuildings[x].typeOfBuilding == BuildingQueued.BuildingType.Factory)
+                    {
+                        spriteBatch.DrawString(descriptionFont, "Factory", new Vector2(rightSideLine.p1.X + rightSideLine.thickness, underBuildingQueueTabsLine.p1.Y + underBuildingQueueTabsLine.thickness + (x * 18)), Color.White);
+                    }
+                    spriteBatch.DrawString(descriptionFont, "" + (planetSelected.buildingQueue.queuedBuildings[x].buildingSlotIndex + 1), new Vector2(typeFromSlotLine.p1.X + typeFromSlotLine.thickness + 5, underBuildingQueueTabsLine.p1.Y + underBuildingQueueTabsLine.thickness + (x * 18)), Color.White);
+                    spriteBatch.DrawString(descriptionFont, "" + turnsToBuild, new Vector2(slotFromTurnsLine.p1.X + slotFromTurnsLine.thickness + 5, underBuildingQueueTabsLine.p1.Y + underBuildingQueueTabsLine.thickness + (x * 18)), Color.White);
                 }
             }
         }

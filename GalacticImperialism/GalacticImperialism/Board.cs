@@ -44,6 +44,7 @@ namespace GalacticImperialism
         List<int> planetNamesUsedIndexes;
         int randomPlanetNumber;
         bool breakLoop;
+        int amountOfFactoriesOnPlanet;
 
         //Creates Board, Assigns Texture Objects
         public Board(int r)
@@ -353,6 +354,41 @@ namespace GalacticImperialism
         //NextTurn Handling
         public void NextTurn()
         {
+            try
+            {
+                for (int x = 0; x < players[turn].ownedPlanets.Count; x++)
+                {
+                    amountOfFactoriesOnPlanet = 0;
+                    for(int y = 0; y < players[turn].ownedPlanets[x].buildingSlotsList.Count; y++)
+                    {
+                        if(players[turn].ownedPlanets[x].buildingSlotsList[y].typeOfBuilding == BuildingSlot.BuildingType.Factory)
+                        {
+                            amountOfFactoriesOnPlanet++;
+                        }
+                    }
+                    players[turn].ownedPlanets[x].buildingQueue.EndTurn(1000 + (amountOfFactoriesOnPlanet * 500));
+                    for(int y = 0; y < players[turn].ownedPlanets[x].buildingQueue.finishedBuildings.Count; y++)
+                    {
+                        if(players[turn].ownedPlanets[x].buildingQueue.finishedBuildings[y].typeOfBuilding == BuildingQueued.BuildingType.ResearchFacility)
+                        {
+                            players[turn].ownedPlanets[x].buildingSlotsList[players[turn].ownedPlanets[x].buildingQueue.finishedBuildings[y].buildingSlotIndex].typeOfBuilding = BuildingSlot.BuildingType.ResearchFacility;
+                        }
+                        if (players[turn].ownedPlanets[x].buildingQueue.finishedBuildings[y].typeOfBuilding == BuildingQueued.BuildingType.MilitaryBase)
+                        {
+                            players[turn].ownedPlanets[x].buildingSlotsList[players[turn].ownedPlanets[x].buildingQueue.finishedBuildings[y].buildingSlotIndex].typeOfBuilding = BuildingSlot.BuildingType.MilitaryBase;
+                        }
+                        if (players[turn].ownedPlanets[x].buildingQueue.finishedBuildings[y].typeOfBuilding == BuildingQueued.BuildingType.Factory)
+                        {
+                            players[turn].ownedPlanets[x].buildingSlotsList[players[turn].ownedPlanets[x].buildingQueue.finishedBuildings[y].buildingSlotIndex].typeOfBuilding = BuildingSlot.BuildingType.Factory;
+                        }
+                    }
+                    players[turn].ownedPlanets[x].buildingQueue.finishedBuildings.Clear();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
             //Goes to Next Player
             if (turn == players.Count - 1)

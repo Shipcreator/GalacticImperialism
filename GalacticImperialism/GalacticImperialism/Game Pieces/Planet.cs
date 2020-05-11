@@ -23,6 +23,8 @@ namespace GalacticImperialism
         public List<Ship> planetShips = new List<Ship>();
         public PlanetManagementMenu managementMenuObject;       //Pop-up menu that allows the player to manage the building and resources of a planet.
         public List<BuildingSlot> buildingSlotsList;
+        public BuildingQueue buildingQueue;
+        public int productionPerTurn;
 
         //Create Base Planets
         public Planet(int s, int t, string n, Vector2 p, int[] r)
@@ -33,11 +35,13 @@ namespace GalacticImperialism
             position = p;
             resourceNumbers = r;
 
+            productionPerTurn = 1000;
             managementMenuObject = new PlanetManagementMenu(this);
             buildingSlotsList = new List<BuildingSlot>();
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
+            buildingQueue = new BuildingQueue();
         }
 
         //Create Starting Planet
@@ -50,6 +54,7 @@ namespace GalacticImperialism
             resourceNumbers[0] += 2;
             resourceNumbers[3] += 2;
 
+            productionPerTurn = 2000;
             managementMenuObject = new PlanetManagementMenu(this);
             buildingSlotsList = new List<BuildingSlot>();
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.ResearchFacility));
@@ -59,6 +64,7 @@ namespace GalacticImperialism
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
+            buildingQueue = new BuildingQueue();
         }
     }
 }
