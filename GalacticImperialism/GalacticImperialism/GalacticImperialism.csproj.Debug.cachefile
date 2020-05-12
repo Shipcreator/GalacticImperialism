@@ -1,6 +1,7 @@
 Content\Sprite Fonts\Castellar60Point.xnb
 Content\Sprite Fonts\Castellar20Point.xnb
 Content\Sprite Fonts\Castellar15Point.xnb
+Content\Sprite Fonts\Castellar12Point.xnb
 Content\Sprite Fonts\Arial20.xnb
 Content\Sprite Fonts\Arial15.xnb
 Content\Star Background\WhiteCircle.xnb
@@ -47,9 +48,14 @@ Content\Player UI\Resource Icons\Oxygen.xnb
 Content\Player UI\Resource Icons\Tungsten.xnb
 Content\Player UI\Resource Icons\Uranium.xnb
 Content\Player UI\Planet Management Menu\Spaceship.xnb
+Content\Player UI\Resource Icons\Gold.xnb
+Content\Player UI\Resource Icons\Science.xnb
+Content\Player UI\Planet Management Menu\Research Facility Icon.xnb
+Content\Player UI\Planet Management Menu\Military Base Icon.xnb
+Content\Player UI\Planet Management Menu\Factory Icon.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.xnb
-Content\Sound Effects\Mouse Over Button.xnb
 Content\Songs\Chronometry.xnb
+Content\Sprite Fonts\Castellar10Point.xnb
 Content\Songs\Paradigm.xnb
 Content\Songs\Dream or Reality.xnb
 Content\Songs\Mind Games.xnb
@@ -64,12 +70,7 @@ Content\Songs\Misty Effect.xnb
 Content\Songs\No Regrets.xnb
 Content\Songs\Written in the Shadows.xnb
 Content\Songs\Beyond Life.xnb
-Content\Player UI\Resource Icons\Gold.xnb
-Content\Player UI\Resource Icons\Science.xnb
-Content\Player UI\Planet Management Menu\Research Facility Icon.xnb
-Content\Player UI\Planet Management Menu\Military Base Icon.xnb
-Content\Player UI\Planet Management Menu\Factory Icon.xnb
-Content\Sprite Fonts\Castellar12Point.xnb
+Content\Sound Effects\Mouse Over Button.xnb
 Content\Videos\XNA Galacic Imperialism Crawl.wmv
 Content\Songs\Chronometry.wma
 Content\Songs\Paradigm.wma

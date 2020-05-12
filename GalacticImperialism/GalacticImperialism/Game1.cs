@@ -82,13 +82,14 @@ namespace GalacticImperialism
         Rectangle wholeScreenRect;
 
         bool menuChangeOnFrame;
-
-        public static UnitProduction unitProduction;
+        
         public static TechTree techTree;
 
         public static List<Texture2D> planetTex;
 
         MusicPlayer musicPlayerObject;
+
+        
 
         public Game1()
         {
@@ -183,10 +184,7 @@ namespace GalacticImperialism
 
             //Creates TechTree
             techTree = new TechTree(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"));
-
-            //UNIT PRODUCTION
-            unitProduction = new UnitProduction(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
-        }
+}
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -487,7 +485,7 @@ namespace GalacticImperialism
             }
 
             //Updates Unit Production
-            unitProduction.Update(kb, oldKb, mouse, oldMouse);
+            
             //Update TechTree
             techTree.Update(kb, oldKb, mouse, oldMouse);
 
@@ -538,7 +536,6 @@ namespace GalacticImperialism
                 playerUIObject.Draw(spriteBatch);
             }
             techTree.Draw(spriteBatch);
-            unitProduction.Draw(spriteBatch);
             musicPlayerObject.Draw(spriteBatch);
             spriteBatch.End();
 

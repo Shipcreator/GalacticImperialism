@@ -26,6 +26,9 @@ namespace GalacticImperialism
         public BuildingQueue buildingQueue;
         public int productionPerTurn;
 
+        public UnitProduction unitProduction;
+
+
         //Create Base Planets
         public Planet(int s, int t, string n, Vector2 p, int[] r)
         {
@@ -42,6 +45,8 @@ namespace GalacticImperialism
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingQueue = new BuildingQueue();
+
+            unitProduction = new UnitProduction();
         }
 
         //Create Starting Planet
@@ -65,6 +70,8 @@ namespace GalacticImperialism
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingQueue = new BuildingQueue();
+
+            unitProduction = new UnitProduction();
         }
     }
 }

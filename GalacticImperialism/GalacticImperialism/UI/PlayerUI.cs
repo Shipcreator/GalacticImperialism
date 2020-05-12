@@ -22,7 +22,8 @@ namespace GalacticImperialism
         enum Tabs
         {
             Buildings = 1,
-            Ships = 2
+            Ships = 2,
+            UnitProduction = 3
         }
         Tabs tabSelected;
         TopBar topBar;
@@ -95,6 +96,9 @@ namespace GalacticImperialism
         Line lineUnderResources;
         Line lineAboveTabs;
 
+        //UnitProduction
+        UnitProductionMenu unitProductionMenu;
+
         public PlayerUI(ContentManager c, Texture2D playerFlag, Texture2D white, GraphicsDevice g)
         {
             this.GraphicsDevice = g;
@@ -132,6 +136,11 @@ namespace GalacticImperialism
 
             //Tabs
             buildingsTabObject = new BuildingsTab(Content, whiteTexture);
+
+
+            //UNIT PRODUCTION
+            unitProductionMenu = new UnitProductionMenu(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
+
         }
 
         public void Initialize()
@@ -165,6 +174,8 @@ namespace GalacticImperialism
             playerID = Game1.playerID;
 
             topBar = new TopBar(this, barRect, GraphicsDevice);
+
+
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse, KeyboardState kb, KeyboardState oldKb)
@@ -294,7 +305,11 @@ namespace GalacticImperialism
                     buildingsTabObject.indexOfBuildingSlotSelected = 0;
                 }
             }
-
+            if (tabSelected == Tabs.UnitProduction)
+            {
+                unitProductionMenu.Update(kb, oldKb, mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected].unitProduction);
+                UnitProduction.Open = false;
+            }
             planetMenuLastFrame = planetMenu;
         }
 
@@ -417,6 +432,11 @@ namespace GalacticImperialism
                 {
                     buildingsTabObject.Draw(spriteBatch);
                 }
+                if (tabSelected == Tabs.UnitProduction)
+                {
+                    unitProductionMenu.Draw(spriteBatch, playerList[playerID].ownedPlanets[indexOfPlanetSelected].unitProduction);
+                }
+                
             }
         }
     }

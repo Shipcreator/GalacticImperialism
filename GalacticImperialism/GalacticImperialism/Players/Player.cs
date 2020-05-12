@@ -247,6 +247,10 @@ namespace GalacticImperialism
         {
             PlayerUI.closeMenus();
             PlayerUI.shipsSelected = new List<Ship>();
+            for (int i = 0; i < ownedPlanets.Count;i++)
+            {
+                ownedPlanets[i].unitProduction.productionAdd();
+            }
             board.NextTurn();
         }
 
