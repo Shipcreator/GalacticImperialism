@@ -25,8 +25,9 @@ namespace GalacticImperialism
         public List<BuildingSlot> buildingSlotsList;
         public BuildingQueue buildingQueue;
         public int productionPerTurn;
+        public ShipsQueue shipsQueue;
 
-        public UnitProduction unitProduction;
+        //public UnitProduction unitProduction;
 
 
         //Create Base Planets
@@ -46,7 +47,8 @@ namespace GalacticImperialism
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingQueue = new BuildingQueue();
 
-            unitProduction = new UnitProduction();
+            //unitProduction = new UnitProduction();
+            shipsQueue = new ShipsQueue();
         }
 
         //Create Starting Planet
@@ -71,7 +73,8 @@ namespace GalacticImperialism
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingQueue = new BuildingQueue();
 
-            unitProduction = new UnitProduction();
+            //unitProduction = new UnitProduction();
+            shipsQueue = new ShipsQueue();
         }
     }
 }

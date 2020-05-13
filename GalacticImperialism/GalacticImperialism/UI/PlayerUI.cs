@@ -28,6 +28,7 @@ namespace GalacticImperialism
         Tabs tabSelected;
         TopBar topBar;
         BuildingsTab buildingsTabObject;
+        UnitProductionTab unitProductionTabObject;
 
         public Texture2D barTexture;
         public Texture2D flagTexture;
@@ -52,6 +53,7 @@ namespace GalacticImperialism
         static Rectangle selection;
 
         public SpriteFont Arial15;
+        public SpriteFont Castellar12;
         public SpriteFont Castellar15;
         public SpriteFont Castellar20;
         public SpriteFont Castellar60;
@@ -97,7 +99,7 @@ namespace GalacticImperialism
         Line lineAboveTabs;
 
         //UnitProduction
-        UnitProductionMenu unitProductionMenu;
+        //UnitProductionMenu unitProductionMenu;
 
         public PlayerUI(ContentManager c, Texture2D playerFlag, Texture2D white, GraphicsDevice g)
         {
@@ -130,16 +132,18 @@ namespace GalacticImperialism
 
             // Fonts
             Arial15 = Content.Load<SpriteFont>("Sprite Fonts/Arial15");
+            Castellar12 = Content.Load<SpriteFont>("Sprite Fonts/Castellar12Point");
             Castellar15 = Content.Load<SpriteFont>("Sprite Fonts/Castellar15Point");
             Castellar20 = Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point");
             Castellar60 = Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point");
 
             //Tabs
             buildingsTabObject = new BuildingsTab(Content, whiteTexture);
+            unitProductionTabObject = new UnitProductionTab(Content, whiteTexture);
 
 
             //UNIT PRODUCTION
-            unitProductionMenu = new UnitProductionMenu(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
+            //unitProductionMenu = new UnitProductionMenu(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Arial15"));
 
         }
 
@@ -157,6 +161,7 @@ namespace GalacticImperialism
             tabSelected = Tabs.Buildings;
             tabButtons.Add(new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Buildings", Castellar15, Color.White, null, null));
             tabButtons.Add(new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Ships", Castellar15, Color.White, null, null));
+            tabButtons.Add(new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Unit P.", Castellar15, Color.White, null, null));
             changePlanetNameTextBox = new TextBox(new Rectangle(0, 0, 200, 50), 3, 20, Color.Black, Color.White, Color.White, Color.White, GraphicsDevice, Arial15);
             PlanetNames = new List<string>();
             PlanetRectangles = new List<Rectangle>();
@@ -243,6 +248,10 @@ namespace GalacticImperialism
                     tabSelected = Tabs.Ships;
                     //playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips.Add(new Ship(1, 1, 1, 1, "test"));
                 }
+                if (tabButtons[2].isClicked)
+                {
+                    tabSelected = Tabs.UnitProduction;
+                }
 
                 topLine.p1 = new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.X, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 100);
                 topLine.p2 = new Vector2(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Right, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Y + 100);
@@ -297,6 +306,11 @@ namespace GalacticImperialism
                     buildingsTabObject.Update(playerList[playerID].ownedPlanets[indexOfPlanetSelected], mouse, oldMouse);
                     playerList[playerID].ownedPlanets[indexOfPlanetSelected] = buildingsTabObject.planetSelected;
                 }
+                if(tabSelected == Tabs.UnitProduction)
+                {
+                    unitProductionTabObject.Update(mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected], playerList[playerID].shipsAvailableForConstruction);
+                    playerList[playerID].ownedPlanets[indexOfPlanetSelected] = unitProductionTabObject.selectedPlanet;
+                }
 
                 if (closePlanetManagementMenuButton.isClicked)
                 {
@@ -304,11 +318,6 @@ namespace GalacticImperialism
                     tabSelected = Tabs.Buildings;
                     buildingsTabObject.indexOfBuildingSlotSelected = 0;
                 }
-            }
-            if (tabSelected == Tabs.UnitProduction)
-            {
-                unitProductionMenu.Update(kb, oldKb, mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected].unitProduction);
-                UnitProduction.Open = false;
             }
             planetMenuLastFrame = planetMenu;
         }
@@ -423,9 +432,9 @@ namespace GalacticImperialism
                                 spriteBatch.Draw(whiteTexture, shipIconRects[x], Color.White * 0.50f);
                         }
                         spriteBatch.Draw(shipTexture, shipIconRects[x], Color.White);
-                        textSize = Castellar15.MeasureString(playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName());
-                        spriteBatch.DrawString(Castellar15, playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName(), new Vector2(shipIconRects[x].Center.X - (textSize.X / 2), shipIconRects[x].Bottom), Color.White);
-                        spriteBatch.DrawString(Castellar15, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove, new Vector2(shipIconRects[x].Center.X - ((int)Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getMoves()).X / 2), shipIconRects[x].Bottom - Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove).Y), Color.White);
+                        textSize = Castellar12.MeasureString(playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName());
+                        spriteBatch.DrawString(Castellar12, playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName(), new Vector2(shipIconRects[x].Center.X - (textSize.X / 2), shipIconRects[x].Bottom), Color.White);
+                        spriteBatch.DrawString(Castellar15, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove, new Vector2(shipIconRects[x].Center.X - ((int)Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove).X / 2), shipIconRects[x].Bottom - Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove).Y), Color.White);
                     }
                 }
                 if(tabSelected == Tabs.Buildings)
@@ -434,7 +443,8 @@ namespace GalacticImperialism
                 }
                 if (tabSelected == Tabs.UnitProduction)
                 {
-                    unitProductionMenu.Draw(spriteBatch, playerList[playerID].ownedPlanets[indexOfPlanetSelected].unitProduction);
+                    unitProductionTabObject.Draw(spriteBatch);
+                    //unitProductionMenu.Draw(spriteBatch, playerList[playerID].ownedPlanets[indexOfPlanetSelected].unitProduction);
                 }
                 
             }

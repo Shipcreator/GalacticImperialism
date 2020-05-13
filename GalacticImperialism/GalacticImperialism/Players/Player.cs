@@ -18,6 +18,7 @@ namespace GalacticImperialism
         int gold, science, hydrogen, oxygen, nitrogen, iron, tungsten, uranium; //All Item Values That every Player stores
         public List<Planet> ownedPlanets = new List<Planet>(); //Owned Planets
         public List<Ship> ships = new List<Ship>();
+        public List<Ship> shipsAvailableForConstruction;
 
         protected Board board; // Holds Current Board
 
@@ -36,6 +37,11 @@ namespace GalacticImperialism
             board = b;
             empireColor = new Color((int)playerEmpireColor.X, (int)playerEmpireColor.Y, (int)playerEmpireColor.Z);
             empireFlag = playerEmpireFlag;
+
+            shipsAvailableForConstruction = new List<Ship>();
+            shipsAvailableForConstruction.Add(new Ship(1, 1, 5, 1200, "Corvette"));
+            shipsAvailableForConstruction.Add(new Ship(2, 2, 3, 2000, "Destroyer"));
+            shipsAvailableForConstruction.Add(new Ship(3, 4, 3, 3600, "Cruiser"));
         }
 
 
@@ -247,10 +253,10 @@ namespace GalacticImperialism
         {
             PlayerUI.closeMenus();
             PlayerUI.shipsSelected = new List<Ship>();
-            for (int i = 0; i < ownedPlanets.Count;i++)
+            /*for (int i = 0; i < ownedPlanets.Count;i++)
             {
                 ownedPlanets[i].unitProduction.productionAdd();
-            }
+            }*/
             board.NextTurn();
         }
 

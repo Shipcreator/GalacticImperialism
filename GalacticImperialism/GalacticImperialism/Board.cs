@@ -45,6 +45,7 @@ namespace GalacticImperialism
         int randomPlanetNumber;
         bool breakLoop;
         int amountOfFactoriesOnPlanet;
+        int amountOfMilitaryBasesOnPlanet;
 
         //Creates Board, Assigns Texture Objects
         public Board(int r)
@@ -383,6 +384,32 @@ namespace GalacticImperialism
                         }
                     }
                     players[turn].ownedPlanets[x].buildingQueue.finishedBuildings.Clear();
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                for(int x = 0; x < players[turn].ownedPlanets.Count; x++)
+                {
+                    amountOfMilitaryBasesOnPlanet = 0;
+                    for (int y = 0; y < players[turn].ownedPlanets[x].buildingSlotsList.Count; y++)
+                    {
+                        if (players[turn].ownedPlanets[x].buildingSlotsList[y].typeOfBuilding == BuildingSlot.BuildingType.MilitaryBase)
+                        {
+                            amountOfMilitaryBasesOnPlanet++;
+                        }
+                    }
+                    players[turn].ownedPlanets[x].shipsQueue.EndTurn(500 + (250 * amountOfMilitaryBasesOnPlanet));
+                    for(int y = 0; y < players[turn].ownedPlanets[x].shipsQueue.finishedShips.Count; y++)
+                    {
+                        players[turn].ownedPlanets[x].planetShips.Add(players[turn].ownedPlanets[x].shipsQueue.finishedShips[y]);
+                        players[turn].AddShip(players[turn].ownedPlanets[x].shipsQueue.finishedShips[y]);
+                    }
+                    players[turn].ownedPlanets[x].shipsQueue.finishedShips.Clear();
                 }
             }
             catch(Exception e)

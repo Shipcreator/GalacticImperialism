@@ -12,7 +12,7 @@ namespace GalacticImperialism
         int defend;
         int move;
         public int currentmove;
-        int constructionCost;
+        public int constructionCost;
         string name;
 
         public Ship(int a, int d, int m, int c, string n) //Sets all Basic Ship Attributes
