@@ -114,11 +114,14 @@ namespace GalacticImperialism
             lineAboveConstructionQueue.Draw(spriteBatch);
             for(int x = 0; x < selectedPlanet.shipsQueue.queuedShips.Count; x++)
             {
-                spriteBatch.DrawString(Castellar15, selectedPlanet.shipsQueue.queuedShips[x].getName(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
-                spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getAttack(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 250, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
-                spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getDefence(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 383, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
-                spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getMoves(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 525, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
-                spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getConCost(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 675, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
+                if(lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25) + Castellar15.MeasureString(selectedPlanet.shipsQueue.queuedShips[x].getName()).Y < selectedPlanet.managementMenuObject.menuRectangle.Bottom - 25)
+                {
+                    spriteBatch.DrawString(Castellar15, selectedPlanet.shipsQueue.queuedShips[x].getName(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
+                    spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getAttack(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 250, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
+                    spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getDefence(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 383, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
+                    spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getMoves(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 525, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
+                    spriteBatch.DrawString(Castellar15, "" + selectedPlanet.shipsQueue.queuedShips[x].getConCost(), new Vector2(selectedPlanet.managementMenuObject.menuRectangle.X + 675, lineAboveConstructionQueue.p1.Y + lineAboveConstructionQueue.thickness + 5 + (x * 25)), Color.White);
+                }
             }
         }
     }
