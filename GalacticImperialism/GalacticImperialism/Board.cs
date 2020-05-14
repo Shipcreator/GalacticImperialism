@@ -166,16 +166,11 @@ namespace GalacticImperialism
                 }
                 else
                     randomPlanetNumber = rand.Next(0, planetNames.Count);
+
                 planetNamesUsedIndexes.Add(randomPlanetNumber);
                 Planet temp = new Planet(rand.Next(0,19), planetNames[randomPlanetNumber], new Vector2(10, 75));
                 planets.Add(temp);
                 players[0].AddPlanet(temp);
-                Ship test3 = new Ship(10, 1, 2, 2, "Corvete");
-                players[0].AddShip(test3);
-                temp.planetShips.Add(test3);
-                Ship test4 = new Ship(10, 1, 2, 2, "Corvete");
-                players[0].AddShip(test4);
-                temp.planetShips.Add(test4);
 
                 //Create Planet Two
                 if (planetNamesUsedIndexes.Count > 0)
@@ -195,16 +190,11 @@ namespace GalacticImperialism
                 }
                 else
                     randomPlanetNumber = rand.Next(0, planetNames.Count);
+
                 planetNamesUsedIndexes.Add(randomPlanetNumber);
                 temp = new Planet(rand.Next(0, 19), planetNames[randomPlanetNumber], new Vector2(1860, 1020));
                 planets.Add(temp);
                 players[1].AddPlanet(temp);
-                Ship test = new Ship(20,10,6,2,"Corvete");
-                players[1].AddShip(test);
-                temp.planetShips.Add(test);
-                Ship test2 = new Ship(20,10, 6, 2, "Corvete");
-                players[1].AddShip(test2);
-                temp.planetShips.Add(test2);
             }
             if (p >= 3)
             {

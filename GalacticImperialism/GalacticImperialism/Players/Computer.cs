@@ -28,7 +28,7 @@ namespace GalacticImperialism
             CheckTech();
 
             for (int i = 0; i <= 5; i++)
-                //MoveShips();
+                MoveShips();
 
             NewUnits();
             Buildings();
@@ -42,8 +42,10 @@ namespace GalacticImperialism
 
         private void MoveShips()
         {
-            foreach (Planet p in ownedPlanets)
+            for (int k = 0; k < ownedPlanets.Count; k++)
             {
+                Planet p = ownedPlanets[k];
+
                 int numOfShips = random.Next(0, p.planetShips.Count + 1);
                 List<Ship> selectedShips = new List<Ship>();
                 for (int i = 0; i < numOfShips; i++)
@@ -51,21 +53,58 @@ namespace GalacticImperialism
                     selectedShips.Add(p.planetShips[i]);
                 }
 
-                foreach (Ship ship in selectedShips)
-                {
-                    if (CanShipMove(ship))
-                    {
-                        List<Planet> planets = NearbyPlanets(p);
-                        int planetSel = random.Next(0, planets.Count);
+                List<Planet> planets = NearbyPlanets(p);
+                int planetSel = random.Next(0, planets.Count);
 
-                        moveShip(ship, planets[planetSel], p);
+                if (isValidPlanet(planets[planetSel]))
+                {
+                    foreach (Ship ship in selectedShips)
+                    {
+                        if (CanShipMove(ship))
+                        {
+                            moveShip(ship, planets[planetSel], p);
+
+                            if (isNeutral(planets[planetSel]))
+                                AddPlanet(planets[planetSel]);
+                        }
                     }
+                }
+                else
+                {
+                    List<Ship> attacking = new List<Ship>();
+
+                    foreach (Ship ship in selectedShips)
+                    {
+                        if (CanShipMove(ship))
+                        {
+                            ship.currentmove--;
+                            p.planetShips.Remove(ship);
+                            attacking.Add(ship);
+                        }
+                    }
+
+                    if (Attack(attacking, planets[planetSel].planetShips, planets[planetSel], p))
+                    {
+                    }
+
                 }
             }
         }
 
         private void NewUnits()
         {
+            foreach(Planet p in ownedPlanets)
+            {
+
+                if (random.Next(0, 2) == 0)
+                {
+                    if (p.shipsQueue.queuedShips.Count == 0)
+                    {
+                        int index = random.Next(0,shipsAvailableForConstruction.Count);
+                        p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
+                    }
+                }
+            }
         }
 
         private void Buildings()
