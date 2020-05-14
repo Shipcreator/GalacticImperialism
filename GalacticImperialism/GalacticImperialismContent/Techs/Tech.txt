@@ -1,0 +1,5 @@
+Movement Upgrade
+Gives all ships a +1 movement modifier per turn
+500
+MOVEMENT
+1

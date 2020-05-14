@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using GalacticImperialism.Networking;
 using Lidgren.Network;
+using GalacticImperialism.Components;
 
 namespace GalacticImperialism
 {
@@ -83,7 +84,7 @@ namespace GalacticImperialism
 
         bool menuChangeOnFrame;
         
-        public static TechTree techTree;
+        //public static TechTree techTree;
 
         public static List<Texture2D> planetTex;
 
@@ -183,7 +184,8 @@ namespace GalacticImperialism
             multiplayerMenuObject = new Multiplayer(this, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
 
             //Creates TechTree
-            techTree = new TechTree(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"));
+            TechHandler handler = new TechHandler();
+            //techTree = new TechTree(Content.Load<Texture2D>("Tech Textures/Sci-Fi Steel Wall"), Content.Load<Texture2D>("Tech Textures/Tech Backdrop"), Content.Load<Texture2D>("Tech Textures/TechMenuBackdrop"), Content.Load<Texture2D>("Tech Textures/Circuit"), Content.Load<SpriteFont>("Sprite Fonts/Castellar20Point"));
 }
 
         /// <summary>
@@ -460,7 +462,7 @@ namespace GalacticImperialism
                 playerUIObject.Update(playerFlagTexture, mouse, oldMouse, kb, oldKb);
                 if (playerUIObject.techTreeButton.isClicked)
                 {
-                    techTree.Open = true;
+                    //techTree.Open = true;
                     menuSelected = Menus.TechTree;
                     menuChangeOnFrame = true;
                 }
@@ -478,7 +480,7 @@ namespace GalacticImperialism
             {
                 if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
-                    techTree.Open = false;
+                    //techTree.Open = false;
                     menuSelected = Menus.Game;
                     menuChangeOnFrame = true;
                 }
@@ -487,7 +489,7 @@ namespace GalacticImperialism
             //Updates Unit Production
             
             //Update TechTree
-            techTree.Update(kb, oldKb, mouse, oldMouse);
+            //techTree.Update(kb, oldKb, mouse, oldMouse);
 
             musicPlayerObject.Update(masterVolume, musicVolume);
 
@@ -535,7 +537,7 @@ namespace GalacticImperialism
                 board.Draw(spriteBatch);
                 playerUIObject.Draw(spriteBatch);
             }
-            techTree.Draw(spriteBatch);
+            //techTree.Draw(spriteBatch);
             musicPlayerObject.Draw(spriteBatch);
             spriteBatch.End();
 
