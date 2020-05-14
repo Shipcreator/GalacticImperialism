@@ -345,6 +345,11 @@ namespace GalacticImperialism
                 Human temp = (Human)players[turn];
                 temp.Update(gt, mb, kb, oldms, oldkb);
             }
+            else if (players[turn] is Computer)
+            {
+                Computer temp = (Computer)players[turn];
+                temp.OnTurn();
+            }
         }
 
         //NextTurn Handling
