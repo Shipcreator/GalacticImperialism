@@ -31,6 +31,10 @@ namespace GalacticImperialism
         // Number of bots
         public int numBots;
 
+        Player winner;
+
+        public bool isWon;
+
         //Data base of flags that links them to a player ID
         public FlagDataBase flagDataBaseObject;
         public Flag defaultFlag;
@@ -56,6 +60,7 @@ namespace GalacticImperialism
         //Creates A New Board(Assume numOfBots < numOfPlayers)
         public void NewBoard(int numPlanets, int seed, int numOfPlayers, int numOfBots, int gold, Flag empireDefaultFlag)
         {
+            isWon = false;
             planetNames = new List<string>();
             planetNamesUsedIndexes = new List<int>();
             randomPlanetNumber = 0;
@@ -473,15 +478,27 @@ namespace GalacticImperialism
             }
         }
 
+        public void playerWon(Player p)
+        {
+            winner = p;
+            isWon = true;
+        }
+
         //Board Draw Method
         public void Draw(SpriteBatch sb)
         {
-
-            //Draws Planets
-            foreach (Planet p in planets)
+            if (isWon == false)
             {
-                Rectangle tempRect = new Rectangle((int)p.position.X, (int)p.position.Y, p.size * 25, p.size * 25);
-                sb.Draw(Game1.planetTex[p.texID], tempRect, Color.White);
+                //Draws Planets
+                foreach (Planet p in planets)
+                {
+                    Rectangle tempRect = new Rectangle((int)p.position.X, (int)p.position.Y, p.size * 25, p.size * 25);
+                    sb.Draw(Game1.planetTex[p.texID], tempRect, Color.White);
+                }
+            }
+            else
+            {
+                sb.DrawString(Game1.WinFont, "Player " + (players.IndexOf(winner) + 1) +" Wins", new Vector2(100,100), winner.empireColor);
             }
         }
     }

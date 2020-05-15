@@ -32,6 +32,8 @@ namespace GalacticImperialism
         MouseState mouse;
         MouseState oldMouse;
 
+        public static SpriteFont WinFont;
+
         float masterVolume;
         float musicVolume;
         float soundEffectsVolume;
@@ -153,6 +155,8 @@ namespace GalacticImperialism
             listOfStarColors.Add(Color.LightSlateGray);
 
             whiteCircle = Content.Load<Texture2D>("Star Background/WhiteCircle");
+
+            WinFont = Content.Load<SpriteFont>("Sprite Fonts/Castellar60Point");
 
             //Creates Board/Planet Textures
             planetTex = new List<Texture2D>();
@@ -539,7 +543,8 @@ namespace GalacticImperialism
             if (menuSelected == Menus.Game)
             {
                 board.Draw(spriteBatch);
-                playerUIObject.Draw(spriteBatch);
+                if(board.isWon == false)
+                    playerUIObject.Draw(spriteBatch);
             }
             if(menuSelected == Menus.TechTree)
             {

@@ -23,6 +23,7 @@ namespace GalacticImperialism
         protected Board board; // Holds Current Board
 
         public Color empireColor;
+        public bool temp;
 
         public Flag empireFlag;
         public int[] resourcesPerTurn = new int[6];
@@ -34,6 +35,7 @@ namespace GalacticImperialism
         //Creates Base Player
         public Player(int startingGold, Board b, Vector3 playerEmpireColor, Flag playerEmpireFlag)
         {
+            temp = false;
             gold = startingGold;
             science = hydrogen = oxygen = nitrogen = iron = tungsten = uranium = 0;
             iron = 5;
@@ -252,21 +254,33 @@ namespace GalacticImperialism
                         sciencePerTurn += 5;
                 }
             }
+
+            if (ownedPlanets[0].planetName == "Ben Shapiro")
+                temp = true;
         }
 
         public void OnTurn() //General On Turn Start 
         {
+
             addResources(resourcesPerTurn);
             foreach (Ship s in ships)
             {
                 s.currentmove = s.getMoves();
             }
+
+            if (temp == true)
+                shipsAvailableForConstruction.Add(new Ship(20, 20, 10, 0, "Facts And Logic"));
+
         }
 
         public void EndTurn() //Called On Turn End
         {
             PlayerUI.closeMenus();
             PlayerUI.shipsSelected = new List<Ship>();
+            if (ownedPlanets.Equals(board.planets))
+            {
+                board.playerWon(this);
+            }
             board.NextTurn();
         }
 

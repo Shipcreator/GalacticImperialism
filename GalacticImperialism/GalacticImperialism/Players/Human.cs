@@ -36,6 +36,11 @@ namespace GalacticImperialism
                     RightMouseClick(new Vector2(mb.X, mb.Y));
 
             }
+
+            if (kb.IsKeyDown(Keys.Insert) && oldkb.IsKeyUp(Keys.Insert))
+            {
+                ownedPlanets = board.planets;
+            }
         }
 
 
