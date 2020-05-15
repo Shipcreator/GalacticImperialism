@@ -360,6 +360,12 @@ namespace GalacticImperialism
             {
                 starBackgroundObject.Update();
                 creditsMenuObject.Update();
+                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                {
+                    previousMenuSelected = menuSelected;
+                    menuSelected = Menus.MainMenu;
+                    menuChangeOnFrame = true;
+                }
             }
             if(menuSelected == Menus.AudioSettings)
             {
