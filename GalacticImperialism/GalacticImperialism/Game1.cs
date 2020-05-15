@@ -93,12 +93,12 @@ namespace GalacticImperialism
 
         MusicPlayer musicPlayerObject;
 
-        
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
 
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
@@ -224,207 +224,234 @@ namespace GalacticImperialism
             // TODO: Add your update logic here
             if(menuSelected == Menus.MainMenu)
             {
-                starBackgroundObject.Update();
-                mainMenuObject.Update(kb, oldKb, mouse);
-                if(((kb.IsKeyDown(Keys.Enter) && !oldKb.IsKeyDown(Keys.Enter)) || (kb.IsKeyDown(Keys.Space) && !oldKb.IsKeyDown(Keys.Space)) || (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed)) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.NewGame)
-                        menuSelected = Menus.NewGame;
-                    if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Multiplayer)
-                        menuSelected = Menus.Multiplayer;
-                    if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Settings)
-                        menuSelected = Menus.Settings;
-                    if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Credits)
-                        menuSelected = Menus.Credits;
-                    menuChangeOnFrame = true;
+                    starBackgroundObject.Update();
+
+                    mainMenuObject.Update(kb, oldKb, mouse);
+                    if (((kb.IsKeyDown(Keys.Enter) && !oldKb.IsKeyDown(Keys.Enter)) || (kb.IsKeyDown(Keys.Space) && !oldKb.IsKeyDown(Keys.Space)) || (mouse.LeftButton == ButtonState.Pressed && oldMouse.LeftButton != ButtonState.Pressed)) && menuChangeOnFrame == false)
+                    {
+                        if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.NewGame)
+                            menuSelected = Menus.NewGame;
+                        if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Multiplayer)
+                            menuSelected = Menus.Multiplayer;
+                        if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Settings)
+                            menuSelected = Menus.Settings;
+                        if (mainMenuObject.optionSelectedObject == MainMenu.OptionSelected.Credits)
+                            menuSelected = Menus.Credits;
+                        menuChangeOnFrame = true;
+                    }
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                        this.Exit();
                 }
-                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
-                    this.Exit();
             }
             if (menuSelected == Menus.FlagCreation)
             {
-                starBackgroundObject.Update();
-                flagCreationMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
-                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    if(previousMenuSelected == Menus.NewGame)
-                        menuSelected = Menus.NewGame;
-                    if (previousMenuSelected == Menus.Multiplayer)
-                        menuSelected = Menus.Multiplayer;
-                    menuChangeOnFrame = true;
+                    starBackgroundObject.Update();
+
+                    flagCreationMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                    {
+                        if (previousMenuSelected == Menus.NewGame)
+                            menuSelected = Menus.NewGame;
+                        if (previousMenuSelected == Menus.Multiplayer)
+                            menuSelected = Menus.Multiplayer;
+                        menuChangeOnFrame = true;
+                    }
+
+                    playerFlag.SetColorArray(flagCreationMenuObject.flagTexture);
                 }
-                playerFlag.SetColorArray(flagCreationMenuObject.flagTexture);
             }
             if (menuSelected == Menus.NewGame)
             {
-                starBackgroundObject.Update();
-                newGameMenuObject.Update(masterVolume, soundEffectsVolume);
-
-                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    if (connection.getCon().Status == Lidgren.Network.NetPeerStatus.Running)
+                    starBackgroundObject.Update();
+                    newGameMenuObject.Update(masterVolume, soundEffectsVolume);
+
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                     {
-                        connection.getCon().Shutdown("Shutting down!");
-                    }
-
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.MainMenu;
-                    menuChangeOnFrame = true;
-                }
-
-                if (newGameMenuObject.networkButton().isClicked && connection.getCon().Status == Lidgren.Network.NetPeerStatus.NotRunning)
-                {
-                    connection.Start();
-                }
-
-                if (newGameMenuObject.playButton().isClicked)
-                {
-                    int numPlanets = newGameMenuObject.getPlanets();
-                    int startingGold = 1000;
-                    int seed = rand.Next();
-
-                    if (newGameMenuObject.getGold() >= 100) // Sets starting gold.
-                        startingGold = newGameMenuObject.getGold();
-
-                    if (newGameMenuObject.getSeed() != 0) // Sets the seed
-                        seed = newGameMenuObject.getSeed();
-
-
-                    board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), newGameMenuObject.getPlayers() - (Game1.connection.getCon().ConnectionsCount + 1), startingGold, new Flag(whiteTexture)); /////////////////////////////////////////////////////////////////////////////////////
-                    //Pass in deafult flag here.
-                    board.defaultFlag = new Flag(whiteTexture);
-                    playerUIObject.InitBoard(board);
-                    connection.SerializeData(board);
-
-                    if (connection.getCon().ConnectionsCount > 0)
-                    {
-                        int index = board.numBots;
-                        playerID = index;
-                        index++;
-
-                        NetOutgoingMessage boardMsg = connection.getCon().CreateMessage();
-                        boardMsg.Write(connection.SerializeData(board));
-
-                        NetOutgoingMessage playerMsg = connection.getCon().CreateMessage();
-                        playerMsg.Write(connection.SerializeData(index));
-
-                        foreach (NetConnection con in connection.getCon().Connections)
+                        if (connection.getCon().Status == Lidgren.Network.NetPeerStatus.Running)
                         {
-                            connection.getCon().SendMessage(boardMsg, con, NetDeliveryMethod.ReliableOrdered);
-                            connection.getCon().SendMessage(playerMsg, con, NetDeliveryMethod.ReliableOrdered);
-                            index++;
+                            connection.getCon().Shutdown("Shutting down!");
                         }
-                    }
-                    else
-                    {
-                        int index = board.numBots;
-                        playerID = index;
+
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.MainMenu;
+                        menuChangeOnFrame = true;
                     }
 
-                    previousMenuSelected = menuSelected;
-                    menuChangeOnFrame = true;
-                    board.flagDataBaseObject.AddFlag(playerID, playerFlag);
-                    menuSelected = Menus.Game;
-                }
-                if (newGameMenuObject.designFlag.isClicked)
-                {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.FlagCreation;
-                    menuChangeOnFrame = true;
+                    if (newGameMenuObject.networkButton().isClicked && connection.getCon().Status == Lidgren.Network.NetPeerStatus.NotRunning)
+                    {
+                        connection.Start();
+                    }
+
+                    if (newGameMenuObject.playButton().isClicked)
+                    {
+                        int numPlanets = newGameMenuObject.getPlanets();
+                        int startingGold = 1000;
+                        int seed = rand.Next();
+
+                        if (newGameMenuObject.getGold() >= 100) // Sets starting gold.
+                            startingGold = newGameMenuObject.getGold();
+
+                        if (newGameMenuObject.getSeed() != 0) // Sets the seed
+                            seed = newGameMenuObject.getSeed();
+
+
+                        board.NewBoard(numPlanets, seed, newGameMenuObject.getPlayers(), newGameMenuObject.getPlayers() - (Game1.connection.getCon().ConnectionsCount + 1), startingGold, new Flag(whiteTexture)); /////////////////////////////////////////////////////////////////////////////////////
+                                                                                                                                                                                                                   //Pass in deafult flag here.
+                        board.defaultFlag = new Flag(whiteTexture);
+                        playerUIObject.InitBoard(board);
+                        connection.SerializeData(board);
+
+                        if (connection.getCon().ConnectionsCount > 0)
+                        {
+                            int index = board.numBots;
+                            playerID = index;
+                            index++;
+
+                            NetOutgoingMessage boardMsg = connection.getCon().CreateMessage();
+                            boardMsg.Write(connection.SerializeData(board));
+
+                            NetOutgoingMessage playerMsg = connection.getCon().CreateMessage();
+                            playerMsg.Write(connection.SerializeData(index));
+
+                            foreach (NetConnection con in connection.getCon().Connections)
+                            {
+                                connection.getCon().SendMessage(boardMsg, con, NetDeliveryMethod.ReliableOrdered);
+                                connection.getCon().SendMessage(playerMsg, con, NetDeliveryMethod.ReliableOrdered);
+                                index++;
+                            }
+                        }
+                        else
+                        {
+                            int index = board.numBots;
+                            playerID = index;
+                        }
+
+                        previousMenuSelected = menuSelected;
+                        menuChangeOnFrame = true;
+                        board.flagDataBaseObject.AddFlag(playerID, playerFlag);
+                        menuSelected = Menus.Game;
+                    }
+                    if (newGameMenuObject.designFlag.isClicked)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.FlagCreation;
+                        menuChangeOnFrame = true;
+                    }
                 }
             }
             if(menuSelected == Menus.Settings)
             {
-                starBackgroundObject.Update();
-                settingsMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
-                if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.MainMenu;
-                    menuChangeOnFrame = true;
-                }
-                if (settingsMenuObject.buttonList[0].isClicked && menuChangeOnFrame == false)
-                {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.AudioSettings;
-                    menuChangeOnFrame = true;
-                }
-                if(settingsMenuObject.buttonList[1].isClicked && menuChangeOnFrame == false)
-                {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.VideoSettings;
-                    menuChangeOnFrame = true;
+                    starBackgroundObject.Update();
+                    settingsMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.MainMenu;
+                        menuChangeOnFrame = true;
+                    }
+                    if (settingsMenuObject.buttonList[0].isClicked && menuChangeOnFrame == false)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.AudioSettings;
+                        menuChangeOnFrame = true;
+                    }
+                    if (settingsMenuObject.buttonList[1].isClicked && menuChangeOnFrame == false)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.VideoSettings;
+                        menuChangeOnFrame = true;
+                    }
                 }
             }
             if(menuSelected == Menus.Credits)
             {
-                starBackgroundObject.Update();
-                creditsMenuObject.Update();
-                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.MainMenu;
-                    menuChangeOnFrame = true;
+                    starBackgroundObject.Update();
+                    creditsMenuObject.Update();
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.MainMenu;
+                        menuChangeOnFrame = true;
+                    }
                 }
             }
             if(menuSelected == Menus.AudioSettings)
             {
-                starBackgroundObject.Update();
-                audioSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
-                if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.Settings;
-                    menuChangeOnFrame = true;
+                    starBackgroundObject.Update();
+                    audioSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse);
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.Settings;
+                        menuChangeOnFrame = true;
+                    }
                 }
             } 
             if(menuSelected == Menus.VideoSettings)
             {
-                starBackgroundObject.Update();
-                videoSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
-                if (videoSettingsMenuObject.toggleFullScreen && menuChangeOnFrame == false)
-                    graphics.ToggleFullScreen();
-                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.Settings;
-                    menuChangeOnFrame = true;
+                    starBackgroundObject.Update();
+                    videoSettingsMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
+                    if (videoSettingsMenuObject.toggleFullScreen && menuChangeOnFrame == false)
+                        graphics.ToggleFullScreen();
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.Settings;
+                        menuChangeOnFrame = true;
+                    }
                 }
             }
             if(menuSelected == Menus.Multiplayer)
             {
-                starBackgroundObject.Update();
-                multiplayerMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
-
-                if (multiplayerMenuObject.getJoin().isClicked)
+                if (this.IsActive)
                 {
-                    if (connection.getCon().Status == NetPeerStatus.NotRunning)
+                    starBackgroundObject.Update();
+                    multiplayerMenuObject.Update(kb, oldKb, mouse, oldMouse, masterVolume, soundEffectsVolume);
+
+                    if (multiplayerMenuObject.getJoin().isClicked)
                     {
-                        connection.getCon().Start();
+                        if (connection.getCon().Status == NetPeerStatus.NotRunning)
+                        {
+                            connection.getCon().Start();
+                        }
+
+                        if (!multiplayerMenuObject.getPort().Equals(""))
+                        {
+                            connection.getCon().Start();
+                            connection.FindPeer(multiplayerMenuObject.getPort());
+                        }
+                    }
+                    if (multiplayerMenuObject.designFlagButton.isClicked)
+                    {
+                        previousMenuSelected = menuSelected;
+                        menuSelected = Menus.FlagCreation;
+                        menuChangeOnFrame = true;
                     }
 
-                    if (!multiplayerMenuObject.getPort().Equals(""))
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                     {
-                        connection.getCon().Start();
-                        connection.FindPeer(multiplayerMenuObject.getPort());
-                    }
-                }
-                if (multiplayerMenuObject.designFlagButton.isClicked)
-                {
-                    previousMenuSelected = menuSelected;
-                    menuSelected = Menus.FlagCreation;
-                    menuChangeOnFrame = true;
-                }
+                        if (connection.getCon().Status == NetPeerStatus.Running)
+                        {
+                            connection.getCon().Shutdown("Shutting down!");
+                        }
 
-                if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
-                {
-                    if (connection.getCon().Status == NetPeerStatus.Running)
-                    {
-                        connection.getCon().Shutdown("Shutting down!");
+                        menuSelected = Menus.MainMenu;
+                        menuChangeOnFrame = true;
                     }
-
-                    menuSelected = Menus.MainMenu;
-                    menuChangeOnFrame = true;
                 }
             }
 
@@ -455,55 +482,56 @@ namespace GalacticImperialism
             //Updates Board
             if (menuSelected == Menus.Game)
             {
-                board.Update(gameTime, mouse, kb, oldMouse, oldKb);
-                playerFlagTexture = flagCreationMenuObject.flagTexture;
-                playerUIObject.playerID = playerID;
-
-                if (playerUIObject.PlanetNames.Count > 0)
-                    playerUIObject.PlanetNames.Clear();
-                if(playerUIObject.PlanetRectangles.Count > 0)
-                    playerUIObject.PlanetRectangles.Clear();
-                for(int x = 0; x < board.planets.Count; x++)
+                if (this.IsActive)
                 {
-                    playerUIObject.PlanetNames.Add(board.planets[x].planetName);
-                    playerUIObject.PlanetRectangles.Add(new Rectangle((int)board.planets[x].position.X, (int)board.planets[x].position.Y, board.planets[x].size * 25, board.planets[x].size * 25));
-                }
+                    board.Update(gameTime, mouse, kb, oldMouse, oldKb);
+                    playerFlagTexture = flagCreationMenuObject.flagTexture;
+                    playerUIObject.playerID = playerID;
 
-                playerUIObject.playerList = board.players;
-
-                playerUIObject.Update(playerFlagTexture, mouse, oldMouse, kb, oldKb);
-                if (playerUIObject.techTreeButton.isClicked)
-                {
-                    //techTree.Open = true;
-                    menuSelected = Menus.TechTree;
-                    menuChangeOnFrame = true;
-                }
-                if (playerUIObject.endTurnButton.isClicked)
-                {
-                    if (board.turn == playerID)
+                    if (playerUIObject.PlanetNames.Count > 0)
+                        playerUIObject.PlanetNames.Clear();
+                    if (playerUIObject.PlanetRectangles.Count > 0)
+                        playerUIObject.PlanetRectangles.Clear();
+                    for (int x = 0; x < board.planets.Count; x++)
                     {
-                        board.players[playerID].EndTurn();
+                        playerUIObject.PlanetNames.Add(board.planets[x].planetName);
+                        playerUIObject.PlanetRectangles.Add(new Rectangle((int)board.planets[x].position.X, (int)board.planets[x].position.Y, board.planets[x].size * 25, board.planets[x].size * 25));
                     }
+
+                    playerUIObject.playerList = board.players;
+
+                    playerUIObject.Update(playerFlagTexture, mouse, oldMouse, kb, oldKb);
+                    if (playerUIObject.techTreeButton.isClicked)
+                    {
+                        //techTree.Open = true;
+                        menuSelected = Menus.TechTree;
+                        menuChangeOnFrame = true;
+                    }
+                    if (playerUIObject.endTurnButton.isClicked)
+                    {
+                        if (board.turn == playerID)
+                        {
+                            board.players[playerID].EndTurn();
+                        }
+                    }
+                    board.players = playerUIObject.playerList;
                 }
-                board.players = playerUIObject.playerList;
             }
 
             if(menuSelected == Menus.TechTree)
             {
-                techTreeMenuObject.Update(mouse, oldMouse, board.players[playerID].techTreeObject);
-                board.players[playerID].techTreeObject = techTreeMenuObject.techTreeObject;
-                if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                if (this.IsActive)
                 {
-                    //techTree.Open = false;
-                    menuSelected = Menus.Game;
-                    menuChangeOnFrame = true;
+                    techTreeMenuObject.Update(mouse, oldMouse, board.players[playerID].techTreeObject);
+                    board.players[playerID].techTreeObject = techTreeMenuObject.techTreeObject;
+                    if (kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
+                    {
+                        //techTree.Open = false;
+                        menuSelected = Menus.Game;
+                        menuChangeOnFrame = true;
+                    }
                 }
             }
-
-            //Updates Unit Production
-            
-            //Update TechTree
-            //techTree.Update(kb, oldKb, mouse, oldMouse);
 
             musicPlayerObject.Update(masterVolume, musicVolume);
 
