@@ -345,6 +345,8 @@ namespace GalacticImperialism
         //NextTurn Handling
         public void NextTurn()
         {
+
+            //Buildings.
             try
             {
                 for (int x = 0; x < players[turn].ownedPlanets.Count; x++)
@@ -381,6 +383,7 @@ namespace GalacticImperialism
                 Console.WriteLine(e.Message);
             }
 
+            //Unit Production.
             try
             {
                 for(int x = 0; x < players[turn].ownedPlanets.Count; x++)
@@ -407,6 +410,7 @@ namespace GalacticImperialism
                 Console.WriteLine(e.Message);
             }
 
+            //Science.
             players[turn].techTreeObject.EndTurn(players[turn].sciencePerTurn);
             players[turn].setScience(players[turn].techTreeObject.science);
             for(int x = 0; x < players[turn].techTreeObject.newTechsResearched.Count; x++)

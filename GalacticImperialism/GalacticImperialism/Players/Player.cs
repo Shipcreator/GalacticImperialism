@@ -243,6 +243,11 @@ namespace GalacticImperialism
             for(int x = 0; x < ownedPlanets.Count; x++)
             {
                 sciencePerTurn += ownedPlanets[x].sciencePerTurn;
+                for(int y = 0; y < ownedPlanets[x].buildingSlotsList.Count; y++)
+                {
+                    if (ownedPlanets[x].buildingSlotsList[y].typeOfBuilding == BuildingSlot.BuildingType.ResearchFacility)
+                        sciencePerTurn += 5;
+                }
             }
         }
 
