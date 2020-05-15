@@ -17,15 +17,26 @@ namespace GalacticImperialism
     {
         Random random = new Random();
 
+        int[] tempResources;
+        int tempRandomNumber;
+        int tempRandomNumber2;
+
         public Computer(int startingGold, Board b, Vector3 empireColor, Flag empireFlag) : base(startingGold, b, empireColor, empireFlag)
         {
-
+            tempResources = new int[6];
+            for(int x = 0; x < tempResources.Length; x++)
+            {
+                tempResources[x] = 0;
+            }
+            tempRandomNumber = 0;
+            tempRandomNumber2 = 0;
         }
 
         public void OnTurn()
         {
             base.OnTurn();
             CheckTech();
+            AddMovesHydrogenBuff();
 
             for (int i = 0; i <= 5; i++)
                 MoveShips();
@@ -37,7 +48,43 @@ namespace GalacticImperialism
 
         private void CheckTech()
         {
+            if(techTreeObject.techResearching == TechTree.Tech.None)
+            {
+                if(random.Next(0, 2) == 0)
+                {
+                    techTreeObject.techResearching = TechTree.Tech.Attack;
+                }
+                else
+                {
+                    if (random.Next(0, 2) == 0)
+                    {
+                        techTreeObject.techResearching = TechTree.Tech.Defense;
+                    }
+                    else
+                    {
+                        techTreeObject.techResearching = TechTree.Tech.Movement;
+                    }
+                }
+            }
+        }
 
+        private void AddMovesHydrogenBuff()
+        {
+            if (getResources()[0] >= 10)
+            {
+                tempRandomNumber = random.Next(0, ownedPlanets.Count);
+                if (ownedPlanets[tempRandomNumber].planetShips.Count > 0)
+                {
+                    tempRandomNumber2 = random.Next(0, ownedPlanets[tempRandomNumber].planetShips.Count);
+                    ownedPlanets[tempRandomNumber].planetShips[tempRandomNumber2].currentmove += ownedPlanets[tempRandomNumber].planetShips[tempRandomNumber2].getMoves();
+                    for (int y = 0; y < tempResources.Length; y++)
+                    {
+                        tempResources[y] = 0;
+                    }
+                    tempResources[0] = 10;
+                    subResources(tempResources);
+                }
+            }
         }
 
         private void MoveShips()
@@ -103,19 +150,39 @@ namespace GalacticImperialism
                         int index = random.Next(0,shipsAvailableForConstruction.Count);
                         if(shipsAvailableForConstruction[index].getName().Equals("Corvette") || shipsAvailableForConstruction[index].getName().Equals("Destroyer") || shipsAvailableForConstruction[index].getName().Equals("Cruiser"))
                         {
-                            if (shipsAvailableForConstruction[index].getName().Equals("Corvette") && getGold() >= 100)
+                            if (shipsAvailableForConstruction[index].getName().Equals("Corvette") && getGold() >= 100 && getResources()[3] >= 5)
                             {
                                 setGold(getGold() - 100);
+                                for(int x = 0; x < tempResources.Length; x++)
+                                {
+                                    tempResources[x] = 0;
+                                }
+                                tempResources[3] = 5;
+                                subResources(tempResources);
                                 p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
                             }
-                            if (shipsAvailableForConstruction[index].getName().Equals("Destroyer") && getGold() >= 200)
+                            if (shipsAvailableForConstruction[index].getName().Equals("Destroyer") && getGold() >= 200 && getResources()[3] >= 10 && getResources()[5] >= 10)
                             {
                                 setGold(getGold() - 200);
+                                for (int x = 0; x < tempResources.Length; x++)
+                                {
+                                    tempResources[x] = 0;
+                                }
+                                tempResources[3] = 10;
+                                tempResources[5] = 10;
+                                subResources(tempResources);
                                 p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
                             }
-                            if (shipsAvailableForConstruction[index].getName().Equals("Cruiser") && getGold() >= 300)
+                            if (shipsAvailableForConstruction[index].getName().Equals("Cruiser") && getGold() >= 300 && getResources()[3] >= 15 && getResources()[5] >= 15)
                             {
                                 setGold(getGold() - 300);
+                                for (int x = 0; x < tempResources.Length; x++)
+                                {
+                                    tempResources[x] = 0;
+                                }
+                                tempResources[3] = 15;
+                                tempResources[5] = 15;
+                                subResources(tempResources);
                                 p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
                             }
                         }
@@ -151,7 +218,36 @@ namespace GalacticImperialism
 
                             int index = random.Next(0, 3);
 
-                            p.buildingQueue.AddBuildingToQueue(types[index], i);
+                            if (types[index].Equals("Factory") && getResources()[1] >= 5)
+                            {
+                                p.buildingQueue.AddBuildingToQueue(types[index], i);
+                                for (int x = 0; x < tempResources.Length; x++)
+                                {
+                                    tempResources[x] = 0;
+                                }
+                                tempResources[1] = 5;
+                                subResources(tempResources);
+                            }
+                            if(types[index].Equals("MilitaryBase") && getResources()[4] >= 5)
+                            {
+                                p.buildingQueue.AddBuildingToQueue(types[index], i);
+                                for (int x = 0; x < tempResources.Length; x++)
+                                {
+                                    tempResources[x] = 0;
+                                }
+                                tempResources[4] = 5;
+                                subResources(tempResources);
+                            }
+                            if (types[index].Equals("ResearchFacility") && getResources()[2] >= 5)
+                            {
+                                p.buildingQueue.AddBuildingToQueue(types[index], i);
+                                for (int x = 0; x < tempResources.Length; x++)
+                                {
+                                    tempResources[x] = 0;
+                                }
+                                tempResources[2] = 5;
+                                subResources(tempResources);
+                            }
                             break;
                         }
 

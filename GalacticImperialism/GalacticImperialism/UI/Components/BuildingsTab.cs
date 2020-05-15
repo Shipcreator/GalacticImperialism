@@ -43,6 +43,9 @@ namespace GalacticImperialism
         int collectiveBuildCost;
         int numberOfFactories;
         int turnsToBuild;
+        public int oxygenAmount;
+        public int tungstenAmount;
+        public int nitrogenAmount;
 
         Button demolishOrBuildButton;
 
@@ -69,6 +72,9 @@ namespace GalacticImperialism
             collectiveBuildCost = 0;
             numberOfFactories = 0;
             turnsToBuild = 0;
+            oxygenAmount = 0;
+            tungstenAmount = 0;
+            nitrogenAmount = 0;
             demolishOrBuildButton = new Button(new Rectangle(0, 0, 200, 100), unselectedButtonTexture, selectedButtonTexture, "Build", textFont, Color.White, null, null);
             addBuildingToQueue = true;
         }
@@ -86,8 +92,12 @@ namespace GalacticImperialism
             factoryBuildingTexture = Content.Load<Texture2D>("Player UI/Planet Management Menu/Factory Icon");
         }
 
-        public void Update(Planet selectedPlanet, MouseState mouse, MouseState oldMouse)
+        public void Update(Planet selectedPlanet, MouseState mouse, MouseState oldMouse, int oxygen, int tungsten, int nitrogen)
         {
+            oxygenAmount = oxygen;
+            tungstenAmount = tungsten;
+            nitrogenAmount = nitrogen;
+
             planetSelected = selectedPlanet;
             rightSideLine.p1.X = selectedPlanet.managementMenuObject.menuRectangle.X + 600;
             rightSideLine.p1.Y = selectedPlanet.managementMenuObject.menuRectangle.Y + 140;
@@ -169,12 +179,21 @@ namespace GalacticImperialism
                     }
                     if (addBuildingToQueue)
                     {
-                        if (whatToBuildType == 0)
+                        if (whatToBuildType == 0 && nitrogenAmount >= 5)
+                        {
+                            nitrogenAmount -= 5;
                             planetSelected.buildingQueue.AddBuildingToQueue("ResearchFacility", indexOfBuildingSlotSelected);
-                        if (whatToBuildType == 1)
+                        }
+                        if (whatToBuildType == 1 && tungstenAmount >= 5)
+                        {
+                            tungstenAmount -= 5;
                             planetSelected.buildingQueue.AddBuildingToQueue("MilitaryBase", indexOfBuildingSlotSelected);
-                        if (whatToBuildType == 2)
+                        }
+                        if (whatToBuildType == 2 && oxygenAmount >= 5)
+                        {
+                            oxygenAmount -= 5;
                             planetSelected.buildingQueue.AddBuildingToQueue("Factory", indexOfBuildingSlotSelected);
+                        }
                     }
                 }
             }

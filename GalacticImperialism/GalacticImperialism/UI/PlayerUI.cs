@@ -80,6 +80,7 @@ namespace GalacticImperialism
         public Button techTreeButton;
         Button closePlanetManagementMenuButton;
         Button confirmChangePlanetNameButton;
+        Button addMovesButton;
         List<Button> tabButtons;
 
         TextBox changePlanetNameTextBox;
@@ -164,6 +165,7 @@ namespace GalacticImperialism
             tabButtons.Add(new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Buildings", Castellar15, Color.White, null, null));
             tabButtons.Add(new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Ships", Castellar15, Color.White, null, null));
             tabButtons.Add(new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Unit P.", Castellar15, Color.White, null, null));
+            addMovesButton = new Button(new Rectangle(0, 0, 150, 50), unselectedButtonTexture, selectedButtonTexture, "Add Moves", Castellar15, Color.White, null, null);
             changePlanetNameTextBox = new TextBox(new Rectangle(0, 0, 200, 50), 3, 20, Color.Black, Color.White, Color.White, Color.White, GraphicsDevice, Arial15);
             PlanetNames = new List<string>();
             PlanetRectangles = new List<Rectangle>();
@@ -306,17 +308,48 @@ namespace GalacticImperialism
                                 shipsSelected.Add(currentPlanet.planetShips[x]);
                         }
                     }
+                    addMovesButton.buttonRect = new Rectangle(playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Right - 150, playerList[playerID].ownedPlanets[indexOfPlanetSelected].managementMenuObject.menuRectangle.Bottom - 100, 150, 50);
+                    addMovesButton.Update(mouse, oldMouse);
+                    if (addMovesButton.isClicked)
+                    {
+                        for (int x = 0; x < shipsSelected.Count; x++)
+                        {
+                            if (playerList[playerID].getResources()[0] >= 10)
+                            {
+                                for(int y = 0; y < tempResources.Length; y++)
+                                {
+                                    tempResources[y] = 0;
+                                }
+                                tempResources[0] = 10;
+                                playerList[playerID].subResources(tempResources);
+                                shipsSelected[x].currentmove += shipsSelected[x].getMoves();
+                            }
+                        }
+                    }
                 }
                 if(tabSelected == Tabs.Buildings)
                 {
-                    buildingsTabObject.Update(playerList[playerID].ownedPlanets[indexOfPlanetSelected], mouse, oldMouse);
+                    buildingsTabObject.Update(playerList[playerID].ownedPlanets[indexOfPlanetSelected], mouse, oldMouse, playerList[playerID].getResources()[1], playerList[playerID].getResources()[4], playerList[playerID].getResources()[2]);
+                    for(int x = 0; x < tempResources.Length; x++)
+                    {
+                        tempResources[x] = 0;
+                    }
+                    tempResources[1] = playerList[playerID].getResources()[1] - buildingsTabObject.oxygenAmount;
+                    tempResources[4] = playerList[playerID].getResources()[4] - buildingsTabObject.tungstenAmount;
+                    tempResources[2] = playerList[playerID].getResources()[2] - buildingsTabObject.nitrogenAmount;
+                    playerList[playerID].subResources(tempResources);
                     playerList[playerID].ownedPlanets[indexOfPlanetSelected] = buildingsTabObject.planetSelected;
                 }
                 if(tabSelected == Tabs.UnitProduction)
                 {
-                    unitProductionTabObject.Update(mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected], playerList[playerID].shipsAvailableForConstruction, playerList[playerID].getGold(), playerList[playerID].getResources()[3]);
+                    unitProductionTabObject.Update(mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected], playerList[playerID].shipsAvailableForConstruction, playerList[playerID].getGold(), playerList[playerID].getResources()[3], playerList[playerID].getResources()[5]);
                     playerList[playerID].setGold(unitProductionTabObject.goldAmount);
+                    for(int x = 0; x < tempResources.Length; x++)
+                    {
+                        tempResources[x] = 0;
+                    }
                     tempResources[3] = playerList[playerID].getResources()[3] - unitProductionTabObject.ironAmount;
+                    tempResources[5] = playerList[playerID].getResources()[5] - unitProductionTabObject.uraniumAmount;
                     playerList[playerID].subResources(tempResources);
                     playerList[playerID].ownedPlanets[indexOfPlanetSelected] = unitProductionTabObject.selectedPlanet;
                 }
@@ -445,6 +478,7 @@ namespace GalacticImperialism
                         spriteBatch.DrawString(Castellar12, playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].getName(), new Vector2(shipIconRects[x].Center.X - (textSize.X / 2), shipIconRects[x].Bottom), Color.White);
                         spriteBatch.DrawString(Castellar15, "" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove, new Vector2(shipIconRects[x].Center.X - ((int)Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove).X / 2), shipIconRects[x].Bottom - Castellar15.MeasureString("" + playerList[playerID].ownedPlanets[indexOfPlanetSelected].planetShips[x].currentmove).Y), Color.White);
                     }
+                    addMovesButton.Draw(spriteBatch);
                 }
                 if(tabSelected == Tabs.Buildings)
                 {

@@ -36,6 +36,7 @@ namespace GalacticImperialism
         {
             gold = startingGold;
             science = hydrogen = oxygen = nitrogen = iron = tungsten = uranium = 0;
+            iron = 5;
             board = b;
             empireColor = new Color((int)playerEmpireColor.X, (int)playerEmpireColor.Y, (int)playerEmpireColor.Z);
             empireFlag = playerEmpireFlag;
