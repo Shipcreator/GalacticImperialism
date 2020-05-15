@@ -49,6 +49,7 @@ namespace GalacticImperialism
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
+            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingQueue = new BuildingQueue();
 
             //unitProduction = new UnitProduction();
@@ -74,6 +75,8 @@ namespace GalacticImperialism
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.ResearchFacility));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.MilitaryBase));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Factory));
+            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
+            buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));
             buildingSlotsList.Add(new BuildingSlot(BuildingSlot.BuildingType.Empty));

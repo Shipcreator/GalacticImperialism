@@ -98,6 +98,8 @@ namespace GalacticImperialism
         Line lineUnderResources;
         Line lineAboveTabs;
 
+        int[] tempResources;
+
         //UnitProduction
         //UnitProductionMenu unitProductionMenu;
 
@@ -180,7 +182,11 @@ namespace GalacticImperialism
 
             topBar = new TopBar(this, barRect, GraphicsDevice);
 
-
+            tempResources = new int[6];
+            for(int x = 0; x < tempResources.Length; x++)
+            {
+                tempResources[x] = 0;
+            }
         }
 
         public void Update(Texture2D playerFlagTexture, MouseState mouse, MouseState oldMouse, KeyboardState kb, KeyboardState oldKb)
@@ -308,8 +314,10 @@ namespace GalacticImperialism
                 }
                 if(tabSelected == Tabs.UnitProduction)
                 {
-                    unitProductionTabObject.Update(mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected], playerList[playerID].shipsAvailableForConstruction, playerList[playerID].getGold());
+                    unitProductionTabObject.Update(mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected], playerList[playerID].shipsAvailableForConstruction, playerList[playerID].getGold(), playerList[playerID].getResources()[3]);
                     playerList[playerID].setGold(unitProductionTabObject.goldAmount);
+                    tempResources[3] = playerList[playerID].getResources()[3] - unitProductionTabObject.ironAmount;
+                    playerList[playerID].subResources(tempResources);
                     playerList[playerID].ownedPlanets[indexOfPlanetSelected] = unitProductionTabObject.selectedPlanet;
                 }
 
