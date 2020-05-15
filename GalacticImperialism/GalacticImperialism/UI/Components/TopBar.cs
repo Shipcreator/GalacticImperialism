@@ -87,28 +87,28 @@ namespace GalacticImperialism.UI.Components
 
             spriteBatch.Draw(ui.ironResourceTexture, ironResourceRect, Color.White);
             Vector2 textSize = ui.Arial15.MeasureString("Iron: " + ironAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[3]);
-            spriteBatch.DrawString(ui.Arial15, "Iron: " + ironAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[3], new Vector2(ironResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + ironAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[3], new Vector2(ironResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(ui.uraniumResourceTexture, uraniumResourceRect, Color.White);
             textSize = ui.Arial15.MeasureString("Uranium: " + uraniumAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[5]);
-            spriteBatch.DrawString(ui.Arial15, "Uranium: " + uraniumAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[5], new Vector2(uraniumResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + uraniumAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[5], new Vector2(uraniumResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(ui.tungstenResourceTexture, tungstenResourceRect, Color.White);
             textSize = ui.Arial15.MeasureString("Tungsten: " + tungstenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[4]);
-            spriteBatch.DrawString(ui.Arial15, "Tungsten: " + tungstenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[4], new Vector2(tungstenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + tungstenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[4], new Vector2(tungstenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(ui.hydrogenResourceTexture, hydrogenResourceRect, Color.White);
             textSize = ui.Arial15.MeasureString("Hydrogen: " + hydrogenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[0]);
-            spriteBatch.DrawString(ui.Arial15, "Hydrogen: " + hydrogenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[0], new Vector2(hydrogenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + hydrogenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[0], new Vector2(hydrogenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(ui.nitrogenResourceTexture, nitrogenResourceRect, Color.White);
             textSize = ui.Arial15.MeasureString("Nitrogen: " + nitrogenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[2]);
-            spriteBatch.DrawString(ui.Arial15, "Nitrogen: " + nitrogenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[2], new Vector2(nitrogenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + nitrogenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[2], new Vector2(nitrogenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(ui.oxygenResourceTexture, oxygenResourceRect, Color.White);
             textSize = ui.Arial15.MeasureString("Oxygen: " + oxygenAmount);
-            spriteBatch.DrawString(ui.Arial15, "Oxygen: " + oxygenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[1], new Vector2(oxygenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + oxygenAmount + " +" + playerList[Game1.playerID].resourcesPerTurn[1], new Vector2(oxygenResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(ui.goldResourceTexture, goldResourceRect, Color.White);
             textSize = ui.Arial15.MeasureString("Gold: " + goldAmount + " +" + playerList[Game1.playerID].goldPerTurn);
-            spriteBatch.DrawString(ui.Arial15, "Gold: " + goldAmount + " +" + playerList[Game1.playerID].goldPerTurn, new Vector2(goldResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + goldAmount + " +" + playerList[Game1.playerID].goldPerTurn, new Vector2(goldResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
             spriteBatch.Draw(ui.scienceResourceTexture, scienceResourceRect, Color.White);
             textSize = ui.Arial15.MeasureString("Science: " + scienceAmount + " +" + playerList[Game1.playerID].sciencePerTurn);
-            spriteBatch.DrawString(ui.Arial15, "Science: " + scienceAmount + " +" + playerList[Game1.playerID].sciencePerTurn, new Vector2(scienceResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
+            spriteBatch.DrawString(ui.Arial15, "" + scienceAmount + " +" + playerList[Game1.playerID].sciencePerTurn, new Vector2(scienceResourceRect.Right + 5, barRect.Center.Y - (textSize.Y / 2)), Color.White);
         }
     }
 }

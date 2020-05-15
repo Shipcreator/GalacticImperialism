@@ -69,6 +69,7 @@ namespace GalacticImperialism
         VideoSettings videoSettingsMenuObject;
         FlagCreation flagCreationMenuObject;
         Multiplayer multiplayerMenuObject;
+        TechTreeMenu techTreeMenuObject;
 
         StarBackground starBackgroundObject;
 
@@ -182,6 +183,7 @@ namespace GalacticImperialism
             playerFlagTexture.SetData<Color>(playerFlag.flagColorArray);
             playerUIObject = new PlayerUI(Content, playerFlagTexture, whiteTexture, GraphicsDevice);
             multiplayerMenuObject = new Multiplayer(this, Content.Load<SoundEffect>("Sound Effects/Mouse Over Button"));
+            techTreeMenuObject = new TechTreeMenu(Content, whiteTexture);
 
             //Creates TechTree
             TechHandler handler = new TechHandler();
@@ -478,6 +480,8 @@ namespace GalacticImperialism
 
             if(menuSelected == Menus.TechTree)
             {
+                techTreeMenuObject.Update(mouse, oldMouse, board.players[playerID].techTreeObject);
+                board.players[playerID].techTreeObject = techTreeMenuObject.techTreeObject;
                 if(kb.IsKeyDown(Keys.Escape) && !oldKb.IsKeyDown(Keys.Escape) && menuChangeOnFrame == false)
                 {
                     //techTree.Open = false;
@@ -536,6 +540,10 @@ namespace GalacticImperialism
             {
                 board.Draw(spriteBatch);
                 playerUIObject.Draw(spriteBatch);
+            }
+            if(menuSelected == Menus.TechTree)
+            {
+                techTreeMenuObject.Draw(spriteBatch);
             }
             //techTree.Draw(spriteBatch);
             musicPlayerObject.Draw(spriteBatch);

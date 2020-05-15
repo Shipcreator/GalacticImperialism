@@ -29,6 +29,8 @@ namespace GalacticImperialism
         public int goldPerTurn = 0;
         public int sciencePerTurn = 0;
 
+        public TechTree techTreeObject;
+
         //Creates Base Player
         public Player(int startingGold, Board b, Vector3 playerEmpireColor, Flag playerEmpireFlag)
         {
@@ -42,6 +44,8 @@ namespace GalacticImperialism
             shipsAvailableForConstruction.Add(new Ship(1, 1, 5, 1200, "Corvette"));
             shipsAvailableForConstruction.Add(new Ship(2, 2, 3, 2000, "Destroyer"));
             shipsAvailableForConstruction.Add(new Ship(3, 4, 3, 3600, "Cruiser"));
+
+            techTreeObject = new TechTree();
         }
 
 
@@ -235,14 +239,17 @@ namespace GalacticImperialism
 
         public void Update(GameTime gt) //General Update
         {
-
+            sciencePerTurn = 0;
+            for(int x = 0; x < ownedPlanets.Count; x++)
+            {
+                sciencePerTurn += ownedPlanets[x].sciencePerTurn;
+            }
         }
 
         public void OnTurn() //General On Turn Start 
         {
             addResources(resourcesPerTurn);
             gold += goldPerTurn;
-            science += sciencePerTurn;
             foreach (Ship s in ships)
             {
                 s.currentmove = s.getMoves();

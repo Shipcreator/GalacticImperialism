@@ -101,6 +101,8 @@
   <ItemGroup>
     <Compile Include="Components\TechEnum.cs" />
     <Compile Include="Components\TechHandler.cs" />
+    <Compile Include="Menus\TechTree.cs" />
+    <Compile Include="TechTreeMenu.cs" />
     <Compile Include="UI\Components\BuildingQueued.cs" />
     <Compile Include="UI\Components\ShipsQueue.cs" />
     <Compile Include="UI\Components\BuildingQueue.cs" />
@@ -120,7 +122,6 @@
     <Compile Include="Board.cs" />
     <Compile Include="Menus\Multiplayer.cs" />
     <Compile Include="Components\Tech.cs" />
-    <Compile Include="Menus\TechTree.cs" />
     <Compile Include="UI\Slider.cs" />
     <Compile Include="UI\PlayerUI.cs" />
     <Compile Include="UI\Button.cs" />

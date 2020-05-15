@@ -407,6 +407,34 @@ namespace GalacticImperialism
                 Console.WriteLine(e.Message);
             }
 
+            players[turn].techTreeObject.EndTurn(players[turn].sciencePerTurn);
+            players[turn].setScience(players[turn].techTreeObject.science);
+            for(int x = 0; x < players[turn].techTreeObject.newTechsResearched.Count; x++)
+            {
+                if (players[turn].techTreeObject.newTechsResearched[x].Equals("Attack"))
+                {
+                    for(int y = 0; y < players[turn].shipsAvailableForConstruction.Count; y++)
+                    {
+                        players[turn].shipsAvailableForConstruction[y] = new Ship(players[turn].shipsAvailableForConstruction[y].getAttack() + 1, players[turn].shipsAvailableForConstruction[y].getDefence(), players[turn].shipsAvailableForConstruction[y].getMoves(), players[turn].shipsAvailableForConstruction[y].getConCost(), players[turn].shipsAvailableForConstruction[y].getName());
+                    }
+                }
+                if (players[turn].techTreeObject.newTechsResearched[x].Equals("Defense"))
+                {
+                    for (int y = 0; y < players[turn].shipsAvailableForConstruction.Count; y++)
+                    {
+                        players[turn].shipsAvailableForConstruction[y] = new Ship(players[turn].shipsAvailableForConstruction[y].getAttack(), players[turn].shipsAvailableForConstruction[y].getDefence() + 1, players[turn].shipsAvailableForConstruction[y].getMoves(), players[turn].shipsAvailableForConstruction[y].getConCost(), players[turn].shipsAvailableForConstruction[y].getName());
+                    }
+                }
+                if (players[turn].techTreeObject.newTechsResearched[x].Equals("Movement"))
+                {
+                    for (int y = 0; y < players[turn].shipsAvailableForConstruction.Count; y++)
+                    {
+                        players[turn].shipsAvailableForConstruction[y] = new Ship(players[turn].shipsAvailableForConstruction[y].getAttack(), players[turn].shipsAvailableForConstruction[y].getDefence(), players[turn].shipsAvailableForConstruction[y].getMoves() + 1, players[turn].shipsAvailableForConstruction[y].getConCost(), players[turn].shipsAvailableForConstruction[y].getName());
+                    }
+                }
+            }
+            players[turn].techTreeObject.newTechsResearched.Clear();
+
             //Goes to Next Player
             if (turn == players.Count - 1)
                 turn = 0;
