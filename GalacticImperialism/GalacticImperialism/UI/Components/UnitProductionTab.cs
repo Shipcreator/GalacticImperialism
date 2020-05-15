@@ -33,6 +33,8 @@ namespace GalacticImperialism
         Texture2D unselectedButtonTexture;
         Texture2D selectedButtonTexture;
 
+        public int goldAmount;
+
         public UnitProductionTab(ContentManager Content, Texture2D white)
         {
             whiteTexture = white;
@@ -55,9 +57,10 @@ namespace GalacticImperialism
             selectedButtonTexture = Content.Load<Texture2D>("Button Textures/SelectedButtonTexture1");
         }
 
-        public void Update(MouseState mouse, MouseState oldMouse, Planet planetSelected, List<Ship> constructionAvailableShips)
+        public void Update(MouseState mouse, MouseState oldMouse, Planet planetSelected, List<Ship> constructionAvailableShips, int gold)
         {
             shipsAvailableForConstruction = constructionAvailableShips;
+            goldAmount = gold;
 
             selectedPlanet = planetSelected;
             lineUnderColumnHeader.p1.X = selectedPlanet.managementMenuObject.menuRectangle.X;
@@ -73,7 +76,28 @@ namespace GalacticImperialism
                 buildButtons[x].Update(mouse, oldMouse);
                 if (buildButtons[x].isClicked)
                 {
-                    planetSelected.shipsQueue.queuedShips.Add(new Ship(shipsAvailableForConstruction[x].getAttack(), shipsAvailableForConstruction[x].getDefence(), shipsAvailableForConstruction[x].getMoves(), shipsAvailableForConstruction[x].getConCost(), shipsAvailableForConstruction[x].getName()));
+                    if(shipsAvailableForConstruction[x].getName().Equals("Corvette") || shipsAvailableForConstruction[x].getName().Equals("Destroyer") || shipsAvailableForConstruction[x].getName().Equals("Cruiser"))
+                    {
+                        if (shipsAvailableForConstruction[x].getName().Equals("Corvette") && goldAmount >= 100)
+                        {
+                            goldAmount -= 100;
+                            planetSelected.shipsQueue.queuedShips.Add(new Ship(shipsAvailableForConstruction[x].getAttack(), shipsAvailableForConstruction[x].getDefence(), shipsAvailableForConstruction[x].getMoves(), shipsAvailableForConstruction[x].getConCost(), shipsAvailableForConstruction[x].getName()));
+                        }
+                        if (shipsAvailableForConstruction[x].getName().Equals("Destroyer") && goldAmount >= 200)
+                        {
+                            goldAmount -= 200;
+                            planetSelected.shipsQueue.queuedShips.Add(new Ship(shipsAvailableForConstruction[x].getAttack(), shipsAvailableForConstruction[x].getDefence(), shipsAvailableForConstruction[x].getMoves(), shipsAvailableForConstruction[x].getConCost(), shipsAvailableForConstruction[x].getName()));
+                        }
+                        if (shipsAvailableForConstruction[x].getName().Equals("Cruiser") && goldAmount >= 300)
+                        {
+                            goldAmount -= 300;
+                            planetSelected.shipsQueue.queuedShips.Add(new Ship(shipsAvailableForConstruction[x].getAttack(), shipsAvailableForConstruction[x].getDefence(), shipsAvailableForConstruction[x].getMoves(), shipsAvailableForConstruction[x].getConCost(), shipsAvailableForConstruction[x].getName()));
+                        }
+                    }
+                    else
+                    {
+                        planetSelected.shipsQueue.queuedShips.Add(new Ship(shipsAvailableForConstruction[x].getAttack(), shipsAvailableForConstruction[x].getDefence(), shipsAvailableForConstruction[x].getMoves(), shipsAvailableForConstruction[x].getConCost(), shipsAvailableForConstruction[x].getName()));
+                    }
                 }
             }
 

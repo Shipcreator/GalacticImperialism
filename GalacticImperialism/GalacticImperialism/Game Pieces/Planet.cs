@@ -27,6 +27,7 @@ namespace GalacticImperialism
         public int productionPerTurn;
         public ShipsQueue shipsQueue;
         public int sciencePerTurn;
+        public int goldPerTurn;
 
         //public UnitProduction unitProduction;
 
@@ -54,6 +55,7 @@ namespace GalacticImperialism
             shipsQueue = new ShipsQueue();
 
             sciencePerTurn = 10;
+            goldPerTurn = 10;
         }
 
         //Create Starting Planet
@@ -85,6 +87,7 @@ namespace GalacticImperialism
             shipsQueue = new ShipsQueue();
 
             sciencePerTurn = 30;
+            goldPerTurn = 30;
         }
     }
 }

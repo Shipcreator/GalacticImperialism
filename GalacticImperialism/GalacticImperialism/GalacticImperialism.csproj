@@ -142,7 +142,6 @@
     <Compile Include="UI\TextBox.cs" />
     <Compile Include="Menus\VideoSettings.cs" />
     <Compile Include="UnitProduction.cs" />
-    <Compile Include="UI\Components\UnitProductionMenu.cs" />
     <Compile Include="UI\Components\UnitProductionTab.cs" />
   </ItemGroup>
   <ItemGroup>

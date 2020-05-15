@@ -101,7 +101,28 @@ namespace GalacticImperialism
                     if (p.shipsQueue.queuedShips.Count == 0)
                     {
                         int index = random.Next(0,shipsAvailableForConstruction.Count);
-                        p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
+                        if(shipsAvailableForConstruction[index].getName().Equals("Corvette") || shipsAvailableForConstruction[index].getName().Equals("Destroyer") || shipsAvailableForConstruction[index].getName().Equals("Cruiser"))
+                        {
+                            if (shipsAvailableForConstruction[index].getName().Equals("Corvette") && getGold() >= 100)
+                            {
+                                setGold(getGold() - 100);
+                                p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
+                            }
+                            if (shipsAvailableForConstruction[index].getName().Equals("Destroyer") && getGold() >= 200)
+                            {
+                                setGold(getGold() - 200);
+                                p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
+                            }
+                            if (shipsAvailableForConstruction[index].getName().Equals("Cruiser") && getGold() >= 300)
+                            {
+                                setGold(getGold() - 300);
+                                p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
+                            }
+                        }
+                        else
+                        {
+                            p.shipsQueue.queuedShips.Add(shipsAvailableForConstruction[index]);
+                        }
                     }
                 }
             }

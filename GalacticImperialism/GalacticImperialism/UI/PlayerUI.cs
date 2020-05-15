@@ -308,7 +308,8 @@ namespace GalacticImperialism
                 }
                 if(tabSelected == Tabs.UnitProduction)
                 {
-                    unitProductionTabObject.Update(mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected], playerList[playerID].shipsAvailableForConstruction);
+                    unitProductionTabObject.Update(mouse, oldMouse, playerList[playerID].ownedPlanets[indexOfPlanetSelected], playerList[playerID].shipsAvailableForConstruction, playerList[playerID].getGold());
+                    playerList[playerID].setGold(unitProductionTabObject.goldAmount);
                     playerList[playerID].ownedPlanets[indexOfPlanetSelected] = unitProductionTabObject.selectedPlanet;
                 }
 

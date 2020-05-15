@@ -240,9 +240,11 @@ namespace GalacticImperialism
         public void Update(GameTime gt) //General Update
         {
             sciencePerTurn = 0;
+            goldPerTurn = 0;
             for(int x = 0; x < ownedPlanets.Count; x++)
             {
                 sciencePerTurn += ownedPlanets[x].sciencePerTurn;
+                goldPerTurn += ownedPlanets[x].goldPerTurn;
                 for(int y = 0; y < ownedPlanets[x].buildingSlotsList.Count; y++)
                 {
                     if (ownedPlanets[x].buildingSlotsList[y].typeOfBuilding == BuildingSlot.BuildingType.ResearchFacility)
@@ -254,7 +256,6 @@ namespace GalacticImperialism
         public void OnTurn() //General On Turn Start 
         {
             addResources(resourcesPerTurn);
-            gold += goldPerTurn;
             foreach (Ship s in ships)
             {
                 s.currentmove = s.getMoves();

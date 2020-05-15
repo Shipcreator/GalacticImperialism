@@ -345,6 +345,7 @@ namespace GalacticImperialism
         //NextTurn Handling
         public void NextTurn()
         {
+            players[turn].setGold(players[turn].goldPerTurn + players[turn].getGold());
 
             //Buildings.
             try
